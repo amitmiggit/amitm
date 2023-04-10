@@ -1,0 +1,390 @@
+(1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server:lp09pcr17.bmwgrooup.net(in cluster with lp09pcr18.bmwgrooup.net)
+APP-ID: 112010
+FS : Add [ ] / Extend [ X] / Reduce [ ]
+FS Name: 
+/dev/vx/dsk/dgiicrcs10db01/lvICR  
+
+Mount point:
+/dev/vx/dsk/dgiicrcs10db01/lvICR                          225G   36G  189G  16% /oracle/ICR
+
+FS size change( in GB ):  112GB  
+
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+========================================================
+RESOLUTION
+===================================
+1.LUN request of 112 GB done 
+
+2.Storm team completed the request - oK
+
+On first cluster node  below:
+
+3. lp09pcr17:~ # san_rescan -o
+** Starting with PID '13644' and options '-o'
+
+** HBA Check...
+ - Checking host1   (0x10000090faf05410): 'Link Up - Ready Fabric'
+ - Checking host2   (0x10000090faf05411): 'Link Up - Ready Fabric'
+ - Checking host3   (0x10000090faf05642): 'Link Up - Ready Fabric'
+ - Checking host4   (0x10000090faf05643): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host1 host2 host3 host4'.
+
+** Rescanning host1
+ = Triggering Scan on host1
+ - Checking host1:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host1
+
+** Rescanning host2
+ = Triggering Scan on host2
+ - Checking host2:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 0 new os-device(s) on host2
+
+** Rescanning host3
+ = Triggering Scan on host3
+ - Checking host3:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host3
+
+** Rescanning host4
+ = Triggering Scan on host4
+ - Checking host4:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 0 new os-device(s) on host4
+
+** Device summary
+ - Found 4 new devices: sdud sdue sduf sdug
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   VSP_97013_5164    | sduf  51:64   5D   97013 115245 | sdud  51:64   6D   97013 115245 |
+   VSP_97158_5164    | sdug  51:64   5D   97158 115245 | sdue  51:64   6D   97158 115245 |
+
+ - Found 2 new Veritas device(s): 'VSP_97013_5164 VSP_97158_5164'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 25 sec.
+
+4. lp09pcr17:~ # san_shortinfo | grep -i 5164
+VSP_97013_5164     | sduf  51:64   5D   97013   115245 | sdud  51:64   6D   97013   115245 |
+VSP_97158_5164     | sdug  51:64   5D   97158   115245 | sdue  51:64   6D   97158   115245 |
+
+
+5.lp09pcr17:~ # df -hT /dev/vx/dsk/dgiicrcs10db01/lvICR
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgiicrcs10db01/lvICR vxfs  225G   20G  205G   9% /oracle/ICR
+
+
+
+6.On second clutsre node 
+
+lp09pcr18:~ # san_rescan -o
+There is already a running a rescan:
+        root      1293  0.0  0.0  14828   332 pts/0    R+   20:38   0:00 /bin/bash /sbin/san_rescan -o
+
+Rescan already running, exiting
+
+Exiting with error code 21
+
+lp09pcr18:~ # w
+ 20:38:51 up 966 days, 13:34,  2 users,  load average: 22.33, 20.96, 20.01
+USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
+qxz10kv  pts/0     20:38    3.00s  0.03s  0.04s sshd: qxz10kv [priv]
+oracle   pts/5     05Jul20  7days  2.65s  2.65s -bash
+lp09pcr18:~ # ps -ef | grep -i rescan
+root      5040   849  0 20:39 pts/0    00:00:00 grep -i rescan
+lp09pcr18:~ # san_rescan -o
+** Starting with PID '5135' and options '-o'
+
+** HBA Check...
+ - Checking host1   (0x10000090faf0566a): 'Link Up - Ready Fabric'
+ - Checking host2   (0x10000090faf0566b): 'Link Up - Ready Fabric'
+ - Checking host3   (0x10000090faf05692): 'Link Up - Ready Fabric'
+ - Checking host4   (0x10000090faf05693): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host1 host2 host3 host4'.
+
+** Rescanning host1
+ = Triggering Scan on host1
+ - Checking host1:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host1
+
+** Rescanning host2
+ = Triggering Scan on host2
+ - Checking host2:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 0 new os-device(s) on host2
+
+** Rescanning host3
+ = Triggering Scan on host3
+ - Checking host3:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host3
+
+** Rescanning host4
+ = Triggering Scan on host4
+ - Checking host4:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 0 new os-device(s) on host4
+
+** Device summary
+ - Found 4 new devices: sdap sdaq sdar sdas
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   VSP_97013_5164    | sdap  51:64   6D   97013 115245 | sdar  51:64   5D   97013 115245 |
+   VSP_97158_5164    | sdaq  51:64   6D   97158 115245 | sdas  51:64   5D   97158 115245 |
+
+ - Found 2 new Veritas device(s): 'VSP_97013_5164 VSP_97158_5164'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 33 sec.
+
+lp09pcr18:~ # san_shortinfo | grep -i 5164
+VSP_97013_5164     | sdap  51:64   6D   97013   115245 | sdar  51:64   5D   97013   115245 |
+VSP_97158_5164     | sdaq  51:64   6D   97158   115245 | sdas  51:64   5D   97158   115245 |
+
+
+7 On the main jump server where server comes after cmdb <servername> -x
+
+====================================================================================
+
+Just for reference copy template from the executed one
+
+-rw-r--r--  1 qqinstserv instserv  412 Jul  8 21:09 lp09d10_grow_TAS000004799321.all
+drwx------  6 qqinstserv instserv 4096 Jul  8 21:09 .
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $ cat lp09d10_grow_TAS000004799321.all
+#########################################################################
+#
+# GROW EXISTING Filesystem
+#
+# Replace (host1) with the name of the physical server on which the filesystem is mounted
+#
+#########################################################################
+
+HOST lp09d10
+dg dgkiqaw9db
+# @000306444
+51:62   97158   B1_GS3
+51:62   97013   B1_GS3
+
+lv lvkiqaw9db  max
+mnt lvkiqaw9db /global/kiqaw9/db
+
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $ cp lp09d10_grow_TAS000004799321.all lp09pcr17_grow_TAS000004805986.all
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $
+
+=============================================================================================
+
+8 content of script as below:
+
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $ cat lp09pcr17_grow_TAS000004805986.all
+#########################################################################
+#
+# GROW EXISTING Filesystem
+#
+# Replace (host1) with the name of the physical server on which the filesystem is mounted
+#
+#########################################################################
+
+HOST lp09pcr17
+dg dgiicrcs10db01
+# @000320118
+51:64   97013   B1_GS3
+51:64   97158   B1_GS3
+
+lv lvICR  max
+mnt lvICR /oracle/ICR
+
+===========================================================================
+
+
+9 Eexecute script
+
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh lp09pcr17_grow_TAS000004805986.all
+
+  _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+  |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+   \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+ Processing file 'lp09pcr17_grow_TAS000004805986.all'
+
+-> Checking File validity                        [OK]    file exist: lp09pcr17_grow_TAS000004805986.all
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on lp09pcr17
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [WARN]  no 'sg'-line found
+-> Fetching module for Apps                      [WARN]  no apps in template
+
+
+ Running remote sanity check
+
+-> Copy template to remote host 'lp09pcr17'      [OK]    copied
+-> Running sanity check on 'lp09pcr17'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+ Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on lp09pcr17
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+20:55:07 Initializing disk VSP_97013_5164                                 OK
+20:55:07 Disabling thin provisioning on disk VSP_97013_5164               OK
+20:55:07 Initializing disk VSP_97158_5164                                 OK
+20:55:08 Disabling thin provisioning on disk VSP_97158_5164               OK
+20:55:08 Adding disks to diskgroup dgiicrcs10db01: VSP_97013_5164
+ VSP_97158_5164                                                           OK
+20:55:08 Renaming disk VSP_97013_5164 in diskgroup dgiicrcs10db01 to
+ 58_97013_5164                                                            OK
+20:55:08 Renaming disk VSP_97158_5164 in diskgroup dgiicrcs10db01 to
+ 10_97158_5164                                                            OK
+20:55:08 Growing volume lvICR in diskgroup dgiicrcs10db01 to size
+ +115195M                                                                 OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxz10kv][lpinstiaas09] /global/instserv/data/CONFIGURE_VERITAS $ ls -ltra^C
+
+=================================================================================
+
+10. Reach to cluster server 17 where FS will grow (VXPRINT)
+
+lp09pcr17:~ # vxprint -hvt -g dgiicrcs10db01 lvICR
+V  NAME         RVG/VSET/CO  KSTATE   STATE    LENGTH   READPOL   PREFPLEX UTYPE
+PL NAME         VOLUME       KSTATE   STATE    LENGTH   LAYOUT    NCOL/WID MODE
+SD NAME         PLEX         DISK     DISKOFFS LENGTH   [COL/]OFF DEVICE   MODE
+SV NAME         PLEX         VOLNAME  NVOLLAYR LENGTH   [COL/]OFF AM/NM    MODE
+SC NAME         PLEX         CACHE    DISKOFFS LENGTH   [COL/]OFF DEVICE   MODE
+DC NAME         PARENTVOL    LOGVOL
+SP NAME         SNAPVOL      DCO
+EX NAME         ASSOC        VC                       PERMS    MODE     STATE
+
+v  lvICR        -            ENABLED  ACTIVE   707647488 PREFER   lvICR-97158 fsgen
+pl lvICR-97013  lvICR        ENABLED  ACTIVE   707647488 CONCAT   -        RW
+sd 58_97013_008e-01 lvICR-97013 58_97013_008e 4160 471855488 0    VSP_97013_008e ENA
+sd 58_97013_5164-01 lvICR-97013 58_97013_5164 0 235792000 471855488 VSP_97013_5164 ENA
+pl lvICR-97158  lvICR        ENABLED  ACTIVE   707647488 CONCAT   -        RW
+sd 10_97158_008e-01 lvICR-97158 10_97158_008e 0 419430400 0       VSP_97158_008e ENA
+sd 10_97158_008e-02 lvICR-97158 10_97158_008e 419430544 52429104 419430400 VSP_97158_008e ENA
+sd 10_97158_5164-01 lvICR-97158 10_97158_5164 0 235787984 471859504 VSP_97158_5164 ENA
+dc lvICR_dco    lvICR        lvICR_dcl
+v  lvICR_dcl    -            ENABLED  ACTIVE   144      SELECT    -        gen
+pl lvICR_dcl-97013 lvICR_dcl ENABLED  ACTIVE   144      CONCAT    -        RW
+sd 58_97013_008e-02 lvICR_dcl-97013 58_97013_008e 0 144 0         VSP_97013_008e ENA
+pl lvICR_dcl-97158 lvICR_dcl ENABLED  ACTIVE   144      CONCAT    -        RW
+sd 10_97158_008e-03 lvICR_dcl-97158 10_97158_008e 419430400 144 0 VSP_97158_008e ENA
+lp09pcr17:~ #
+lp09pcr17:~ #
+lp09pcr17:~ #
+
+
+====================================================================
+
+11.VXRESIZE
+
+lp09pcr17:~ # vxresize -b -g dgiicrcs10db01 lvICR 707647488
+VxVM vxresize INFO V-5-1-2555 Volume lvICR: Volume length is already 707647488 sectors
+
+
+
+lp09pcr17:~ # df -hT /dev/vx/dsk/dgiicrcs10db01/lvICR
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgiicrcs10db01/lvICR vxfs  338G   20G  316G   6% /oracle/ICR
+
+
+lp09pcr17:~ # exit
+exit
+
+

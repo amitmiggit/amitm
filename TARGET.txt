@@ -1,0 +1,154 @@
+lpsbxen013:~ # vmc define lptpa01
+18:28:43 Checking Libvirt access on lpsbxen013                                                                                                         OK
+18:28:43 Checking free config space on lpsbxen013                                                                                                      OK
+18:28:43 Checking Libvirt access on lpsbxen014                                                                                                         OK
+18:28:44 Checking free config space on lpsbxen014                                                                                                      OK
+18:28:45 Force saving VM configuration on farm                                                                                                         OK
+18:28:47 Defining VM lptpa01 on lpsbxen013                                                                                                             OK
+18:28:47 Defining VM lptpa01 on lpsbxen014                                                                                                             OK
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ # vmc addnet lptpa01 lptpa01
+18:29:08 Checking Libvirt access on lpsbxen013                                                                                                         OK
+18:29:08 Checking free config space on lpsbxen013                                                                                                      OK
+18:29:08 Checking Libvirt access on lpsbxen014                                                                                                         OK
+18:29:08 Checking free config space on lpsbxen014                                                                                                      OK
+18:29:09 Locking VM lptpa01: Automatic Lock - addnet                                                                                                   OK
+18:29:11 Adding ipname lptpa01 to lptpa01                                                                                                              OK
+18:29:13 Added with MAC f6:42:63:3c:4b:b6
+18:29:13 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ # vmc addnet lptpa01 lptpa01b
+18:29:29 Checking Libvirt access on lpsbxen013                                                                                                         OK
+18:29:29 Checking free config space on lpsbxen013                                                                                                      OK
+18:29:29 Checking Libvirt access on lpsbxen014                                                                                                         OK
+18:29:29 Checking free config space on lpsbxen014                                                                                                      OK
+18:29:30 Locking VM lptpa01: Automatic Lock - addnet                                                                                                   OK
+18:29:32 Adding ipname lptpa01b to lptpa01                                                                                                             OK
+18:29:34 Added with MAC 3e:8a:57:b2:41:c1
+18:29:34 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ # vmc start lptpa01
+18:29:52 Checking free config space on lpsbxen013                                                                                                      OK
+18:29:52 Checking free config space on lpsbxen014                                                                                                      OK
+18:29:55 Locking VM lptpa01: Automatic Lock - start                                                                                                    OK
+18:30:00 Starting MD device /dev/md/lptpa01 on lpsbxen013                                                                                              OK
+18:30:01 Setting writemostly flag for dm-52(10650) in /dev/md/lptpa01 on lpsbxen013                                                                    OK
+18:30:01 Removing writemostly flag for dm-2(10652) in /dev/md/lptpa01                                                                                  OK
+18:30:01 Starting MD device /dev/md/lptpa01_1 on lpsbxen013                                                                                            OK
+18:30:02 Setting writemostly flag for dm-97(10650) in /dev/md/lptpa01_1 on lpsbxen013                                                                  OK
+18:30:02 Removing writemostly flag for dm-47(10652) in /dev/md/lptpa01_1                                                                               OK
+18:30:02 Starting MD device /dev/md/lptpa01_2 on lpsbxen013                                                                                            OK
+18:30:03 Setting writemostly flag for dm-98(10650) in /dev/md/lptpa01_2 on lpsbxen013                                                                  OK
+18:30:03 Removing writemostly flag for dm-48(10652) in /dev/md/lptpa01_2                                                                               OK
+18:30:04 Waiting for udev to settle on lpsbxen013                                                                                                      OK
+18:30:09 Starting VM lptpa01 on lpsbxen013                                                                                                             OK
+18:30:20 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ #
+lpsbxen013:~ # vmc list
+18:38:10 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                    lpsbxen013                  lpsbxen014
+                                --------------              --------------
+lidam1                running( 73)(  8/ 4096M)                     -------
+lidam2                running( 72)(  8/ 4096M)                     -------
+lpappli05             running( 39)(  2/24576M)                     -------
+lpbppm02              running( 71)(  4/16384M)                     -------
+lpcmpbss07            running( 42)(  4/ 8192M)                     -------
+lpcmpbss201           running( 56)(  4/ 8192M)                     -------
+lpcmqasync01          running( 44)(  4/ 2048M)                     -------
+lpcmsbss02            running( 45)( 32/65536M)                     -------
+lpcmshs01             running( 74)(  8/16384M)                     -------
+lpcorsica01           running( 70)(  4/32768M)                     -------
+lpcorsica02           running( 69)(  4/32768M)                     -------
+lpdam1                running( 29)(  8/ 8192M)                     -------
+lpdam2                running( 30)(  8/ 8192M)                     -------
+lpdam3                running( 21)(  8/ 8192M)                     -------
+lpdam4                running( 22)(  8/ 8192M)                     -------
+lpdc34                running( 53)( 16/63488M)                     -------
+lpdkigorci02          running( 33)( 16/ 4096M)                     -------
+lpdynatsaasag04       running( 58)(  8/29696M)                     -------
+lpenter04             running( 38)(  2/ 8191M)                     -------
+lpitsm10              running( 61)(  4/ 8192M)                     -------
+lpitsm21              running( 66)(  8/16384M)                     -------
+lpitsm51              running( 68)(  8/24576M)                     -------
+lpjeegit01            running( 50)(  4/32768M)                     -------
+lpkwom47              running( 51)(  8/16384M)                     -------
+lpnagi41              running( 75)( 24/49152M)                     -------
+lpnasldap02           running( 76)(  4/ 8192M)                     -------
+lpnbbrq1              running( 77)(  1/ 2048M)                     -------
+lporch20              running( 78)(  2/ 8192M)                     -------
+lporch22              running( 79)(  8/16384M)                     -------
+lporch23              running( 80)(  8/16384M)                     -------
+lporch24              running( 82)(  8/16384M)                     -------
+lppga02211vm          running( 84)(  2/ 8192M)                     -------
+lppgb02211vm                           -------    running( 17)(  2/ 8192M)
+lppulp01              running( 88)( 12/46080M)                     -------
+lprelayti01           running( 89)( 16/ 8192M)                     -------
+lpsapj01              running( 37)(  2/ 8192M)                     -------
+lpsaprd01             running( 67)(  4/ 8192M)                     -------
+lpsbnagi15            running(  3)(  6/63488M)                     -------
+lpscrmadm2            running( 90)(  1/ 2048M)                     -------
+lpsftp10                               -------    running( 18)( 16/24576M)
+lpspf00a                               -------    running( 19)( 16/63488M)
+lpstor6               running( 91)(  4/ 4096M)                     -------
+lptasktophub01        running( 60)(  4/ 8192M)                     -------
+lptpa01               running( 92)(  2/ 8192M)                     -------
+lpwebstat6            running( 34)(  6/16384M)                     -------
+ltdam1                running( 10)(  4/ 4096M)                     -------
+lpsbxen013:~ # vmc list lptpa01
+18:39:22 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                    lpsbxen013                  lpsbxen014
+                                --------------              --------------
+lptpa01               running( 92)(  2/ 8192M)                     -------
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ ping lptpa01
+PING lptpa01.bmwgroup.net (160.46.156.212) 56(84) bytes of data.
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=1 ttl=63 time=1.19 ms
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=2 ttl=63 time=0.281 ms
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=3 ttl=63 time=0.349 ms
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=4 ttl=63 time=0.287 ms
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=5 ttl=63 time=0.305 ms
+64 bytes from lptpa01.bmwgroup.net (160.46.156.212): icmp_seq=6 ttl=63 time=0.367 ms
+^C
+--- lptpa01.bmwgroup.net ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5006ms
+rtt min/avg/max/mdev = 0.281/0.464/1.195/0.328 ms
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ ssh lptpa01
+SSO Password:
+Last login: Sun Jun 28 17:46:54 2020 from lpinstiaas01.bmwgroup.net
+qxz10kv@lptpa01:~> sudo -s
+lptpa01:~ # uptime
+ 18:31pm  up   0:01,  1 user,  load average: 0.48, 0.17, 0.06
+lptpa01:~ # df -hT
+Filesystem                 Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                 ext3    38G   13G   24G  34% /
+udev                       tmpfs  4.1G   96K  4.1G   1% /dev
+tmpfs                      tmpfs  4.1G   16K  4.1G   1% /dev/shm
+/dev/xvda1                 ext2   297M   41M  241M  15% /boot
+/dev/xvda5                 ext3   5.0G  2.0G  2.8G  42% /home
+/dev/mapper/dgtpaapps-lv01 xfs     28G  6.8G   22G  25% /global/tpa/apps
+lptpa01:~ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 brd 127.255.255.255 scope host lo
+    inet 127.0.0.2/8 brd 127.255.255.255 scope host secondary lo
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN qlen 1000
+    link/ether f6:42:63:3c:4b:b6 brd ff:ff:ff:ff:ff:ff
+    inet 160.46.156.212/24 brd 160.46.156.255 scope global eth0
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN qlen 1000
+    link/ether 3e:8a:57:b2:41:c1 brd ff:ff:ff:ff:ff:ff
+    inet 10.100.13.97/24 brd 10.100.13.255 scope global eth1
+

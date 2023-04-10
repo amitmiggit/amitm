@@ -1,0 +1,63 @@
+1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server:  ltdbant9.bmwgroup.net
+APP-ID: APP 113641
+FS : Add [ ] / Extend [ ] / Reduce [ ]
+	Extend
+FS size change( in GB ): +506GB
+FS Name: /global/tdbl021/bkup
+Mount point: /global/tdbl021/bkup
+FS size change( in GB ): +506GB
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096 
+
+
+
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact) 
+
+Thanks,
+DB Operations Team
+
+
+
+ltdbant9:~ # san_shortinfo | grep -i 50:7C
+hitachi_vsp0_507c  | sdjm  50:7C   7F   97138   518602 | sdjk  50:7C   8F   97138   518602 |
+hitachi_vsp1_507c  | sdjl  50:7C   7F   97229   518602 | sdjj  50:7C   8F   97229   518602 |
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # df -hT /global/tdbl021/bkup
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdbl021bkup/lvbkup vxfs  1.7T  274G  1.4T  17% /global/tdbl021/bkup
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #

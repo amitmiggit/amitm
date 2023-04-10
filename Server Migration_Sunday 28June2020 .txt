@@ -1,0 +1,490 @@
+ 
+
+TAS000004753354
+
+For me 3 VM's 2 hour downtime for each server - 6 hours in total
+
+SSD - 28.06.2020 18:30:00
+
+SED - 29.06.2020 00:30:00
+
+S.no	 VM's List 	 Downtime (CEST)
+
+16	     lpstor6	 28.06.2020 15:00  - 6:30 PM IST
+17	     lptpa01	 28.06.2020 17:00  - 8:30 PM IST
+18	    lporch21	 28.06.2020 19:00  - 10:30 PM IST
+
+===============
+CRQ000001430423
+===============
+Duration:  For each VM take 2 hours downtime to migrate server from one farm to different farm node. 
+
+Desscription : 
+Due to  server-life-cycle farm replacement of EoL-farm lpsbxen005/06 we are migrating the  VMs from source farm node lpsbxen005/06 to replacement farm lpsbxen013/014 where IP addresses will remain the same. 
+
+S.no	VM's List 	Downtime (CEST)
+
+S.no	VM's List 	Downtime (CEST)
+1	lpnagi41	 27.06.2020 00:00
+2	lpnasldap02 	 27.06.2020 02:00
+3	lpnbbrq1	 27.06.2020 04:00
+4	lporch20	 27.06.2020 06:00
+5	lporch22	 27.06.2020 08:00
+6	lporch23	 27.06.2020 10:00
+7	lporch24	 27.06.2020 12:00
+8	lppga02211vm	27.06.2020 23:00:00
+9	lppgb02211vm	 28.06.2020 01:00
+10	lppulp01	 28.06.2020 03:00
+11	lprelayti01	 28.06.2020 05:00
+12	lpscrmadm2	 28.06.2020 7:00
+13	lpsecpw2	 28.06.2020 09:00
+14	lpsftp10	 28.06.2020 11:00
+15	lpspf00a	 28.06.2020 13:00
+16	lpstor6	 28.06.2020 15:00
+17	lptpa01	 28.06.2020 17:00
+18	lporch21	 28.06.2020 19:00
+
+
+
+Old farm server:   lpsbxen005/006
+New farm server:   lpsbxen013/014
+VM distribution:  no
+target host:  
+Method  : Offline 
+LSAN-Zoning : No
+DTP :  24249
+Downtime :   27.06.2020 00:00 - 28.06.2020 21:00 CEST
+Corporate Net Id remains the same: 
+
+Backup Net IP addresses new :
+<LPAPPLI05-NEWB	10.100.13.11>
+<LPBPPM02-NEWB	10.100.13.120
+<LPCMPBSS07-NEWB 	10.100.13.121
+<LPCMPBSS201BNEW	10.100.13.85>
+<LPCMQASYNC01BNEW10.100.13.86>
+<lpcmsbss02bnew		10.100.13.87>
+<lpcmshs01bnew		10.100.13.88>
+<LPENTER04-NEWB	10.100.13.122>
+<LPITSM10-NEWB		10.100.13.123>
+<lpitsm21bnew		10.100.13.89>
+<lpitsm51bnew		10.100.13.90>
+<LPJEEGIT01-NEWB	10.100.13.124
+<LPKWOM47-NEWB	10.100.13.125
+<LPNAGI41-NEWB		10.100.13.126
+<LPNASLDAP02-NEWB	10.100.13.127
+<lpnbbrq1bnew		10.100.13.91>
+<lporch20bnew		10.100.13.92>
+<LPORCH21-NEWB	10.100.13.128>------------------------->AM
+<LPORCH22-NEWB	10.100.13.129>
+<LPORCH23-NEWB	10.100.13.130>
+<lporch24bnew		10.100.13.95>
+<LPPGA02211VM-NEWB 10.100.13.131>
+<Bservername2>      IPv4 IP Net 
+<LPPULP01-NEWB	10.100.13.132>
+<LPRELAYTI01BNEW	10.100.13.96>
+<LPSCRMADM2-NEWB	10.100.13.133>
+<LPSECPW2-NEWB	10.100.13.134>
+<LPSFTP10-NEWB	10.100.13.137>
+<LPSPF00A-NEWB	10.100.13.135>
+<LPSTOR6-NEWB		10.100.13.136>---------------------AM
+<LPTPA01BNEW		10.100.13.97>--------------------------------AM
+
+
+
+My Analysis for the source farm
+lpsbxen005:~ # vmc list
+16:16:07 WARNING: Database connection requested, but unable to connect.
+16:16:07 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                    lpsbxen005                  lpsbxen006
+                                --------------              --------------
+lpbkcima03                             -------    running( 78)(  4/ 8192M)
+lpbkcima04                             -------    running( 77)(  4/ 8192M)
+lpnagi41              running( 32)( 24/49152M)                     -------   RS
+lpnasldap02           running( 33)(  4/ 8192M)                     -------   RS
+lpnbbrq1              running( 78)(  1/ 2048M)                     -------   JK
+lporch20              running(  5)(  2/ 8192M)                     -------   JK
+lporch21                               -------    running( 66)(  8/16384M)   AM
+lporch22                            md_partial    running( 79)(  8/16384M)   SK
+lporch23                               -------    running( 80)(  8/16384M)   SK
+lporch24              running( 77)(  8/16384M)                     -------   AP
+lppga02211vm                           -------    running( 73)(  2/ 8192M)   KM
+lppgb02211vm                           -------    running( 71)(  2/ 8192M)   KM
+lppulp01                               -------    running( 26)( 12/46080M)   JK
+lprelayti01           running( 75)( 16/ 8192M)                     -------   JK
+lpscrmadm2                             -------    running( 76)(  1/ 2048M)   DP
+lpsecpw2                               -------    running( 48)(  2/ 4096M)   DP
+lpsftp10                               -------    running( 29)( 16/24576M)   AR
+lpspf00a                               -------    running( 81)( 16/63488M)   AR
+lpstor6                                -------    running( 35)(  4/ 4096M)   AM
+lptpa01                                -------    running( 30)(  2/ 8192M)   AM
+lpsbxen005:~ # date
+Fri Jun 26 16:16:48 CEST 2020
+lpsbxen005:~ #
+
+
+Now Process Information
+
+TAS000004753344 - SED 26.06.2020 21:30:00 - Closed Cancelled - Assigned to Vijay Ayyulluri
+TAS000004753345 - SED 27.06.2020 07:30:00 - Assigned Rafiq Syed
+S.no	VM's List 	Downtime (CEST)
+
+1	lpnagi41	         27.06.2020 00:00
+2	lpnasldap02	 27.06.2020 02:00
+
+
+Old farm server:   lpsbxen005/06
+New farm server:   lpsbxen013/014
+VM distribution:  no
+target host:  
+Method  : Offline 
+LSAN-Zoning : No
+DTP : 
+Downtime :  
+Corporate Net Id remains the same: 
+
+Backup Net IP addresses new :
+
+TAS000004753346 - Pending assignment
+TAS000004753347 - JaiKishan
+S.no	VM's List 	Downtime (CEST)
+
+3	lpnbbrq1	         27.06.2020 04:00
+4	lporch20	         27.06.2020 06:00
+
+TAS000004753348 - SK
+
+5	lporch22	        27.06.2020 08:00
+6	lporch23	        27.06.2020 10:00
+
+TAS000004753349 - Anurag Prasad
+7	lporch24	         27.06.2020 12:00
+
+TAS000004753350 - Kumar Manoranjan
+
+8	lppga02211vm	27.06.2020 23:00:00
+9	lppgb02211vm	 28.06.2020 01:00
+
+TAS000004753351 - JK
+
+10	lppulp01    	 28.06.2020 03:00
+11	lprelayti01	     28.06.2020 05:00
+
+TAS000004753352 - DP
+
+12	lpscrmadm2	        28.06.2020 7:00
+13	lpsecpw2	        28.06.2020 09:00
+
+TAS000004753353 - AR
+14	lpsftp10	 28.06.2020 11:00
+15	lpspf00a	 28.06.2020 13:00
+
+TAS000004753354 - AM 
+
+16	lpstor6	 28.06.2020 15:00
+17	lptpa01	 28.06.2020 17:00
+18	lporch21	28.06.2020 19:00
+
+
+=======================================================================================
+===================================================A   N   A   L   Y   S  I  S=================
+
+========================================
+SOURCE FARM
+=========================================
+lpsbxen005:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 2
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+lpsbxen005:~ #
+
+
+lpsbxen006:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 4
+lpsbxen006:~ #
+
+==================
+TARGET FARM
+==================
+
+lpsbxen013:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 4
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+
+lpsbxen014:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 4
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+lpsbxen014:~ #
+
+=================================
+
+VM's which I have to migrate 
+
+16	lpstor6	 28.06.2020 15:00
+17	lptpa01	 28.06.2020 17:00
+18	lporch21 28.06.2020 19:00
+
+============================================================
+lpstor6:~ #  cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 4
+lpstor6:~ # date
+Sat Jun 27 10:17:33 CEST 2020
+lpstor6:~ # xenstore-read /tool/hostname
+lpsbxen006
+lpstor6:~ #
+
+
+lptpa01:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 4
+lptpa01:~ # xenstore-read /tool/hostname
+lpsbxen006
+lptpa01:~ # date
+Sat Jun 27 10:44:27 CEST 2020
+lptpa01:~ #
+
+
+lporch21:~ # cat /etc/SuSE-release;xenstore-read /tool/hostname;date
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 3
+lpsbxen006
+Sat Jun 27 10:45:51 CEST 2020
+lporch21:~ #
+
+
+
+
+====================================================NO LSAN ZONING==================
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ check4autosan.pl lpsbxen005
+lpsbxen005 has AutoSAN: GMA3S1
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ check4autosan.pl lpsbxen013
+lpsbxen013 has AutoSAN: GMA3S1
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ check4autosan.pl lpsbxen006
+lpsbxen006 has AutoSAN: GMA3S1
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ check4autosan.pl lpsbxen014
+lpsbxen014 has AutoSAN: GMA3S1
+
+====================================================================================
+
+Network Check
+
+================================
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpstor6
+.------------------------------------------------.
+|                     lpstor6                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                        lpstor6 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lpstor6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 160.46.156.135 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.156.1 |
+| NET_ID        |                   160.46.156.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.156.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lpstor6-newb                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lpstor6-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lpstor6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.13.136 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
+
+========++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lptpa01
+.------------------------------------------------.
+|                     lptpa01                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                        lptpa01 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                            TPA |
+| IP_ADDRESS    |                 160.46.156.212 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.156.1 |
+| NET_ID        |                   160.46.156.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.156.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                    lptpa01b                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lptpa01b |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.8.127 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                     10.100.8.1 |
+| NET_ID        |                     10.100.8.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                   10.100.8.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                   lptpa01bnew                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    lptpa01bnew |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.13.97 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lporch21
+.------------------------------------------------.
+|                    lporch21                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lporch21 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   160.50.98.47 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    160.50.98.1 |
+| NET_ID        |                    160.50.98.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                  160.50.98.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lporch21-newb                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  lporch21-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.13.128 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                    lporch21b                   |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                      lporch21b |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.8.148 |
+| NSI           |                           YAG3 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                     10.100.8.1 |
+| NET_ID        |                     10.100.8.0 |
+| INT_VLAN      |                           3501 |
+| SUB_AREA      |                                |
+| BROADCAST     |                   10.100.8.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lporch21newb                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lporch21newb |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.45.227 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.45.1 |
+| NET_ID        |                    10.100.45.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.45.255 |
+'---------------+--------------------------------'
+
+
+
+
+
+
+
+SOurce Node activities (Old Farm server)
+1. Stop the vmc
+
+vmc stop <VMNAME to migrate>
+
+2. vmc mount <VMNAME to migrate>
+
+3. /etc/vmc
+
+
+
+

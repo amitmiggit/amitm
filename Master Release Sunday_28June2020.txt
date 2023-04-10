@@ -1,0 +1,402 @@
+
+
+TAS000004760023
+
+=========================
+SSD = 28.06.2020 16:30:00   IST
+
+SED = 28.06.2020 19:30:00   IST
+
+DOWN TIME IS --  
+
+(1) Description of the Task to be done
+
+Perform update of Linux server with current Master Release
+
+ATTENTION: This task must be ordered / approved by the operations responsible. 
+ATTENTION: Please ensure that your operating system is not older the SLES11SP4 if SecFS is installed. For more details please see: https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL 
+
+lead time :
+---- During office hours: 1 working day
+---- Outside office hours: 3 working days
+Run time :
+VMs:    2 hours/ VM
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+__________
+(2) Required Information
+
+Servername: lp07ipst2vm
+
+* Please select at least one of these Checkboxes: 
+
+[  ] Server can be booted without consultation
+[  ] another Task Group must be informed before reboot
+[ X ] a Contact Person must be informed before reboot
+
+* Mandatory if your system is using SEC-FS / Vormetric CoreGuard:
+
+[  ] Server has SEC-FS / an encrypted filesystem
+---- Accompanying task to Vormetric during the update is mandatory!
+---- Additional task to Vormetric for changing environment might be necessary!
+----
+---- Please contact <vormetric@list.bmw.com> for any queries or have a look at the website:
+---- https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL
+
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+
+__________
+(4) Lead and execution time
+
+Check header
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+Anja Wohlfahrt, anja.wohlfahrt@bmwgroup.com, +49-151-607-45452
+Sten Hertel, Sten.HE.Hertel@bmw.de, +49-151-607-46134
+
+Contact person for questions from server ops during execution:
+Anja Wohlfahrt, anja.wohlfahrt@bmwgroup.com, +49-151-607-45452
+Sten Hertel, Sten.HE.Hertel@bmw.de, +49-151-607-46134
+
+
+=========================================================================================================
+
+Analysis
+
+=================================AAAAAAAAAAAAAAAAAAAAAAAAAAAAA=========================
+
+lp07ipst2vm:/home/qxz10kv # cat /etc/issue
+
+Welcome to SUSE Linux Enterprise Server 11 SP3  (x86_64) - Kernel \r (\l).
+
+lp07ipst2vm:/home/qxz10kv # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 3
+lp07ipst2vm:/home/qxz10kv # date
+Sat Jun 27 08:36:10 CEST 2020
+lp07ipst2vm:/home/qxz10kv #
+
+
+lp07ipst2vm:/home/qxz10kv # date
+Sat Jun 27 08:36:10 CEST 2020
+lp07ipst2vm:/home/qxz10kv # secfsd -status guard
+bash: secfsd: command not found
+lp07ipst2vm:/home/qxz10kv # rpm -qa | grep -i vee
+lp07ipst2vm:/home/qxz10kv #
+
+=============================================================================================================
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ fullcheck lp07ipst2vm
+====================================================================================================
+ Hardware Type: Xen PV Guest on 'lp07xen12'
+ Serial No.   : Xen UUID '58fcc164-b637-4a5d-bd91-5b3953f9dc28'
+ Node name    : lp07ipst2vm
+ Local time   : Sat Jun 27 09:17:00 CEST 2020
+====================================================================================================
+ FQDN: lp07ipst2vm.w7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 11 (x86_64)
+ OSVer: VERSION = 11
+ OSVer: PATCHLEVEL = 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2018.12.21. 10:06:03
+ Uptime: Uptime: 553d 22h 10m 57s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M18-Q4-11.3                                                                             [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: Running:   xen
+ Kernel: Booted:    3.0.101-0.47.106.43 (3.0.101-0.47.106.59.1.17878.0)                 [OLD] [OK]
+ Kernel: Installed: 3.0.101-0.47.106.59.1 (3.0.101-0.47.106.59.1.17878.0.PTF.1138721)   [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.11.3-17.110.14.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID  DRIVER    DRVVER  SPEED  DPLX  LINK  MAC ADDRESS        IP / SUBNET      IPV6 / PREFIX
+ ETH:  eth0   vif-0   netfront  -       -      -     yes   00:16:3e:2e:01:80  160.46.1.128/24
+ ETH:  eth1   vif-1   netfront  -       -      -     yes   00:16:3e:2e:13:40  160.46.19.64/24
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# (T)ags:
+#T      ipu_11.2_11.3
+# Critical (E)vents (last one):
+#E      2015-04-29T00:00:00+02:00 []  INC000003459589 Critical incident: user found 1400 zombies on this server, but problem already solved as ticket was accepted. (caused a connect:direct problem)
+# SODB end (0 FW Status notes, no remarks, 0 special configs, 2 events, 1 tags, host:lp07ipst2vm)
+
+
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+
+
+lp07xen11:~ # vmc info lp07ipst2vm
+Name                      : lp07ipst2vm
+Comment                   : N/A
+Domain ID                 : 72
+Status                    : Running on lp07xen12
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp3_x86_64
+Last Backup (UTC)         : 2020-06-27 00:26:16
+
+Cur. VCPUs                : 12
+Max. VCPUs                : 12
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 8192
+
+XML - Cur. VCPUs          : 8
+XML - Max. VCPUs          : 12
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 8192
+
+Network Device 1          : 00:16:3e:2e:01:80 (br:br_160046001000 ipname:br_160046001000)
+Network Device 2          : 00:16:3e:2e:13:40 (br:br_160046019000 ipname:br_160046019000)
+
+Block Device xvda         : /dev/md/lp07ipst2vm
+Block Device xvdb         : /dev/md/lp07ipst2vm_1
+Block Device xvdc         : /dev/md/lp07ipst2vm_2
+
+lp07xen11:~ # vmc storage lp07ipst2vm
+17:25:24 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName               VMDev                 VMName
+
+360060e80167f050000017f050000504a 98053 504a    14G  dm-63   SAN:lp07ipst2vm_2    md/lp07ipst2vm_2 lp07ipst2vm
+360060e80167f050000017f050000a0dc 98053 a0dc    56G  dm-148  SAN:lp07ipst2vm      md/lp07ipst2vm   lp07ipst2vm
+360060e80167f050000017f050000a0dd 98053 a0dd    14G  dm-149  SAN:lp07ipst2vm_1    md/lp07ipst2vm_1 lp07ipst2vm
+360060e80167f7c0000017f7c0000504a 98172 504a    14G  dm-23   SAN:lp07ipst2vm_2    md/lp07ipst2vm_2 lp07ipst2vm
+360060e80167f7c0000017f7c0000a0dc 98172 a0dc    56G  dm-105  SAN:lp07ipst2vm      md/lp07ipst2vm   lp07ipst2vm
+360060e80167f7c0000017f7c0000a0dd 98172 a0dd    14G  dm-106  SAN:lp07ipst2vm_1    md/lp07ipst2vm_1 lp07ipst2vm
+
+
+====================================================================EXECUTION ANLAYSIS========================================================
+
+qxz10kv@lp07ipst2vm:~> sudo -s
+lp07ipst2vm:/home/qxz10kv # cat /etc/issue
+
+Welcome to SUSE Linux Enterprise Server 11 SP3  (x86_64) - Kernel \r (\l).
+
+
+lp07ipst2vm:/home/qxz10kv #
+
+lp07ipst2vm:/home/qxz10kv # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 3
+
+
+SECFS not available
+
+lp07ipst2vm:/home/qxz10kv # rpm -qa | grep -i vee
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv # secfsd -status guard
+bash: secfsd: command not found
+lp07ipst2vm:/home/qxz10kv #
+
+
+fullcheck
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ fullcheck lp07ipst2vm
+====================================================================================================
+ Hardware Type: Xen PV Guest on 'lp07xen12'
+ Serial No.   : Xen UUID '58fcc164-b637-4a5d-bd91-5b3953f9dc28'
+ Node name    : lp07ipst2vm
+ Local time   : Sat Jun 27 18:36:19 CEST 2020
+====================================================================================================
+ FQDN: lp07ipst2vm.w7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 11 (x86_64)
+ OSVer: VERSION = 11
+ OSVer: PATCHLEVEL = 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2018.12.21. 10:06:03
+ Uptime: Uptime: 554d 7h 30m 16s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M18-Q4-11.3                                                                             [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: Running:   xen
+ Kernel: Booted:    3.0.101-0.47.106.43 (3.0.101-0.47.106.59.1.17878.0)                 [OLD] [OK]
+ Kernel: Installed: 3.0.101-0.47.106.59.1 (3.0.101-0.47.106.59.1.17878.0.PTF.1138721)   [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.11.3-17.110.14.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID  DRIVER    DRVVER  SPEED  DPLX  LINK  MAC ADDRESS        IP / SUBNET      IPV6 / PREFIX
+ ETH:  eth0   vif-0   netfront  -       -      -     yes   00:16:3e:2e:01:80  160.46.1.128/24
+ ETH:  eth1   vif-1   netfront  -       -      -     yes   00:16:3e:2e:13:40  160.46.19.64/24
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# (T)ags:
+#T      ipu_11.2_11.3
+# Critical (E)vents (last one):
+#E      2015-04-29T00:00:00+02:00 []  INC000003459589 Critical incident: user found 1400 zombies on this server, but problem already solved as ticket was accepted. (caused a connect:direct problem)
+# SODB end (0 FW Status notes, no remarks, 0 special configs, 2 events, 1 tags, host:lp07ipst2vm)
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+===============
+
+sup check 
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ sup check lp07ipst2vm
+** Running on lp07ipst2vm **
+Pattern                      Installed       Target          Constraint  Status
+BMW-BaseOS-gcc_stdc_default  11.3-201603     11.3-201603     generic     OK
+BMW-BaseOS                   11.3-201804     11.3-202001     generic     DIFFERENT
+BMW-Bootloader               11.3-201602     11.3-201602     generic     OK
+BMW-CLIB                     GA-01.07.03.01  GA-01.07.08.01  generic     DIFFERENT
+BMW-CPU-microcode            11.3-201804     11.3-201804     generic     OK
+BMW-Certificates             GA-1.2.1        GA-1.2.1        generic     OK
+BMW-Compiler                 11.3-201803     11.3-201901     generic     DIFFERENT
+BMW-Kernel                   11.3-201901     11.3-201902     generic     DIFFERENT
+BMW-SW-App-Nrpe              11.3-201501     11.3-201501     generic     OK
+BMW-SW-GIT                   11.3-201601     11.3-201601     generic     OK
+BMW-SW-ORACLE-CLIENT12102    11.3-201701     11.3-201701     generic     OK
+BMW-SW-rootsh                GA-000000       GA-000000       generic     OK
+BMW-Storagetools             11.3-201601     11.3-201601     generic     OK
+BMW-UserSyncRollout          GA-201901       GA-201901       generic     OK
+BMW-VRTS-NetBackup           GA-7.07.03.001  GA-7.07.03.001  generic     OK
+BMW-XEN-BackupClient         GA-000000       GA-000000       generic     OK
+BMW-XEN-DomU                 11.3-201807     11.3-201807     generic     OK
+BMW-XEN-PV                   11.3-201901     11.3-201902     generic     DIFFERENT
+BMW-collectl                 GA-000000       GA-000000       generic     OK
+BMW-dnsmasq                  GA-201702       GA-201702       generic     OK
+BMW-openssh                  11.3-201801     11.3-201901     generic     DIFFERENT
+BMW-openssl                  11.3-201803     11.3-201903     generic     DIFFERENT
+BMW-perl-custom              GA-201802       GA-201803       generic     DIFFERENT
+BMW-perl                     11.3-201801     11.3-201801     generic     OK
+BMW-pmtools                  11.3-201601     11.3-201601     generic     OK
+BMW-prefill                  GA-000000       GA-000000       generic     OK
+BMW-supportutils             11.3-201701     11.3-201701     generic     OK
+BMW-tools                    11.3-201801     11.3-201802     generic     DIFFERENT
+
+***** REBOOT REQUIRED (Kernel) !!!!!! ***
+
+================================
+
+Set The downtime for VM
+
+Example
+
+INSTSERV][qxy7563][lpinstiaas01] ~ $ downtime -l lpbkcdvt3.bmwgroup.net
+[INSTSERV][qxy7563][lpinstiaas01] ~ $ downtime -a -h 2 -c "qxy7563" lpbkcdvt3.bmwgroup.net
+Argument: lpbkcdvt3.bmwgroup.net
+[1592742358] SCHEDULE_HOST_DOWNTIME;lpbkcdvt3.bmwgroup.net;1592742358;1592749558;1;0;7200;remote;qxy7563
+[INSTSERV][qxy7563][lpinstiaas01] ~ $
+
+[INSTSERV][qxy7563][lpinstiaas01] ~ $ downtime -a -h 2 -c 'TAS000004625270 qxy7563' lp01ipst2vm.muc
+Argument: lp01ipst2vm.muc
+[1587638614] SCHEDULE_HOST_DOWNTIME;lp01ipst2vm.muc;1587638614;1587645814;1;0;7200;remote;TAS000004625270 qxy7563
+[INSTSERV][qxy7563][lpinstiaas01] ~ $
+
+==============================================================================
+lp07ipst2vm:/home/qxz10kv # hostname -f
+lp07ipst2vm.w7
+
+--------------------------I SHALL EXECUTE----------------------------
+To Be contacted
+
+Contact person for questions from server ops during execution:
+Anja Wohlfahrt, anja.wohlfahrt@bmwgroup.com, +49-151-607-45452
+Sten Hertel, Sten.HE.Hertel@bmw.de, +49-151-607-46134
+Sten
+
+My Command are for downtime :
+
+downtime -a -h 3 -c 'TAS000004760023 qxz10kv' lp07ipst2vm.w7
+
+downtime -l lp07ipst2vm.w7
+
+
+======================================
+
+install server #sup update lp07ipst2vm mr
+
+install server #patchme lp07ipst2vm
+
+============
+
+install server # rshut -r lp07ipst2vm.w7
+
+
+=======================================
+
+sup check lp07ipst2vm
+
+cat /etc/rudder.lst
+
+
+
+VMs:    2 hours/ VM
+Servername: lp07ipst2vm
+And 
+scheduled start date = 28.06.2020 16:30:00 IST
+scheduled end date = 28.06.2020 19:30:00 IST
+
+1. So how much down time should I set
+2. Servers fqdn after hostname -f is lp07ipst2vm.w7  so is that the valid one
+3. DO I need to run sequence --- sup update ,patchme and rshut -r or if patchme to be ignored
+
+==========================================
+
+1. Fullcheck
+IS#fullcheck lp07ipst2vm
+
+lp07ipst2vm
+
+
+2. Sup check
+IS# sup check lp07ipst2vm
+
+
+3. Check for SecFS
+S#rpm -qa | grep -i vee
+
+lp07ipst2vm:/home/qxy7563 # rpm -qa | grep -i vee
+lp07ipst2vm:/home/qxy7563 #
+lp07ipst2vm:/home/qxz10kv # rpm -qa | grep -i vee
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv #
+lp07ipst2vm:/home/qxz10kv # secfsd -status guard
+
+4. Set downtime
+IS#downtime -a -h 2 -c "TAS000004760023 qxz10kv" lp07ipst2vm.w7
+to check downtime
+IS#downtime -l lp07ipst2vm.w7
+
+
+5. run MR
+IS#sup update lp07ipst2vm mr
+
+
+
+
+after that
+IS#patchme lp07ipst2vm
+
+
+6. Reboot the VM
+IS#rshut -r lp07ipst2vm
+
+
+7. Login and and check thr VM
+
+
+8. run sup check again
+IS#sup check lp07ipst2vm 
+
+
+IS --> from install server
+S  --> from Server (Inside VM)

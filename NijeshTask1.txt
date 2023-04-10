@@ -1,0 +1,291 @@
+(1) Description of the Task to be done
+Create/remove/modify standard Personal or Technical user(s) or group(s) on server(s)
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Documentation for this request:  https://atc.bmwgroup.net/confluence/display/LINUX/Linux_Group_requests
+Required Approvals:              https://atc.bmwgroup.net/confluence/display/LINUX/Approval_Matrix
+
+Approval:  All Sudo, Account and Group Add, Modify and Removals require an BMW authorized approval. 
+           Please check the Approval link above for the necessary information.  Tasks set to â€œPending 
+           Assignmentâ€ before the necessary approvals have been correctly issued will cause the task 
+           to be canceled or set to â€œPending Errorâ€ depending on the SLAs for the servers concerned. 
+
+
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+ lpdkcontintvm.bmwgroup.net
+
+- Account Request:
+
+[x ] Add Personal q/qx/qt User(s)
+        User Account Name(s): qxp3309/ qxt7810/qxl4869/qxr7667
+        Primary Group (if empty BMW default is qbmw resp. qxbmw):
+        Optional Additional Group Memberships:
+        Optional Reference User:
+
+[ ] Add Technical Application "QQ" User(s)
+        QQ Account Name:
+        Primary Group (if empty BMW default is qqbmw):
+        Optional Additional Group Memberships:
+        Home directory on application disks:
+        Optional Shell (default is bash): 
+
+[ ] Add additional local Group(s) to server
+        Group Name:
+
+
+[ ] Add existing User(s) to additional Group(s)
+        Username(s):
+        Group(s):
+
+[ ] Remove User(s)
+        Username(s):
+
+[ ] Remove User(s) from Group(s)
+	Username(s):
+        Group(s):
+[ ] Password Reset
+	Username:
+ Approval from the user should be provided. User should be a Requester.
+__________
+(3) Additional Information (optional)
+
+ We need to be added into the Jenkins server for the sudo rights . please contact us if any thing else is required.
+
+__________
+(4) Lead Times to be considered for this task
+see header: 4 hours
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< Nikhita.singhal@partner.bmw.de/nikhita.singhal@accenture.com >>> <+917710007605>
+---- during change
+<<< Nikhita.singhal@partner.bmw.de/nikhita.singhal@accenture.com >>> <+917710007605>
+
+100% [============================================================================================================================================================================]D 0h00m00sUser scripts have been created under directory '/global/instserv/data/usermgmt2/create/2020_06_10_203652_EvC3A2cm'.
+
+ARE YOU SURE TO CONTINUE? [y/N] y
+Fetching infos from SecPW... done
+[WARN] Running script: 'qxl4869-1591814351-99788.271127858.sh' on server 'lpdkcontintvm': Please inform requester, that AD (PBIS) is active on this system, thus personal user account 'qxl4869' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+[WARN] Running script: 'qxr7667-1591814351-788.371937900154.sh' on server 'lpdkcontintvm': Please inform requester, that AD (PBIS) is active on this system, thus personal user account 'qxr7667' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+[WARN] Running script: 'qxt7810-1591814351-54225.4646721972.sh' on server 'lpdkcontintvm': Please inform requester, that AD (PBIS) is active on this system, thus personal user account 'qxt7810' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+[WARN] Running script: 'qxp3309-1591814351-99676.1704233618.sh' on server 'lpdkcontintvm': Please inform requester, that AD (PBIS) is active on this system, thus personal user account 'qxp3309' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+
+100% [============================================================================================================================================================================]D 0h00m07s
+
+Summary of script runs:
+   PASS SKIP WARN FAIL
+   ---- ---- ---- ----
+      0    0    4    0
+
+
+From: Kumar Nijesh, (Nijesh.Kumar@partner.bmw.de) 
+Sent: Thursday, June 11, 2020 12:14 AM
+To: Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>
+Subject: TAS000004749254/CRQ000001429338
+
+Hello Nikhita,
+
+This is regarding the subjected task , we are unable to create the requested users due to below error:
+
+That AD (PBIS) is active on this system, thus personal user account 'qxl4869' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+
+Please have contact the AD team on this.
+
+
+
+Thanks & Best Regards,
+Nijesh Kumar
+IaaS Infrastructure as a Service 
+NTT DATA Services Germany GmbH
+Lyonerstrasse 15
+60528 Frankfurt 
+----------------------------------------------------------------
+Geschäftsführer: Croxville, William David, Pryor, Robert David
+Eingetragen beim Amtsgericht Frankfurt am Main unter HRB HRB 112607
+----------------------------------------------------------------
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+Mobil: +91-7042791765
+Mail: nijesh.kumar@partner.bmw.de
+
+
+==================
+
+From: Kumar Nijesh, (Nijesh.Kumar@partner.bmw.de) 
+Sent: Friday, June 12, 2020 11:29 PM
+To: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) <Tabita.Astilean@partner.bmw.de>; Basler Christian, FG-840RG <Christian.Basler@bmw.de>; Lippert Wolfgang, FG-840RG <Wolfgang.Lippert@bmw.de>
+Cc: tabita.astilean@accenture.com; s.banisetti@accenture.com; kishore.someyapalli@accenture.com; Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>
+Subject: RE: TAS000004749254/CRQ000001429338
+
+Adding Christian and Wolfgang.
+
+Hello Christian/or Wolfgang,
+
+Please help to get access below on below users on the server # lpdkcontintvm (SLES 12)  as PBIS is active on this server.
+
+Users: qxp3309/ qxt7810/qxl4869/qxr7667
+
+Error while adding users via usermgmt script:
+
+That AD (PBIS) is active on this system, thus personal user account 'qxl4869' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+
+
+
+
+Thanks & Best Regards,
+Nijesh Kumar
+IaaS Infrastructure as a Service 
+NTT DATA Services Germany GmbH
+Lyonerstrasse 15
+60528 Frankfurt 
+----------------------------------------------------------------
+Geschäftsführer: Croxville, William David, Pryor, Robert David
+Eingetragen beim Amtsgericht Frankfurt am Main unter HRB HRB 112607
+----------------------------------------------------------------
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+Mobil: +91-7042791765
+Mail: nijesh.kumar@partner.bmw.de 
+
+
+
+From: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) 
+Sent: Friday, June 12, 2020 1:33 PM
+To: Kumar Nijesh, (Nijesh.Kumar@partner.bmw.de) <Nijesh.Kumar@partner.bmw.de>
+Cc: tabita.astilean@accenture.com; s.banisetti@accenture.com; kishore.someyapalli@accenture.com; Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>
+Subject: AW: TAS000004749254/CRQ000001429338
+
+Hi,
+
+reminder please.
+
+Thanks,
+Tabita
+
+Von: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) 
+Gesendet: Donnerstag, 11. Juni 2020 11:29
+An: Kumar Nijesh, (Nijesh.Kumar@partner.bmw.de) <Nijesh.Kumar@partner.bmw.de>
+Cc: tabita.astilean@accenture.com; s.banisetti@accenture.com; kishore.someyapalli@accenture.com; Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>
+Betreff: AW: TAS000004749254/CRQ000001429338
+
+Hi Kumar,
+
+we contacted AD team based on your request and here is their reply:
+
+[‎11.‎06.‎2020 10:58] Janssen Christo, FG-873: 
+We don't manage PBIS, from an AD perspective there is nothing wrong with these users. They are active and able to logon to AD. If they can't access a server than the access to that server needs to be checked. We don't manage that.
+ 
+What do you suggest in this case?
+
+Can you see who is the server admin of lpdkcontintvm?
+
+Thanks,
+
+
+Tabita Aștilean
+Digital Business Integration Senior Analyst
+ 
+Accenture Industrial Software Solutions S.A.
+10 Coriolan Brediceanu Street
+Timisoara, Romania
+E-mail: tabita.astilean@accenture.com
+Mobile:   +40724224655
+Erreichbarkeit bei der BMW Group / Contact at BMW Group:
+Partner E-Mail: Tabita.Astilean@partner.bmw.de
+
+
+
+Von: Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) 
+Gesendet: Donnerstag, 11. Juni 2020 09:34
+An: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) <Tabita.Astilean@partner.bmw.de>
+Cc: tabita.astilean@accenture.com; s.banisetti@accenture.com; kishore.someyapalli@accenture.com
+Betreff: RE: TAS000004749254/CRQ000001429338
+
+Hello Tabita,
+
+I have created ticket . we still can’t access it. I will be talking to AD team.
+
+
+Thanks and Regards,
+Nikhita Singhal
+
+Nikhita Singhal (Miss.)
+BMW SAO
+Accenture Services Pvt. Ltd.
+Building No.1B, Raheja Mindspace
+HITECH City, MADHAPUR,
+HYERABAD - 500081
+Mobile : +91 7710007605
+mailto :  nikhita.singhal@accenture.com
+mailto: Nikhita.singhal@partner.bmw.de 
+URL : http://www.accenture.com
+
+
+------------------------------------------------
+
+
+
+
+
+From: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) 
+Sent: Thursday, June 11, 2020 11:58 AM
+To: Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>; s.banisetti@accenture.com; kishore.someyapalli@accenture.com
+Cc: tabita.astilean@accenture.com
+Subject: AW: TAS000004749254/CRQ000001429338
+
+Hi,
+
+can you open a ticket to AD team for this?
+
+What about the other q users? He only mentioned an issue with 'qxl4869'.
+
+Thanks,
+Tabita
+
+Von: Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) 
+Gesendet: Donnerstag, 11. Juni 2020 08:55
+An: s.banisetti@accenture.com; kishore.someyapalli@accenture.com
+Cc: Astilean Tabita, (Tabita.Astilean@partner.bmw.de) <Tabita.Astilean@partner.bmw.de>
+Betreff: FW: TAS000004749254/CRQ000001429338
+
+FYI
+
+From: Kumar Nijesh, (Nijesh.Kumar@partner.bmw.de) 
+Sent: Thursday, June 11, 2020 12:14 AM
+To: Singhal Nikhita, (Nikhita.Singhal@partner.bmw.de) <Nikhita.Singhal@partner.bmw.de>
+Subject: TAS000004749254/CRQ000001429338
+
+Hello Nikhita,
+
+This is regarding the subjected task , we are unable to create the requested users due to below error:
+
+That AD (PBIS) is active on this system, thus personal user account 'qxl4869' may ONLY be set up via GLOBAL AD Roles - unable to create it locally, nothing to do ...
+
+Please have contact the AD team on this.
+
+
+
+Thanks & Best Regards,
+Nijesh Kumar
+IaaS Infrastructure as a Service 
+NTT DATA Services Germany GmbH
+Lyonerstrasse 15
+60528 Frankfurt 
+----------------------------------------------------------------
+Geschäftsführer: Croxville, William David, Pryor, Robert David
+Eingetragen beim Amtsgericht Frankfurt am Main unter HRB HRB 112607
+----------------------------------------------------------------
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+Mobil: +91-7042791765
+Mail: nijesh.kumar@partner.bmw.de

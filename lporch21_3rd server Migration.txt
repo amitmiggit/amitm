@@ -1,0 +1,268 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lporch21 -x
+******************************************
+Server: lporch21.bmwgroup.net
+******************************************
+machine type:          XEN-Guest
+OS version:            SP3
+OS name:               SLES 11
+serial number:         S40A5L3
+Instserv:              lpinstiaas01
+Logical ID:            SLOG-40657
+Rudder UUID:           8a682778-d09c-11e5-8598-24bc9f7125c0
+Rudder PolSrv:         cm-relay-bss-emea-fiz19.bmwgroup.net
+location:              01.93 / 001.0 / 00.0 / RZ1
+lampe:                 L7
+rack ID:               RZ-012018
+description:           10.02.2016 CRQ000000378339 Provision
+modul:                 Remedy
+usage:
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .bmwgroup.net
+nagios:                Y
+virtual server:        Y
+farm name:             lpsbxen005.bmwgroup.net|lpsbxen006.bmwgroup.net
+farmservers:           lpsbxen005, lpsbxen006
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           -
+warranty until:        31-MAR-21
+BU-Name:               Remedy-BU
+BU-EMail:              krisztina.horvath@partner.bmw.de
+accountable BU-EMail:  Falko.Uhrig@bmw.de
+criticality:           HIGH CRITICAL
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+.------------------------------------------------.
+|                    lporch21                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lporch21 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   160.50.98.47 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    160.50.98.1 |
+| NET_ID        |                    160.50.98.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                  160.50.98.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lporch21-newb                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  lporch21-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.13.128 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
+<LPORCH21-NEWB	10.100.13.128>------------------------->AM
+
+.------------------------------------------------.
+|                    lporch21b                   |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                      lporch21b |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.8.148 |
+| NSI           |                           YAG3 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                     10.100.8.1 |
+| NET_ID        |                     10.100.8.0 |
+| INT_VLAN      |                           3501 |
+| SUB_AREA      |                                |
+| BROADCAST     |                   10.100.8.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lporch21newb                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lporch21newb |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |          lporch21.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.45.227 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.45.1 |
+| NET_ID        |                    10.100.45.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.45.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 -6 lporch21
+Server not found in DCODB. Aborting.
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+lpsbxen006:~ # vmc info lporch21
+Name                      : lporch21
+Comment                   : N/A
+Domain ID                 : 66
+Status                    : Running on lpsbxen006
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp3_x86_64
+Last Backup (UTC)         : 2020-06-27 22:59:23
+Partner                   : lporch20
+
+Cur. VCPUs                : 8
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 16384
+Max. Mem [MB]             : 20480
+
+XML - Cur. VCPUs          : 8
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 16384
+XML - Max. Mem [MB]       : 20480
+
+Network Device 1          : 00:16:3e:32:62:2f (br:br_160050098000 ipname:lporch21)
+Network Device 2          : 6a:bb:e8:b4:52:b6 (br:br_010100008000 ipname:lporch21b)
+
+Block Device xvda         : /dev/md/lporch21
+Block Device xvdb         : /dev/md/lporch21_1
+Block Device xvdc         : /dev/md/lporch21_2
+lpsbxen006:~ #
+
+
+
+
+lpsbxen006:~ # vmc info lporch21
+Name                      : lporch21
+Comment                   : N/A
+Domain ID                 : 66
+Status                    : Running on lpsbxen006
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp3_x86_64
+Last Backup (UTC)         : 2020-06-27 22:59:23
+Partner                   : lporch20
+
+Cur. VCPUs                : 8
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 16384
+Max. Mem [MB]             : 20480
+
+XML - Cur. VCPUs          : 8
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 16384
+XML - Max. Mem [MB]       : 20480
+
+Network Device 1          : 00:16:3e:32:62:2f (br:br_160050098000 ipname:lporch21)
+Network Device 2          : 6a:bb:e8:b4:52:b6 (br:br_010100008000 ipname:lporch21b)
+
+Block Device xvda         : /dev/md/lporch21
+Block Device xvdb         : /dev/md/lporch21_1
+Block Device xvdc         : /dev/md/lporch21_2
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc storage lporch21
+08:31:12 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName           VMDev           VMName
+
+360060e8007299a000030299a000004e4 10650 04e4    56G  dm-109  SAN:lporch21     md/lporch21   lporch21
+360060e8007299a000030299a000004e7 10650 04e7   112G  dm-112  SAN:lporch21_1   md/lporch21_1 lporch21
+360060e8007299a000030299a000004e8 10650 04e8   112G  dm-114  SAN:lporch21_2   md/lporch21_2 lporch21
+360060e8007299c000030299c000004e4 10652 04e4    56G  dm-152  SAN:lporch21     md/lporch21   lporch21
+360060e8007299c000030299c000004e7 10652 04e7   112G  dm-155  SAN:lporch21_1   md/lporch21_1 lporch21
+360060e8007299c000030299c000004e8 10652 04e8   112G  dm-157  SAN:lporch21_2   md/lporch21_2 lporch21
+lpsbxen006:~ #
+
+
+lpsbxen006:~ # vmc pvinfo lporch21
+10:35:50 WARNING: Database connection requested, but unable to connect.
+/dev/dm-109            00 00 00 SAN:lporch21             04:e4 NA 00010650
+/dev/dm-152            00 00 00 SAN:lporch21             04:e4 NA 00010652
+/dev/dm-112            00 00 00 SAN:lporch21_1           04:e7 NA 00010650
+/dev/dm-155            00 00 00 SAN:lporch21_1           04:e7 NA 00010652
+/dev/dm-114            00 00 00 SAN:lporch21_2           04:e8 NA 00010650
+/dev/dm-157            00 00 00 SAN:lporch21_2           04:e8 NA 00010652
+lpsbxen006:~ #
+
+lporch21:~ # df -hT
+Filesystem                                                                    Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                                                                    ext3    38G  6.1G   30G  17% /
+udev                                                                          tmpfs  8.1G  104K  8.1G   1% /dev
+tmpfs                                                                         tmpfs  8.1G   16K  8.1G   1% /dev/shm
+/dev/xvda1                                                                    ext2   297M   41M  241M  15% /boot
+/dev/xvda5                                                                    ext3   5.0G  240M  4.5G   5% /home
+/dev/mapper/dgar-lvapp                                                        xfs    225G  139G   86G  62% /global/ar
+nv01502103.bmwgroup.net:/f04448/t005660                                       nfs     10G  4.7G  5.4G  47% /nfs/inf/attachment
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_iLean_attachements nfs     20G   11G  9.8G  52% /nfs/inf/BAO_BGI_iLean_attachments
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_ISVM_attachements  nfs     20G   11G  9.8G  52% /nfs/inf/BAO_BGI_ISVM_attachments
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_B2I_attachments    nfs     20G   11G  9.8G  52% /nfs/inf/BAO_BGI_B2I_attachments
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_IDIT_attachments   nfs     20G   11G  9.8G  52% /nfs/inf/BAO_BGI_IDIT_attachments
+lporch21:~ #
+
+
+
+lporch21:~ # cat /etc/fstab
+/dev/xvda3            /                    ext3       acl,user_xattr       1 1
+/dev/xvda1            /boot                ext2       acl,user_xattr       1 2
+/dev/xvda2            swap                 swap       pri=42               0 0
+proc                 /proc                proc       defaults              0 0
+sysfs                /sys                 sysfs      noauto                0 0
+debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+usbfs                /proc/bus/usb        usbfs      noauto                0 0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+/dev/xvda5            /home            ext3    acl,user_xattr      1 1
+/dev/dgar/lvapp /global/ar      xfs defaults 0 0
+nv01502103.bmwgroup.net:/f04448/t005660 /nfs/inf/attachment nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_iLean_attachements /nfs/inf/BAO_BGI_iLean_attachments nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_ISVM_attachements /nfs/inf/BAO_BGI_ISVM_attachments nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_B2I_attachments  /nfs/inf/BAO_BGI_B2I_attachments nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr
+# nv01500894.bmwgroup.net:/f01907/t021403/nfs/Remedy/BAO_BGI_iLean_attachements /nfs/Remedy/TEMP_BAO_BGI_iLean_attachements_2 nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr
+#TAS000001859406
+nv01502103.bmwgroup.net:/f04448/t025296/nfs/Remedy/BAO_BGI_IDIT_attachments /nfs/inf/BAO_BGI_IDIT_attachments nfs rw,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr,nodev,nosuid 0 0
+# TAS000001954193
+# nv01500894.bmwgroup.net:/f01907/t021403/nfs/Remedy/BAO_BGI_iLean_attachements /nfs/Remedy/TEMP_BAO_BGI_iLean_attachements_2 nfs rw,bg,vers=3,tcp,rsize=8192,wsize=8192,hard,intr,nodev,nosuid 0 0
+lporch21:~ #
+
+
+
+lporch21:~ # uptime
+ 10:49am  up 137 days  3:25,  3 users,  load average: 1.61, 0.88, 0.49
+lporch21:~ #
+
+
+
+
+
+
+
+
+
+
+
+

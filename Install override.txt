@@ -1,0 +1,43 @@
+[INSTSERV][qxx2753][lpinstiaas01] ~ $ install_override.sh lpapp302 BMW-SW-mqs-client-8.0.0.8
+:: Running in non-root context, using privilege elevation via sudo
+### 20200605 15:17:39 - BMW-SW-mqs-client-8.0.0.8 ##############################
+Integrity of override confirmed
+-> Waiting for maximal 120 seconds to reach lpapp302 over ssh..
+-> Server accessible after 1 seconds
+Copying directory tree /global/instserv/overrides/BMW-SW-mqs-client-8.0.0.8 to lpapp302 ...
+Executing BMW-SW-mqs-client-8.0.0.8-script configure  (on lpapp302) ...
+this is BMW-SW-mqs-client-8.0.0.8-script
+configuring override BMW-SW-mqs-client-8.0.0.8
+:: [CHECK]  Checking for already installed MQS server RPMs ...
+:: [FAILED] There are already MQS server components installed. Exiting ...
+=> Main Script exited with code: 1
+Storing information in database ...
+==> OSSEC_RESET(lpapp302) in progress ... FAILED: No access to OSSEC server
+### ERROR - 20200605 15:17:53 - End of BMW-SW-mqs-client-8.0.0.8 (106) #########
+
+[INSTSERV][qxx2753][lpinstiaas01] ~ $ 
+
+======================
+
+[INSTSERV][qxx2753][lpinstiaas01] ~ $ install_override.sh lpapp302 BMW-SW-mqs-client-8.0.0.8
+:: Running in non-root context, using privilege elevation via sudo
+### 20200605 15:21:01 - BMW-SW-mqs-client-8.0.0.8 ##############################
+Integrity of override confirmed
+-> Waiting for maximal 120 seconds to reach lpapp302 over ssh..
+-> Server accessible after 0 seconds
+Copying directory tree /global/instserv/overrides/BMW-SW-mqs-client-8.0.0.8 to lpapp302 ...
+Executing BMW-SW-mqs-client-8.0.0.8-script configure  (on lpapp302) ...
+this is BMW-SW-mqs-client-8.0.0.8-script
+configuring override BMW-SW-mqs-client-8.0.0.8
+:: [CHECK]  Checking for already installed MQS server RPMs ...
+:: [PASSED] Not found
+:: [CHECK]  Checking for already installed MQS v8.0.0.8 client RPMs ...
+:: [PASSED] Not found
+:: [CHECK]  Checking for active MQS version ...
+:: [FAILED] Installed MQS seems NOT to be version v7.0.1.7, thus not supported, aborting ...
+=> Main Script exited with code: 1
+Storing information in database ...
+==> OSSEC_RESET(lpapp302) in progress ... FAILED: No access to OSSEC server
+### ERROR - 20200605 15:21:12 - End of BMW-SW-mqs-client-8.0.0.8 (106) #########
+
+[INSTSERV][qxx2753][lpinstiaas01] ~ $

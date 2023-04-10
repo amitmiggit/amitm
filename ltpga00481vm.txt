@@ -1,0 +1,453 @@
+lpxentpg013:~ # vmc list ltpga00481vm
+14:34:49 WARNING: Database connection requested, but unable to connect.
+14:34:49 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                   lpxentpg013                 lpxentpg014
+                                --------------              --------------
+ltpga00481vm          running(111)(  2/ 8192M)                     -------
+lpxentpg013:~ #
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 ltpga00481vm
+.------------------------------------------------.
+|                  ltpga00481vm                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   ltpga00481vm |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      ltpga00481vm.bmwgroup.net |
+| ALIAS         |                   TLPGA00481VM |
+| IP_ADDRESS    |                 160.46.189.125 |
+| NSI           |                           X1SV |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.189.1 |
+| NET_ID        |                   160.46.189.0 |
+| INT_VLAN      |                           1131 |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.189.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                ltpga00481vm-newb               |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |              ltpga00481vm-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      ltpga00481vm.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.207.19 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.252.0 |
+| GATEWAY       |                   10.100.204.1 |
+| NET_ID        |                   10.100.204.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                 10.100.207.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  ltpga00481vmb                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  ltpga00481vmb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      ltpga00481vm.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.56.184 |
+| NSI           |                           X1SK |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.56.1 |
+| NET_ID        |                    10.100.56.0 |
+| INT_VLAN      |                           3549 |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.56.255 |
+'---------------+--------------------------------'
+
+
+lpxentpg013:~ # vmc info ltpga00481vm
+Name                      : ltpga00481vm
+Comment                   : N/A
+Domain ID                 : 111
+Status                    : Running on lpxentpg013
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-08-08 00:38:21
+
+Cur. VCPUs                : 2
+Max. VCPUs                : 4
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 16384
+
+XML - Cur. VCPUs          : 2
+XML - Max. VCPUs          : 4
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 16384
+
+Network Device 1          : 00:16:3e:2e:bd:7d (br:br_160046189000 ipname:ltpga00481vm)
+Network Device 2          : 00:16:3e:64:38:b8 (br:br_010100056000 ipname:ltpga00481vmb)
+
+Block Device xvda         : /dev/md/ltpga00481vm
+Block Device xvdb         : /dev/md/ltpga00481vm_1
+Block Device xvdc         : /dev/md/ltpga00481vm_2
+Block Device xvdd         : /dev/md/ltpga00481vm_3
+lpxentpg013:~ # vmc storage ltpga00481vm
+14:02:04 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName              VMDev                   VMName
+
+360060e80167b720000017b720000096e 97138 096e    56G  dm-249  SAN:ltpga00481vm    md/ltpga00481vm   ltpga00481vm
+360060e80167b720000017b720000096f 97138 096f    14G  dm-250  SAN:ltpga00481vm_3  md/ltpga00481vm_3 ltpga00481vm
+360060e80167b720000017b7200000970 97138 0970    14G  dm-251  SAN:ltpga00481vm_2  md/ltpga00481vm_2 ltpga00481vm
+360060e80167b720000017b7200000971 97138 0971    14G  dm-253  SAN:ltpga00481vm_1  md/ltpga00481vm_1 ltpga00481vm
+360060e80167bcd0000017bcd0000096e 97229 096e    56G  dm-118  SAN:ltpga00481vm    md/ltpga00481vm   ltpga00481vm
+360060e80167bcd0000017bcd0000096f 97229 096f    14G  dm-119  SAN:ltpga00481vm_3  md/ltpga00481vm_3 ltpga00481vm
+360060e80167bcd0000017bcd00000970 97229 0970    14G  dm-120  SAN:ltpga00481vm_2  md/ltpga00481vm_2 ltpga00481vm
+360060e80167bcd0000017bcd00000971 97229 0971    14G  dm-122  SAN:ltpga00481vm_1  md/ltpga00481vm_1 ltpga00481vm
+lpxentpg013:~ # vmc pvinfo ltpga00481vm
+/dev/dm-249            00 00 00 SAN:ltpga00481vm         09:6e NA 00097138
+/dev/dm-118            00 00 00 SAN:ltpga00481vm         09:6e NA 00097229
+/dev/dm-253            00 00 00 SAN:ltpga00481vm_1       09:71 NA 00097138
+/dev/dm-122            00 00 00 SAN:ltpga00481vm_1       09:71 NA 00097229
+/dev/dm-251            00 00 00 SAN:ltpga00481vm_2       09:70 NA 00097138
+/dev/dm-120            00 00 00 SAN:ltpga00481vm_2       09:70 NA 00097229
+/dev/dm-250            00 00 00 SAN:ltpga00481vm_3       09:6f NA 00097138
+/dev/dm-119            00 00 00 SAN:ltpga00481vm_3       09:6f NA 00097229
+lpxentpg013:~ #
+
+
+================================
+
+
+source 
+
+lpxentpg013:~ # vmc list ltpga00481vm
+16:34:56 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                   lpxentpg013                 lpxentpg014
+                                --------------              --------------
+ltpga00481vm          running(111)(  2/ 8192M)                     -------
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc stop ltpga00481vm
+16:35:57 Checking free config space on lpxentpg013                                                                                                     OK
+16:35:57 Checking free config space on lpxentpg014                                                                                                     OK
+16:35:59 Locking VM ltpga00481vm: Automatic Lock - stop                                                                                                OK
+16:36:12 Stopping VM ltpga00481vm on lpxentpg013                                                                                                       OK
+16:37:36 Waiting for udev to settle on lpxentpg013                                                                                                     FAILED
+16:38:38 Deactivating volume group vgltpga00481vm on lpxentpg013                                                                                       OK
+16:38:40 Stopping MD device /dev/md/ltpga00481vm on lpxentpg013                                                                                        OK
+16:38:40 Stopping MD device /dev/md/ltpga00481vm_1 on lpxentpg013                                                                                      OK
+16:38:40 Stopping MD device /dev/md/ltpga00481vm_2 on lpxentpg013                                                                                      OK
+16:38:41 Stopping MD device /dev/md/ltpga00481vm_3 on lpxentpg013                                                                                      OK
+16:38:41 Waiting for udev to settle on lpxentpg013                                                                                                     FAILED
+16:39:41 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc mount ltpga00481vm
+16:40:50 Locking VM ltpga00481vm: Automatic Lock - mount                                                                                               OK
+16:40:57 Starting MD device /dev/md/ltpga00481vm on lpxentpg013                                                                                        OK
+16:40:58 Starting MD device /dev/md/ltpga00481vm_1 on lpxentpg013                                                                                      OK
+16:41:00 Starting MD device /dev/md/ltpga00481vm_2 on lpxentpg013                                                                                      OK
+16:41:01 Starting MD device /dev/md/ltpga00481vm_3 on lpxentpg013                                                                                      OK
+16:41:06 WARNING: Unable to set read policy on /dev/md/ltpga00481vm_3, at least one backend device is faulty.
+16:41:07 Waiting for udev to settle on lpxentpg013                                                                                                     FAILED
+16:42:27 Activating Volume Group vgltpga00481vm                                                                                                        OK
+16:43:48 Mapping partitions on device /dev/vgltpga00481vm/lvraw on lpxentpg013                                                                         OK
+16:43:50 Waiting for udev to settle on lpxentpg013                                                                                                     OK
+16:43:50 Mounting /dev/mapper/vgltpga00481vm-lvraw-part3 to /global/ltpga00481vm/base/mnt on lpxentpg013                                               OK
+16:43:51 Mounting /dev/mapper/vgltpga00481vm-lvraw-part1 to /global/ltpga00481vm/base/mnt/boot on lpxentpg013                                          OK
+16:43:51 Mounting /dev/mapper/vgltpga00481vm-lvraw-part5 to /global/ltpga00481vm/base/mnt/home on lpxentpg013                                          OK
+16:43:51 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # cd  /global/ltpga00481vm/base/mnt/etc/sysconfig/network
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # cp -pr ifcfg-eth1 /global/ltpga00481vm/base/mnt/tmp/ifcfg-eth1_bkp
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # ls
+.backup  dhcp        ifcfg-eth1  ifcfg.template  ifroute-lo  providers  routes.2016-10-24_09-55-03.1700
+config   ifcfg-eth0  ifcfg-lo    if-down.d       if-up.d     routes     scripts
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.56.184"
+NETMASK="255.255.255.0"
+NETWORK="10.100.56.0"
+BROADCAST="10.100.56.255"
+# do not remove GATEWAY="10.100.56.1"
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # cat routes
+default 160.46.189.1 - eth0
+# All backup routes are removed by BMW-CFG-netbackup-client, as this is handled by a separate script: /etc/BMWfirewall/BKUPNetwork.sh
+# In order to remove backup routes automatically again, delete this comment line out and re-run BMW-CFG-netbackup-client Override with configure parameter.
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network #
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # vi ifcfg-eth1
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.207.19"
+NETMASK="255.255.252.0"
+NETWORK="10.100.204.0"
+BROADCAST="10.100.207.255"
+# do not remove GATEWAY="10.100.204.1"
+lpxentpg013:/global/ltpga00481vm/base/mnt/etc/sysconfig/network # cd
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc umount ltpga00481vm
+16:49:09 Unmounting /global/ltpga00481vm/base/mnt/home on lpxentpg013                                                                                  OK
+16:49:09 Unmounting /global/ltpga00481vm/base/mnt/boot on lpxentpg013                                                                                  OK
+16:49:09 Unmounting /global/ltpga00481vm/base/mnt on lpxentpg013                                                                                       OK
+16:49:21 Removing any partition mappings from /dev/vgltpga00481vm/lvraw on lpxentpg013                                                                 OK
+16:49:21 Waiting for udev to settle on lpxentpg013                                                                                                     OK
+16:49:24 Deactivating volume group vgltpga00481vm on lpxentpg013                                                                                       OK
+16:49:26 Stopping MD device /dev/md/ltpga00481vm on lpxentpg013                                                                                        OK
+16:49:26 Stopping MD device /dev/md/ltpga00481vm_1 on lpxentpg013                                                                                      OK
+16:49:26 Stopping MD device /dev/md/ltpga00481vm_2 on lpxentpg013                                                                                      OK
+16:49:27 Stopping MD device /dev/md/ltpga00481vm_3 on lpxentpg013                                                                                      OK
+16:49:27 Waiting for udev to settle on lpxentpg013                                                                                                     OK
+16:49:41 Waiting for udev to settle on lpxentpg014                                                                                                     OK
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc info ltpga00481vm
+Name                      : ltpga00481vm
+Comment                   : N/A
+Domain ID                 : NR
+Status                    : Offline
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-08-08 00:38:21
+
+Cur. VCPUs                : NR
+Max. VCPUs                : 4
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 16384
+
+XML - Cur. VCPUs          : 2
+XML - Max. VCPUs          : 4
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 16384
+
+Network Device 1          : 00:16:3e:2e:bd:7d (br:br_160046189000 ipname:ltpga00481vm)
+Network Device 2          : 00:16:3e:64:38:b8 (br:br_010100056000 ipname:ltpga00481vmb)
+
+Block Device xvda         : /dev/md/ltpga00481vm
+Block Device xvdb         : /dev/md/ltpga00481vm_1
+Block Device xvdc         : /dev/md/ltpga00481vm_2
+Block Device xvdd         : /dev/md/ltpga00481vm_3
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc rmnet ltpga00481vm ltpga00481vmb
+16:51:06 Checking Libvirt access on lpxentpg013                                                                                                        OK
+16:51:06 Checking free config space on lpxentpg013                                                                                                     OK
+16:51:06 Checking Libvirt access on lpxentpg014                                                                                                        OK
+16:51:07 Checking free config space on lpxentpg014                                                                                                     OK
+16:51:07 Locking VM ltpga00481vm: Automatic Lock - rmnet                                                                                               OK
+16:51:09 Removing network device matching ltpga00481vmb from ltpga00481vm                                                                              OK
+16:51:11 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc rmnet ltpga00481vm ltpga00481vm
+16:51:29 Checking Libvirt access on lpxentpg013                                                                                                        OK
+16:51:30 Checking free config space on lpxentpg013                                                                                                     OK
+16:51:30 Checking Libvirt access on lpxentpg014                                                                                                        OK
+16:51:31 Checking free config space on lpxentpg014                                                                                                     OK
+16:51:31 Locking VM ltpga00481vm: Automatic Lock - rmnet                                                                                               OK
+16:51:32 Removing network device matching ltpga00481vm from ltpga00481vm                                                                               OK
+16:51:34 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc info ltpga00481vm
+Name                      : ltpga00481vm
+Comment                   : N/A
+Domain ID                 : NR
+Status                    : Offline
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-08-08 00:38:21
+
+Cur. VCPUs                : NR
+Max. VCPUs                : 4
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 16384
+
+XML - Cur. VCPUs          : 2
+XML - Max. VCPUs          : 4
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 16384
+
+Block Device xvda         : /dev/md/ltpga00481vm
+Block Device xvdb         : /dev/md/ltpga00481vm_1
+Block Device xvdc         : /dev/md/ltpga00481vm_2
+Block Device xvdd         : /dev/md/ltpga00481vm_3
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ #
+lpxentpg013:~ # vmc list ltpga00481vm
+16:56:39 Gathering VM and Storage data, please wait                                                                                                    OK
+
+=============================
+
+Target
+
+lpxentpg061:~ # san_shortinfo | grep ltpga00481vm
+dm-685  | sdbei 09:6E   5L   97138    57622 | sdatc 09:6E   6L   97138    57622 | SAN:ltpga00481vm     -
+dm-686  | sdbej 09:6F   5L   97138    14405 | sdatd 09:6F   6L   97138    14405 | SAN:ltpga00481vm_3   -
+dm-696  | sdbek 09:70   5L   97138    14405 | sdate 09:70   6L   97138    14405 | SAN:ltpga00481vm_2   -
+dm-684  | sdbel 09:71   5L   97138    14405 | sdatf 09:71   6L   97138    14405 | SAN:ltpga00481vm_1   -
+dm-760  | sdbhd 09:6E   5L   97229    57622 | sdavx 09:6E   6L   97229    57622 | SAN:ltpga00481vm     -
+dm-763  | sdbhe 09:6F   5L   97229    14405 | sdavy 09:6F   6L   97229    14405 | SAN:ltpga00481vm_3   -
+dm-759  | sdbhf 09:70   5L   97229    14405 | sdavz 09:70   6L   97229    14405 | SAN:ltpga00481vm_2   -
+dm-762  | sdbhg 09:71   5L   97229    14405 | sdawa 09:71   6L   97229    14405 | SAN:ltpga00481vm_1   -
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ # vmc define ltpga00481vm
+16:53:26 Checking Libvirt access on lpxentpg061                                                                                                        OK
+16:53:26 Checking free config space on lpxentpg061                                                                                                     OK
+16:53:27 Checking Libvirt access on lpxentpg062                                                                                                        OK
+16:53:27 Checking free config space on lpxentpg062                                                                                                     OK
+16:53:29 Force saving VM configuration on farm                                                                                                         OK
+16:53:32 Defining VM ltpga00481vm on lpxentpg061                                                                                                       OK
+16:53:33 Defining VM ltpga00481vm on lpxentpg062                                                                                                       OK
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ # vmc addnet ltpga00481vm ltpga00481vm
+16:53:55 Checking Libvirt access on lpxentpg061                                                                                                        OK
+16:53:55 Checking free config space on lpxentpg061                                                                                                     OK
+16:53:55 Checking Libvirt access on lpxentpg062                                                                                                        OK
+16:53:56 Checking free config space on lpxentpg062                                                                                                     OK
+16:53:56 Locking VM ltpga00481vm: Automatic Lock - addnet                                                                                              OK
+16:54:00 Adding ipname ltpga00481vm to ltpga00481vm                                                                                                    OK
+16:54:02 Added with MAC ca:9e:cc:92:d2:de
+16:54:02 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ # vmc addnet ltpga00481vm ltpga00481vmb
+16:54:20 Checking Libvirt access on lpxentpg061                                                                                                        OK
+16:54:20 Checking free config space on lpxentpg061                                                                                                     OK
+16:54:20 Checking Libvirt access on lpxentpg062                                                                                                        OK
+16:54:20 Checking free config space on lpxentpg062                                                                                                     OK
+16:54:21 Locking VM ltpga00481vm: Automatic Lock - addnet                                                                                              OK
+16:54:24 Adding ipname ltpga00481vmb to ltpga00481vm                                                                                                   OK
+16:54:26 Added with MAC 96:07:3e:67:9b:8d
+16:54:26 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ # vmc start ltpga00481vm
+16:55:23 Checking free config space on lpxentpg061                                                                                                     OK
+16:55:23 Checking free config space on lpxentpg062                                                                                                     OK
+16:55:27 Locking VM ltpga00481vm: Automatic Lock - start                                                                                               OK
+16:55:36 Starting MD device /dev/md/ltpga00481vm on lpxentpg061                                                                                        OK
+16:55:37 Starting MD device /dev/md/ltpga00481vm_1 on lpxentpg061                                                                                      OK
+16:55:38 Starting MD device /dev/md/ltpga00481vm_2 on lpxentpg061                                                                                      OK
+16:55:39 Starting MD device /dev/md/ltpga00481vm_3 on lpxentpg061                                                                                      OK
+16:55:41 Waiting for udev to settle on lpxentpg061                                                                                                     OK
+16:55:53 Starting VM ltpga00481vm on lpxentpg061                                                                                                       OK
+16:56:08 Unlocking VM ltpga00481vm                                                                                                                     OK
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ #
+lpxentpg061:~ # vmc list ltpga00481vm
+16:56:28 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                   lpxentpg061                 lpxentpg062
+                                --------------              --------------
+ltpga00481vm          running( 15)(  2/ 8192M)                     -------
+lpxentpg061:~ # date
+Sat Aug  8 16:56:53 CEST 2020
+lpxentpg061:~ #
+
+
+==============================
+
+post check
+
+
+qplinux@ltpga00481vm:~> sudo -s
+ltpga00481vm:~ #
+ltpga00481vm:~ #
+ltpga00481vm:~ #
+ltpga00481vm:~ # uptime
+ 16:59pm  up   0:03,  1 user,  load average: 0.48, 0.39, 0.17
+ltpga00481vm:~ #
+ltpga00481vm:~ #
+ltpga00481vm:~ # ifconfig -a
+eth0      Link encap:Ethernet  HWaddr CA:9E:CC:92:D2:DE
+          inet addr:160.46.189.125  Bcast:160.46.189.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:6081 errors:0 dropped:284 overruns:0 frame:0
+          TX packets:6626 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:596888 (582.8 Kb)  TX bytes:3934233 (3.7 Mb)
+
+eth1      Link encap:Ethernet  HWaddr 96:07:3E:67:9B:8D
+          inet addr:10.100.207.19  Bcast:10.100.207.255  Mask:255.255.252.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:345 errors:0 dropped:197 overruns:0 frame:0
+          TX packets:1 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:29342 (28.6 Kb)  TX bytes:42 (42.0 b)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:347 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:347 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:25672 (25.0 Kb)  TX bytes:25672 (25.0 Kb)
+
+ltpga00481vm:~ #
+

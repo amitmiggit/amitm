@@ -1,0 +1,55 @@
+
+
+
+
+lp09pcr17:~ # vxprint -hvt -g dgiicrcs10db01 lvICR
+V  NAME         RVG/VSET/CO  KSTATE   STATE    LENGTH   READPOL   PREFPLEX UTYPE
+PL NAME         VOLUME       KSTATE   STATE    LENGTH   LAYOUT    NCOL/WID MODE
+SD NAME         PLEX         DISK     DISKOFFS LENGTH   [COL/]OFF DEVICE   MODE
+SV NAME         PLEX         VOLNAME  NVOLLAYR LENGTH   [COL/]OFF AM/NM    MODE
+SC NAME         PLEX         CACHE    DISKOFFS LENGTH   [COL/]OFF DEVICE   MODE
+DC NAME         PARENTVOL    LOGVOL
+SP NAME         SNAPVOL      DCO
+EX NAME         ASSOC        VC                       PERMS    MODE     STATE
+
+v  lvICR        -            ENABLED  ACTIVE   707647488 PREFER   lvICR-97158 fsgen
+pl lvICR-97013  lvICR        ENABLED  ACTIVE   707647488 CONCAT   -        RW
+sd 58_97013_008e-01 lvICR-97013 58_97013_008e 4160 471855488 0    VSP_97013_008e ENA
+sd 58_97013_5164-01 lvICR-97013 58_97013_5164 0 235792000 471855488 VSP_97013_5164 ENA
+pl lvICR-97158  lvICR        ENABLED  ACTIVE   707647488 CONCAT   -        RW
+sd 10_97158_008e-01 lvICR-97158 10_97158_008e 0 419430400 0       VSP_97158_008e ENA
+sd 10_97158_008e-02 lvICR-97158 10_97158_008e 419430544 52429104 419430400 VSP_97158_008e ENA
+sd 10_97158_5164-01 lvICR-97158 10_97158_5164 0 235787984 471859504 VSP_97158_5164 ENA
+dc lvICR_dco    lvICR        lvICR_dcl
+v  lvICR_dcl    -            ENABLED  ACTIVE   144      SELECT    -        gen
+pl lvICR_dcl-97013 lvICR_dcl ENABLED  ACTIVE   144      CONCAT    -        RW
+sd 58_97013_008e-02 lvICR_dcl-97013 58_97013_008e 0 144 0         VSP_97013_008e ENA
+pl lvICR_dcl-97158 lvICR_dcl ENABLED  ACTIVE   144      CONCAT    -        RW
+sd 10_97158_008e-03 lvICR_dcl-97158 10_97158_008e 419430400 144 0 VSP_97158_008e ENA
+lp09pcr17:~ #
+lp09pcr17:~ #
+lp09pcr17:~ #
+
+
+lp09pcr17:~ # vxresize -b -g dgtlprisma1bkup lvbkup 2831708160
+VxVM vxresize INFO V-5-1-2555 Volume lvICR: Volume length is already 707647488 sectors
+lp09pcr17:~ # df -hT /dev/vx/dsk/dgiicrcs10db01/lvICR
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgiicrcs10db01/lvICR vxfs  338G   20G  316G   6% /oracle/ICR
+lp09pcr17:~ # exit
+exit
+qxz10kv@lp09pcr17:~> exit
+logout
+
+
+
+ltdbant9:~ #
+ltdbant9:~ # vxassist -g dgtlprisma1bkup maxgrow lvbkup
+Volume lvbkup can be extended by 98304 to: 4592664512 (2242511Mb+1984 sectors)
+ltdbant9:~ # vxresize -g dgtdbl021bkup lvbkup 2242511M
+ltdbant9:~ #
+
+
+
+vxresize -b -g dgtlprisma1bkup lvbkup 2831708160
+

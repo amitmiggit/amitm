@@ -1,0 +1,124 @@
+(1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server: lpitojenkins01.bmwgroup.net
+APP-ID: APPD-06844
+FS : Add [ ] / Extend [X ] / Reduce [ ]
+FS Name: /dev/mapper/dgcontintapp-lvapp
+Mount point: /global/contint
+FS size change( in GB ): 1024
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+
+(1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server: lpitojenkins01.bmwgroup.net
+APP-ID: APPD-06844
+FS : Add [ ] / Extend [X ] / Reduce [ ]
+FS Name: /dev/mapper/dgcontintapp-lvapp
+Mount point: /global/contint
+FS size change( in GB ): 1024
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+
+====================
+
+qplinux@lpxen1017:~> sudo vmc adddisk -d "360060e80072928000030292800000456 360060e80072955000030295500000456" lpitojenkins01
+12:52:38 Checking Libvirt access on lpxen1017                                                                                                                                          OK
+12:52:38 Checking free config space on lpxen1017                                                                                                                                       OK
+12:52:38 Checking Libvirt access on lpxen1018                                                                                                                                          OK
+12:52:39 Checking free config space on lpxen1018                                                                                                                                       OK
+12:52:39 Locking VM lpitojenkins01: Automatic Lock - adddisk                                                                                                                           OK
+12:52:41 Checking all servers for access to disks requested                                                                                                                            OK
+12:52:46 Creating MD device /dev/md/lpitojenkins01_3 using disks 360060e80072928000030292800000456 360060e80072955000030295500000456 on lpxen1017                                      OK
+12:52:50 Setting writemostly flag for dm-166(10536) in /dev/md/lpitojenkins01_3 on lpxen1017                                                                                           OK
+12:52:50 Adding device /dev/md/lpitojenkins01_3 to VM lpitojenkins01                                                                                                                   OK
+12:52:55 Added as target device xvdd
+12:52:55 Unlocking VM lpitojenkins01                                                                                                                                                   OK
+qplinux@lpxen1017:~>
+
+===============================================================================================
+From: Tendulkar Ashwini, (Ashwini.Tendulkar@partner.bmw.de) 
+Sent: Friday, June 12, 2020 1:19 PM
+To: Steinert Adrian, (Adrian.Steinert@partner.bmw.de) <Adrian.Steinert@partner.bmw.de>
+Subject: TAS000004742054:FS extension
+
+Hi Adrian,
+
+For the subjected task ,disk is not visible after adding from xen farm node. We have removed and reattached disk to the Vm and checked all the configuration from farm end everything looks good but it is not reflecting in VM to extend the FS. We need to reboot the VM to fix the issue. Please provide the suitable DT for the same.
+
+Reboot required: lpitojenkins01
+
+Best Regards,
+Ashwini Tendulkar
+IaaS Infrastructure as a Service 
+NTT DATA Services Germany GmbH
+Lyonerstrasse 15 , 60528 Frankfurt 
+----------------------------------------------------------------
+Geschäftsführer: Croxville, William David, Pryor, Robert David
+Eingetragen beim Amtsgericht Frankfurt am Main unter HRB HRB 112607
+----------------------------------------------------------------
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+
+Postanschrift: 80788 München
+Mail: ashwini.tendulkar@partner.bmw.de

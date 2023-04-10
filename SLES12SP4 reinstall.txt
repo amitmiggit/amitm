@@ -1,0 +1,36 @@
+OS Unix team will Shutdown all the VMs on lp19xenppg012 and perform SLES 12 SP4 OS-reinstall on lp19xenppg012 and reboot it.
+
+Current version: SLES 12 SP2
+
+Note:- Please co-ordinate with Postgres team while performing the activity.
+
+Postgres Task: TAS000004737489
+
+Do in sequential:
+------------------------
+
+1. Shutdown all VMs running on Xenfarm: lp19xenppg012
+	
+VMs running on Xenfarm: lp19xenppg012
+
+                                 lp19xenppg011               lp19xenppg012
+                                --------------              --------------
+lp19dkpgb0059vm                        -------    running( 13)(  2/ 4096M)
+lp19dkpgb0060vm                        -------    running(  9)(  2/ 4096M)
+lp19dkpgb0069vm                        -------    running( 21)(  8/65536M)
+lp19dkpgb0070vm                        -------    running( 17)(  8/65536M)
+
+
+2. Perform SLES 12 SP4 OS-reinstall on Xenfarm: lp19xenppg012
+
+
+3. Start the VMs on same node.
+	
+
+
+If any queries, please contact : iaas-unix-orga@list.bmw.com
+
+
+===========================================================================
+
+Please DO NOT proceed with task as we need to get approval from BMW  internals

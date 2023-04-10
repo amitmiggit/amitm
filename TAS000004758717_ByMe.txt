@@ -1,0 +1,121 @@
+(1) Description of the Task to be done
+Sudo Management
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+-> Tasks need to be set to "Pending Assignment".
+-> If any information is missing or required times are not met, task will be set to "Pending Error" depending on the SLAs for the servers concerned.
+
+Documentation for this request: https://atc.bmwgroup.net/confluence/display/LINUX/SUDO_requests  (with examples)
+Required Approvals: https://atc.bmwgroup.net/confluence/display/LINUX/Approval_Matrix
+
+Approval:  All Sudo Creat/Remove Rules require a BMW authorized approval as described in the BMW Module Approval Matrix. 
+           Please check the link above for the BMW Authorized Approvers for the requested servers and valid methods
+           for adding the Approval to the change.
+
+           ATTENTION: Tasks set to â€œPending Assignmentâ€ before the necessary approvals have been correctly 
+           issued will be Canceled!
+
+Sudo-Request to be done:
+
+[X]    create   
+[ ]    remove  
+[ ]    modify [ONLY for the static pre defined FG-83x AD Group Host and Command Aliases]  
+
+
+(2.1) Server(s) on which the roles/rights are to be active (a valid approval for every requested 
+      system must be supplied) 
+ 
+      Required Servers: lipimaodm01.bmwgroup.net 
+ 
+
+(2.2) Please choose the required role(s) below to be configured for the servers in (2) above:
+
+   A. [X] Switch User from a Personal "q/qx/qt" user account to a "qq" Technical User
+      Personal users can change their identity to a technical application user 
+      For example:  "sudo /bin/rootsh -i -u qqcd"
+   => Maximum validity of 1 year. 
+
+   Required Personal q/qx/qt Account(s): q456492
+   OR dedicated AD Role (no maximum timeframe):
+   Required Technical "qq" Account: qqodm00
+
+
+--> Please extend the rights of q456492 to "/bin/rootsh -i -u qqodm00" on lipimaodm01.bmwgroup.net by another year --> Thank you!
+
+
+
+
+   B. [ ] Application Administration from Personal Account (Technical Accounts are not allowed)
+      Personal q/qx/qt users can run single commands or programs as root or as another user
+      For example: "sudo -u oracle /lfs/oracle/oradba/listener.start"
+   => Maximum validity of 1 year.   
+
+   Required Personal q/qx/qt Account(s): 
+   OR dedicated AD Role (no maximum timeframe):
+   Required Commands (with full path to command):
+
+   C. [ ] Temporary Root Shell Access
+ for Personal q/qx/qt Account (Technical Accounts and Groups are not allowed)
+      This role allows a Personal Account to start an interactive shell as the root user e.g. 
+      for the installation of purchased software. The command is "sudo /bin/rootsh".
+    => Maximum validity of 4 weeks
+
+   Required Personal q/qx/qt Account:
+
+   D. [ ] Technical "qq" user Sudo commands for start/stop or automated routines and crontab scripts.
+
+      Non interactive rights (via sudo) for specific commands which are required by scripts and cannot
+      be resolved via other means such as ssh. 
+      For example: "sudo /bin/xenstore-read /tool/hostname"
+   => No max
+
+E. [ ] Modify an existing static Module wide pre defined Sudo Alias (for SAP, WEB, etc.)”
+Module:                                       
+Alias Name:                                 
+Modification:
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+Desislava Koetschan, FG-610
+
+
+
+===================================
+
+# 19.06.2020 qxz10kv TAS000004758717
+# 
+Host_Alias  TAS000004758717_HOST = lipimaodm01.bmwgroup.net, lipimaodm01
+
+sudoers entry
+# 19.06.2020 qxz10kv TAS000004758717
+# 
+User_Alias  TAS000004758717_USER = q456492
+
+# 19.06.2020 13:30 qxz10kv TAS000004758717
+TAS000004758717_USER \
+           TAS000004758717_HOST = \
+           /bin/rootsh -i -u qqodm00
+		   
+		   
+		   Distribute sudoers-Config — distribution started	?
+Host
+lipimaodm01.bmwgroup.net

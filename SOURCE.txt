@@ -1,0 +1,251 @@
+lpsbxen006:~ # vmc list
+17:45:35 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                    lpsbxen005                  lpsbxen006
+                                --------------              --------------
+lpbkcima03                             -------    running( 78)(  4/ 8192M)
+lpbkcima04                             -------    running( 77)(  4/ 8192M)
+lporch21                               -------    running( 66)(  8/16384M)
+lporch22                               -------                     -------
+lporch23                               -------                     -------
+lpsecpw2                               -------    running( 48)(  2/ 4096M)
+lptpa01                                -------    running( 30)(  2/ 8192M)
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc info lptpa01
+Name                      : lptpa01
+Comment                   : N/A
+Domain ID                 : 30
+Status                    : Running on lpsbxen006
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-06-27 23:00:39
+
+Cur. VCPUs                : 2
+Max. VCPUs                : 4
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 16384
+
+XML - Cur. VCPUs          : 2
+XML - Max. VCPUs          : 4
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 16384
+
+Network Device 1          : 00:16:3e:2e:9c:d4 (br:br_160046156000 ipname:lptpa01)
+Network Device 2          : ce:a3:79:c2:88:95 (br:br_010100008000 ipname:lptpa01b)
+
+Block Device xvda         : /dev/md/lptpa01
+Block Device xvdb         : /dev/md/lptpa01_1
+Block Device xvdc         : /dev/md/lptpa01_2
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc storage lptpa01
+17:50:51 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName           VMDev         VMName
+
+360060e8007299a000030299a00000172 10650 0172    14G  dm-3    SAN:lptpa01_1    md/lptpa01_1 lptpa01
+360060e8007299a000030299a00000173 10650 0173    14G  dm-4    SAN:lptpa01_2    md/lptpa01_2 lptpa01
+360060e8007299a000030299a0000017e 10650 017e    56G  dm-13   SAN:lptpa01      md/lptpa01   lptpa01
+360060e8007299c000030299c00000172 10652 0172    14G  dm-48   SAN:lptpa01_1    md/lptpa01_1 lptpa01
+360060e8007299c000030299c00000173 10652 0173    14G  dm-49   SAN:lptpa01_2    md/lptpa01_2 lptpa01
+360060e8007299c000030299c0000017e 10652 017e    56G  dm-58   SAN:lptpa01      md/lptpa01   lptpa01
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc pvinfo lptpa01
+/dev/dm-13             00 00 00 SAN:lptpa01              01:7e NA 00010650
+/dev/dm-58             00 00 00 SAN:lptpa01              01:7e NA 00010652
+/dev/dm-3              00 00 00 SAN:lptpa01_1            01:72 NA 00010650
+/dev/dm-48             00 00 00 SAN:lptpa01_1            01:72 NA 00010652
+/dev/dm-4              00 00 00 SAN:lptpa01_2            01:73 NA 00010650
+/dev/dm-49             00 00 00 SAN:lptpa01_2            01:73 NA 00010652
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 2 -c "TAS000004753354 qxz10kv" lptpa01.bmwgroup.net
+Argument: lptpa01.bmwgroup.net
+[1593356460] SCHEDULE_HOST_DOWNTIME;lptpa01.bmwgroup.net;1593356460;1593363660;1;0;7200;remote;TAS000004753354 qxz10kv
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -l lptpa01.bmwgroup.net
+34357 : host lptpa01.bmwgroup.net down between Sun Jun 28 17:01:00 2020 and Sun Jun 28 19:01:00 2020
+
+
+lpsbxen006:~ # vmc stop lptpa01
+17:52:04 Checking free config space on lpsbxen005                                                                                                      OK
+17:52:04 Checking free config space on lpsbxen006                                                                                                      OK
+17:52:05 Locking VM lptpa01: Automatic Lock - stop                                                                                                     OK
+17:52:10 Stopping VM lptpa01 on lpsbxen006                                                                                                             OK
+17:54:14 Waiting for udev to settle on lpsbxen006                                                                                                      OK
+17:54:16 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc mount lptpa01
+17:54:44 WARNING: Database connection requested, but unable to connect.
+17:54:47 Locking VM lptpa01: Automatic Lock - mount                                                                                                    OK
+17:54:50 Starting MD device /dev/md/lptpa01 on lpsbxen006                                                                                              OK
+17:54:51 Starting MD device /dev/md/lptpa01_1 on lpsbxen006                                                                                            OK
+17:54:51 Starting MD device /dev/md/lptpa01_2 on lpsbxen006                                                                                            OK
+17:54:53 Waiting for udev to settle on lpsbxen006                                                                                                      OK
+17:54:58 Activating Volume Group vglptpa01                                                                                                             OK
+17:55:01 Mapping partitions on device /dev/vglptpa01/lvraw on lpsbxen006                                                                               OK
+17:55:02 Waiting for udev to settle on lpsbxen006                                                                                                      OK
+17:55:03 Mounting /dev/mapper/vglptpa01-lvraw-part3 to /global/lptpa01/base/mnt on lpsbxen006                                                          OK
+17:55:03 Mounting /dev/mapper/vglptpa01-lvraw-part1 to /global/lptpa01/base/mnt/boot on lpsbxen006                                                     OK
+17:55:03 Mounting /dev/mapper/vglptpa01-lvraw-part5 to /global/lptpa01/base/mnt/home on lpsbxen006                                                     OK
+17:55:03 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # cd /global/lptpa01/base/mnt/etc/sysconfig/network
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # ls
+config  dhcp  ifcfg-eth0  ifcfg-eth1  ifcfg-lo  ifcfg.template  if-down.d  ifroute-lo  if-up.d  providers  routes  scripts
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # ls -ltra
+total 104
+drwx------ 2 root root  4096 May  5  2010 providers
+-rw-r--r-- 1 root root   239 Jul 17  2015 ifroute-lo
+-rw-r--r-- 1 root root 29333 Jul 17  2015 ifcfg.template
+-rw------- 1 root root   172 Jul 17  2015 ifcfg-lo
+-rw-r--r-- 1 root root    70 Jan 27  2018 routes
+drwxr-xr-x 2 root root  4096 Jun  7  2018 if-down.d
+-rw------- 1 root root   182 Jun  7  2018 ifcfg-eth1
+-rw------- 1 root root   103 Jun  7  2018 ifcfg-eth0
+-rw-r--r-- 1 root root 10092 Jun  7  2018 dhcp
+-rw-r--r-- 1 root root 14222 Jun  7  2018 config
+drwxr-xr-x 6 root root  4096 Jun  7  2018 .
+drwxr-xr-x 2 root root  4096 Jun  7  2018 scripts
+drwxr-xr-x 2 root root  4096 Jun  7  2018 if-up.d
+drwxr-xr-x 6 root root  4096 Aug  9  2019 ..
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.8.127"
+NETMASK="255.255.255.0"
+NETWORK="10.100.8.0"
+BROADCAST="10.100.8.255"
+# do not remove GATEWAY="10.100.8.1"
+
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # cat ifcfg-eth0
+BOOTPROTO=static
+STARTMODE=onboot
+IPADDR=160.46.156.212
+BROADCAST=160.46.156.255
+NETMASK=255.255.255.0
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.8.127"
+NETMASK="255.255.255.0"
+NETWORK="10.100.8.0"
+BROADCAST="10.100.8.255"
+# do not remove GATEWAY="10.100.8.1"
+
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network #
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network #
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network #
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # vi ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.13.97"
+NETMASK="255.255.255.0"
+NETWORK="10.100.8.0"
+BROADCAST="10.100.13.255"
+# do not remove GATEWAY="10.100.8.1"
+
+
+
+
+
+
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO="static"
+STARTMODE="onboot"
+WIRELESS="no"
+IPADDR="10.100.13.97"
+NETMASK="255.255.255.0"
+NETWORK="10.100.8.0"
+BROADCAST="10.100.13.255"
+# do not remove GATEWAY="10.100.8.1"
+
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # cat routes
+default 160.46.156.1 - eth0
+10.100.20.0 10.100.8.1 255.255.255.0 eth1
+lpsbxen006:/global/lptpa01/base/mnt/etc/sysconfig/network # vi routes
+default 160.46.156.1 - eth0
+#10.100.20.0 10.100.8.1 255.255.255.0 eth1
+~
+~
+~
+
+
+
+lpsbxen006:~ # vmc umount lptpa01
+18:02:25 Waiting for udev to settle on lpsbxen005                                                                                                      OK
+18:02:28 Unmounting /global/lptpa01/base/mnt/home on lpsbxen006                                                                                        OK
+18:02:28 Unmounting /global/lptpa01/base/mnt/boot on lpsbxen006                                                                                        OK
+18:02:28 Unmounting /global/lptpa01/base/mnt on lpsbxen006                                                                                             OK
+18:02:31 Removing any partition mappings from /dev/vglptpa01/lvraw on lpsbxen006                                                                       OK
+18:02:32 Waiting for udev to settle on lpsbxen006                                                                                                      OK
+18:02:32 Deactivating volume group vglptpa01 on lpsbxen006                                                                                             OK
+18:02:33 Stopping MD device /dev/md/lptpa01 on lpsbxen006                                                                                              OK
+18:02:33 Stopping MD device /dev/md/lptpa01_1 on lpsbxen006                                                                                            OK
+18:02:34 Stopping MD device /dev/md/lptpa01_2 on lpsbxen006                                                                                            OK
+18:02:34 Waiting for udev to settle on lpsbxen006                                                                                                      OK
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc rmnet lptpa01 lptpa01
+18:03:30 Checking Libvirt access on lpsbxen005                                                                                                         OK
+18:03:31 Checking free config space on lpsbxen005                                                                                                      OK
+18:03:31 Checking Libvirt access on lpsbxen006                                                                                                         OK
+18:03:31 Checking free config space on lpsbxen006                                                                                                      OK
+18:03:31 Locking VM lptpa01: Automatic Lock - rmnet                                                                                                    OK
+18:03:32 Removing network device matching lptpa01 from lptpa01                                                                                         OK
+18:03:34 Unlocking VM lptpa01                                                                                                                          OK
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ #
+lpsbxen006:~ # vmc rmnet lptpa01 lptpa01b
+18:04:00 Checking Libvirt access on lpsbxen005                                                                                                         OK
+18:04:00 Checking free config space on lpsbxen005                                                                                                      OK
+18:04:01 Checking Libvirt access on lpsbxen006                                                                                                         OK
+18:04:01 Checking free config space on lpsbxen006                                                                                                      OK
+18:04:01 Locking VM lptpa01: Automatic Lock - rmnet                                                                                                    OK
+18:04:02 Removing network device matching lptpa01b from lptpa01                                                                                        OK
+18:04:04 Unlocking VM lptpa01
+
+
+
+
+
+
+
+

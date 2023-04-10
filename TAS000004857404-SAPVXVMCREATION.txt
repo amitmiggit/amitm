@@ -1,0 +1,231 @@
+Work Info History
+Task ID	 TAS000004857404
+Submit Date	 28.07.2020 12:22:36
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 Precheck - OK
+Notes	 lpaap02:~ # df -TH|grep -i sapdata
+/dev/vx/dsk/dgiaaqcs1015/lvsapdata04                  vxfs      242G  194G   48G  81% /global/iaaqlc10/db/alq/sapdb/ALQ/sapdata04
+/dev/vx/dsk/dgiaaqcs1014/lvsapdata03                  vxfs      242G  194G   48G  81% /global/iaaqlc10/db/alq/sapdb/ALQ/sapdata03
+/dev/vx/dsk/dgiaaqcs1012/lvsapdata01                  vxfs      242G  215G   27G  89% /global/iaaqlc10/db/alq/sapdb/ALQ/sapdata01
+/dev/vx/dsk/dgiaaqcs1013/lvsapdata02                  vxfs      242G  194G   48G  81% /global/iaaqlc10/db/alq/sapdb/ALQ/sapdata02
+/dev/vx/dsk/dgiaaqcs10db05/lvsapdata4                 vxfs      2.5T  2.2T  248G  90% /oracle/AAQ/sapdata4
+/dev/vx/dsk/dgiaaqcs10db03/lvsapdata2                 vxfs      2.5T  2.2T  235G  91% /oracle/AAQ/sapdata2
+/dev/vx/dsk/dgiaaqcs10db02/lvsapdata1                 vxfs      2.5T  2.2T  224G  91% /oracle/AAQ/sapdata1
+/dev/vx/dsk/dgiaaqcs10db04/lvsapdata3                 vxfs      2.5T  2.2T  241G  91% /oracle/AAQ/sapdata3
+Task ID	 TAS000004857404
+Submit Date	 28.07.2020 12:21:07
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 Disk order placed
+Notes	 Ticket [321933] has been submitted successfully to the storage provider.Ticket Automation Requested.
+Task ID	 TAS000004857404
+Submit Date	 28.07.2020 13:34:13
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 Disks visible now
+Notes	 arrayname        serial   arrayldev        size     orderposid       class    secured_server             assigndate
+VSP_97878        97878    00:50:0D         2097152  000321934        B1_GS3   LPAAP01,LPAAP02            2020-07-28 00:00:00
+VSP_97935        97935    00:50:0D         2097152  000321934        B1_GS3   LPAAP01,LPAAP02            2020-07-28 00:00:00
+VSP_97878        97878    00:50:0E         230490   000321935        B1_GS3   LPAAP01,LPAAP02            2020-07-28 00:00:00
+VSP_97935        97935    00:50:0E         230490   000321935        B1_GS3   LPAAP01,LPAAP02            2020-07-28 00:00:00
+Task ID	 TAS000004857404
+Submit Date	 28.07.2020 14:01:45
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 New FS creation - OK
+Notes	 [INSTSERV][qxy9685][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh lpaap02_add_sapdata05_to_iaaqcs10
+
+ _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+ |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+  \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+Processing file 'lpaap02_add_sapdata05_to_iaaqcs10'
+
+-> Checking File validity                        [OK]    file exist: lpaap02_add_sapdata05_to_iaaqcs10
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on lpaap02 lpaap01
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [OK]    found iaaqcs10
+-> Fetching module for Apps                      [OK]    fetched
+
+
+Running remote sanity check
+
+-> Copy template to remote host 'lpaap02'        [OK]    copied
+-> Running sanity check on 'lpaap02'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package iaaqcs10...
+WARNING: Service Group iaaqcs10 already exists, skipping.
+Sanity checking application aaq
+WARNING: App resource already exists in SG iaaqcs10 with start script aaq_start, skipping.
+Sanity checking mount /oracle/AAQ/sapdata5
+***************************************
+
+-> Sanity check                                  [OK]    success
+-> Copy template to remote host 'lpaap01'        [OK]    copied
+-> Running sanity check on 'lpaap01'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package iaaqcs10...
+WARNING: Service Group iaaqcs10 already exists, skipping.
+Sanity checking application aaq
+WARNING: App resource already exists in SG iaaqcs10 with start script aaq_start, skipping.
+Sanity checking mount /oracle/AAQ/sapdata5
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+Deploying application scripts
+
+-> Preparing files                               [OK]    staged
+-> Distributing files                            [OK]    distributed
+
+
+Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on lpaap02
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+13:57:27 Initializing disk hitachi_vsp0_500e                              OK
+13:57:28 Disabling thin provisioning on disk hitachi_vsp0_500e            OK
+13:57:28 Initializing disk hitachi_vsp0_500d                              OK
+13:57:31 Disabling thin provisioning on disk hitachi_vsp0_500d            OK
+13:57:31 Initializing disk hitachi_vsp1_500e                              OK
+13:57:32 Disabling thin provisioning on disk hitachi_vsp1_500e            OK
+13:57:32 Initializing disk hitachi_vsp1_500d                              OK
+13:57:42 Disabling thin provisioning on disk hitachi_vsp1_500d            OK
+13:57:42 Adding disks to diskgroup dgiaaqcs10db06: hitachi_vsp0_500e
+hitachi_vsp0_500d hitachi_vsp1_500e hitachi_vsp1_500d                    OK
+13:57:42 Renaming disk hitachi_vsp0_500d in diskgroup dgiaaqcs10db06 to
+13_97878_500d                                                            OK
+13:57:42 Renaming disk hitachi_vsp0_500e in diskgroup dgiaaqcs10db06 to
+13_97878_500e                                                            OK
+13:57:42 Renaming disk hitachi_vsp1_500d in diskgroup dgiaaqcs10db06 to
+19_97935_500d                                                            OK
+13:57:42 Renaming disk hitachi_vsp1_500e in diskgroup dgiaaqcs10db06 to
+19_97935_500e                                                            OK
+13:57:42 Creating volume lvsapdata5 in diskgroup dgiaaqcs10db06 with size
+2327570M                                                                 OK
+13:57:46 Renaming plex lvsapdata5-02 in diskgroup dgiaaqcs10db06 to
+lvsapdata5-97878                                                         OK
+13:57:46 Renaming plex lvsapdata5-04 in diskgroup dgiaaqcs10db06 to
+lvsapdata5_drl-97935                                                     OK
+13:57:46 Renaming plex lvsapdata5-03 in diskgroup dgiaaqcs10db06 to
+lvsapdata5_drl-97878                                                     OK
+13:57:46 Renaming plex lvsapdata5-01 in diskgroup dgiaaqcs10db06 to
+lvsapdata5-97935                                                         OK
+13:57:46 Renaming plex lvsapdata5_dcl-01 in diskgroup dgiaaqcs10db06 to
+lvsapdata5_dcl-97878                                                     OK
+13:57:46 Renaming plex lvsapdata5_dcl-02 in diskgroup dgiaaqcs10db06 to
+lvsapdata5_dcl-97935                                                     OK
+13:57:46 Setting read policy for volume lvsapdata5 in diskgroup
+dgiaaqcs10db06 to plex lvsapdata5-97935                                  OK
+13:57:46 Exec: /sbin/mkfs.vxfs -o bsize=8192
+/dev/vx/dsk/dgiaaqcs10db06/lvsapdata5 2>&1 >/dev/null                    OK
+13:57:47 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+/dev/vx/dsk/dgiaaqcs10db06/lvsapdata5 /oracle/AAQ/sapdata5               OK
+13:57:47 Exec: /bin/umount /oracle/AAQ/sapdata5                           OK
+WARNING: Service Group iaaqcs10 already exists, skipping.
+WARNING: App resource already exists in SG iaaqcs10 with start script aaq_start, skipping.
+13:57:49 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+13:57:49 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /oracle/AAQ/sapdata5"   OK
+13:57:49 Exec: /opt/VRTS/bin/hares -add
+iaaqcs10_oracle_AAQ_sapdata5_mount Mount iaaqcs10                        VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount BlockDevice
+/dev/vx/dsk/dgiaaqcs10db06/lvsapdata5                                    OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount MountPoint /oracle/AAQ/sapdata5       OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount FsckOpt %-y                           OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount FSType vxfs                           OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount Enabled 1                             OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount Critical 1                            OK
+13:57:49 Exec: /opt/VRTS/bin/hares -modify
+iaaqcs10_oracle_AAQ_sapdata5_mount MountOpt
+mincache=direct,convosync=direct                                         OK
+13:57:49 Exec: /opt/VRTS/bin/hares -link
+iaaqcs10_oracle_AAQ_sapdata5_mount iaaqcs10_dgiaaqcs10db06               OK
+13:57:49 Exec: /opt/VRTS/bin/hares -link
+iaaqcs10_oracle_AAQ_sapdata5_mount iaaqcs10_oracle_AAQ_mount             OK
+13:57:49 Exec: /opt/VRTS/bin/hares -link iaaqcs10_aaq_app
+iaaqcs10_oracle_AAQ_sapdata5_mount                                       OK
+13:57:49 Exec: /opt/VRTS/bin/hares -link iaaqcs10_aaq_cd_app
+iaaqcs10_oracle_AAQ_sapdata5_mount                                       OK
+13:57:49 Exec: sleep 1                                                    OK
+13:57:50 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxy9685][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+Task ID	 TAS000004857404
+Submit Date	 28.07.2020 14:03:00
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 Final checks -- OK
+Notes	 lpaap02:~ # ls -ld /oracle/AAQ/sapdata*
+drwxr-xr-x 82 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata1
+drwxr-xr-x 72 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata2
+drwxr-xr-x 73 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata3
+drwxr-xr-x 74 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata4
+drwxr-xr-x  3 root   root       96 Jul 28 13:57 /oracle/AAQ/sapdata5
+lpaap02:~ #
+lpaap02:~ # chown oracle:oinstall /oracle/AAQ/sapdata5
+lpaap02:~ #
+lpaap02:~ # ls -ld /oracle/AAQ/sapdata*
+drwxr-xr-x 82 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata1
+drwxr-xr-x 72 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata2
+drwxr-xr-x 73 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata3
+drwxr-xr-x 74 oracle oinstall 8192 Aug  6  2018 /oracle/AAQ/sapdata4
+drwxr-xr-x  3 oracle oinstall   96 Jul 28 13:57 /oracle/AAQ/sapdata5
+lpaap02:~ #
+lpaap02:~ #
+lpaap02:~ # dat; hastatus -sum
+bash: dat: command not found
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpaap01              RUNNING              0
+A  lpaap02              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpaap01              Y          N               ONLINE
+B  NIC             lpaap02              Y          N               ONLINE
+B  iaaqcs10        lpaap01              Y          N               OFFLINE
+B  iaaqcs10        lpaap02              Y          N               ONLINE
+B  paapcs00        lpaap01              Y          N               ONLINE
+B  paapcs00        lpaap02              Y          N               OFFLINE
+lpaap02:~ #
+lpaap02:~ #
+lpaap02:~ #  hares -list|grep -i sapdata5
+iaaqcs10_oracle_AAQ_sapdata5_mount                               lpaap01
+iaaqcs10_oracle_AAQ_sapdata5_mount                               lpaap02
+paapcs00_oracle_AAP_sapdata5_mount                               lpaap01
+paapcs00_oracle_AAP_sapdata5_mount                               lpaap02
+lpaap02:~ #
+Printed by qxz10kv on Tuesday, 28.07.2020 14:22:46

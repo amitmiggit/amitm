@@ -1,0 +1,634 @@
+INPUT: 
+* logical Server@change-related items-cmdb
+* Installation-Packages/Overrides ...
+* Only for Windows: https://atc.bmwgroup.net/confluence/x/BSlyIQ
+WORK: 
+* check Server HW against Prima Serverconfig (CPU, Cores, RAM, HDD, NIC's etc.)
+* OS-/Base-Installation
+* servers with SAN: HSSM-Agent is installed and running
+* Quality-Check of server-installation: check log-files for errors and reinstall if neccessary
+* Windows-server only:
+   - Check if Backup is needed; If Yes: Create Backup-Request, install and Configure Backup Client
+* LINUX: Check Installation!
+   - All check-up work must be done by antoher technician than the installateur (four-eyes-principle)
+   - Check IT-SSP offer and attached SIN documents against installation
+   - Checking result must be documented in Change Work Detail with named technician in Notes
+OUTPUT:
+* LINUX:
+   - OS-Installation Linux checking result in Change Work Detail
+   
+   
+==========================
+
+[INSTSERV][qxr7732][lpinstiaas01] ~ $ for i in lppga03700vm lppgb03700vm; do call_hook.sh $i; done
+Calling <start>
+
+=> Event 'start' calls hook '00-instserv-set'
+Info[1]: Setting install server of 'lppga03700vm.bmwgroup.net' to 'lpinstiaas01'.
+
+=> Event 'start' calls hook '01-00-rudder-cleanup-node'
+Info[1]: Looking for old node records for UUID 4717a8ee-04ad-4346-abaa-77a9bda17317
+Info[1]: Matching records will be deleted
+Info[1]: OK:
+HASH(0x308d5f0)
+
+=> Event 'start' calls hook '01-01-rudder-seed'
+Info[1]: Policy Server: Check OK: DB match with designed target
+Info[1]: Node already exists in Rudder. Now checking consistency of documentation in DB vs. facts in Rudder.
+Info[1]: UUID: Check OK: DB UUID and Rudder UUID do match.
+Info[1]: Running additional sanity checks in Rudder
+Info[1]: Check OK: Pubkey in Rudder and on Node matches
+Info[1]: Node Data already pesent in DB
+Info[1]: Node already initialized in Rudder
+
+=> Event 'start' calls hook '01-51-set-master-release'
+INFO: Hook not needed, skipping.
+
+=> Event 'start' calls hook '01-61-create-passwordsafe'
+Info[1]: Not a SLES 12 system, nothing to do here.
+
+=> Event 'start' calls hook '08-01-set-veritas-node-properties'
+Info[1]: Only SLES12 is supported. Nothing has to be done.
+
+=> Event 'start' calls hook '08-10-node-property-postgres-instance-id'
+Info[1]: Nothing to do, because this is not a SLES 12 installation
+
+=> Event 'start' calls hook '99-50-bugfix-rudder-property-init'
+INFO: No need to run
+
+=> Event 'start' calls hook '99-99-rudder-properties-sync'
+Info[1]: Number of properties changed: 0
+
+Calling <firstboot>
+
+=> Event 'firstboot' calls hook '00-setup_qqlinux_by_qqdeploy'
+Info[1]: Root access with qqlinux already exists
+Info[1]: Authorized keys match
+Info[1]: User qqdeploy does not exist
+
+=> Event 'firstboot' calls hook '01-01-remove-KIWI-repos'
+Info[1]: Only applicable on SLES12 or SLES15
+
+=> Event 'firstboot' calls hook '01-02-hardcode-dmz-hostnames'
+=> Querying data...
+=> Found Server lppga03700vm belongs to Network type 'High Availability+Data Centre'.
+=> Server not in scope for hardcoding parameter
+
+=> Event 'firstboot' calls hook '02-00-rudder-firstboot-tmpfile'
+INFO:  No need to run
+
+=> Event 'firstboot' calls hook '02-01-rudder-agent-preconf'
+Info[1]: UUID: OK SET
+Info[1]: cfkeys: wrote localhost.priv
+Info[1]: cfkeys: wrote localhost.pub
+Info[1]: Policy Server: OK KEPT
+Info[1]: DNS: OK All Set
+Info[1]: Route: OK polserv reachable via default gateway
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '02-02-rudder-agent-install'
+Info[1]: RPM: Installed successfully
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '02-03-rudder-agent-wait_for_compliance'
+
+=> Event 'firstboot' calls hook '03-firmware-update'
+Info[1]: Skipping on non-SLES12 and non-SLES15 hosts
+
+=> Event 'firstboot' calls hook '04-bios-update'
+Info[1]: Skipping on non-SLES12 and non-SLES15 hosts
+
+=> Event 'firstboot' calls hook '06-01-bmw-cfg-pbis-client-preconf'
+Warning: Unsupported OS version, only SLES12 servers supported
+
+
+=> Event 'firstboot' calls hook '07-01-ossec-set-ossec-server'
+Info[1]: Found Server: lppga03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Determining OSSEC server for host lppga03700vm.bmwgroup.net, SLOGID is SLOG-86314
+Info[1]: Found OSSEC server lp00sec2.bmwgroup.net
+Info[1]: Determined Rudder environment: BSS/EMEA_FIZ19
+Info[1]: Setting property: OSSEC_SERVER_FQDN => lp00sec2.bmwgroup.net, OSSEC_SERVER_IP => 160.46.128.151
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '07-02-ossec-install-client'
+Info[1]: Found Server: lppga03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Creating/modifying group ossec with GID 280676
+Info[1]: Creating/modifying user ossec with UID 280676
+Info[1]: Setting authorized_keys for user ossec
+Info[1]: RPM: Uploading... '/global/instserv/packages/ossec/SLES11_4/ossec-hids-2.8.3-1.1.x86_64.rpm'
+Info[1]: RPM: Installing...
+Info[1]: RPM: Already installed: /global/instserv/packages/ossec/SLES11_4/ossec-hids-2.8.3-1.1.x86_64.rpm
+Info[1]: RPM: Uploading... '/global/instserv/packages/ossec/SLES11_4/ossec-hids-client-2.8.3-1.1.x86_64.rpm'
+Info[1]: RPM: Installing...
+Info[1]: RPM: Already installed: /global/instserv/packages/ossec/SLES11_4/ossec-hids-client-2.8.3-1.1.x86_64.rpm
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '07-03-ossec-configure-client'
+Info[1]: Found Server: lppga03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Host is lppga03700vm.bmwgroup.net, OSSEC Server is lp00sec2.bmwgroup.net
+Info[1]: ClientID: 5999
+Info[1]: Exporting key for host lppga03700vm.bmwgroup.net on OSSEC Server lp00sec2.bmwgroup.net
+Info[1]: Importing key on host lppga03700vm.bmwgroup.net
+Info[1]: Setting IP of OSSEC server on client lppga03700vm.bmwgroup.net
+Info[1]: Restarting OSSEC Agent on host lppga03700vm.bmwgroup.net
+Killing ossec-logcollector ..
+Killing ossec-syscheckd ..
+Killing ossec-agentd ..
+Killing ossec-execd ..
+OSSEC HIDS v2.8.3 Stopped
+Starting OSSEC HIDS v2.8.3 (by Trend Micro Inc.)...
+Started ossec-execd...
+2020/06/13 23:29:31 ossec-agentd: INFO: Using notify time: 600 and max time to reconnect: 1800
+Started ossec-agentd...
+Started ossec-logcollector...
+Started ossec-syscheckd...
+Completed.
+Info[1]: Making service ossec-hids boot persistent on host lppga03700vm.bmwgroup.net
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '08-01-bmw-cfg-netbackup-client'
+this is 08-01-bmw-cfg-netbackup-client
+Unsupported product, only SLES12 servers supported!
+
+=> Event 'firstboot' calls hook '09-01-bmw-cfg-xen-base-preconf'
+Warning: Unsupported server type, only Xen Dom0s supported!
+
+
+=> Event 'firstboot' calls hook '10-01-veritas-create-user'
+Info[1]: Only SLES12 is supported. Nothing has to be done.
+
+Calling <finish>
+
+=> Event 'finish' calls hook '00-00-ansibectl-pam-enable'
+Info[1]: Querying single Server
+Info[1]: Executing ansible playbook PAM_EnableCommon.yaml for fqdn.lppga03700vm.bmwgroup.net
+Info[1]: Logging started at /global/instserv/logs/ansible/2020.06.13.23.29.45.qxr7732.fqdn.lppga03700vm.bmwgroup.net.log
+Using /global/instserv/tmp/ansible_runtime/2020.06.13.23.29.45.qxr7732.fqdn.lppga03700vm.bmwgroup.net/ansible.cfg as config file
+
+PLAY [all] ******************************************************************************************************************************************************************************************
+
+TASK [Add group "qpbmw" to remote server name=qpbmw, gid=847496, state=present] *********************************************************************************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"changed": false, "gid": 847496, "name": "qpbmw", "state": "present", "system": false}
+
+TASK [Add user "qqpam0r" to remote server name=qqpam0r, comment=Baumann Rene,FG-151, uid=786466, group=qqbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qqpam0r, password=$6$rounds=100000$j3VwdaF7$pEWoZO9UU1wt/40.Ob4Y2goKbRY1rwxVVBIXR.9sPoxpWT0/A.MtECRtBpgYD/wyuljAkIFgIsUtJnyMxiGtg1, update_password=on_create] ***
+ok: [lppga03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Baumann Rene,FG-151", "group": 33547, "home": "/lfs/qqpam0r", "move_home": false, "name": "qqpam0r", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 786466}
+
+TASK [Add user "qqpam0r" to PBIS ignore dest=/etc/pbis/user-ignore, line=qqpam0r] *******************************************************************************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Fix qqpam0r home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qqpam0r, state=directory, mode=0700] ******************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"changed": false, "gid": 33547, "group": "qqbmw", "mode": "0700", "owner": "qqpam0r", "path": "/lfs/qqpam0r", "size": 4096, "state": "directory", "uid": 786466}
+
+TASK [Add user "qqork" to remote server name=qqork, comment=Enseleit Jan,FG-840,+49-89-382-28036, uid=846894, group=qqbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qqork, password=*sshkeyonly, update_password=on_create] ***
+[WARNING]: The input password appears not to have been hashed. The 'password' argument must be encrypted for this module to work properly.
+ok: [lppga03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Enseleit Jan,FG-840,+49-89-382-28036", "group": 33547, "home": "/lfs/qqork", "move_home": false, "name": "qqork", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 846894}
+
+TASK [Fix qqork home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qqork, state=directory, mode=0700] **********************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"changed": false, "gid": 33547, "group": "qqbmw", "mode": "0700", "owner": "qqork", "path": "/lfs/qqork", "size": 4096, "state": "directory", "uid": 846894}
+
+TASK [Set "qqork" authorized key taken from file user=qqork, state=present, key={{ lookup('file', '/global/instserv/share/keys/id_qqork.pub') }}] ***************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"changed": false, "comment": null, "exclusive": false, "follow": false, "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+VSh0lzYsmKgb8lQsk+Qmf/+2Th/pFvkdxi4kufvjq3o9ihOtXtZnSHe3NS9f1X9Gm1g8anxSIAEbzhimhce0CQ6ATC6n4iD1Va1AbQ6gsAD9FKkKeOth0oDLREviUKBHMzwK3lpSRMX97KxpX5hJkmjpefHqW3uT9p/zPnhDKy+ZNr3vZTLNfcd7Ynqw9rCemm0+dSNj2TYczb0K4M2VFKG1UufiJx54RHTht3B7t/y7/2pCF67Du0NBjdCLAvKToEIxMqIUOxlA4mekf246dlzG5uZ8TtBY1D/G3bk86n1mErYG8J14UuKM8VIG4gipiJKr878+0ViITm6hTTioXnt3G3E8Jx5VNRtqqqV1nk5XwKDyyAETZgG7YvZl8Wwt+qbgZXd9+xU22uqmPr4Y2mB7bUqW9lpBxXyCkuFFWtupVHmZ50HVHn4evMok2xUfoAtLFPlDKcKGa/+vh0EOwHkOYOQWpLS98ByMnW+x7lclynfqaVI/sy44665b+85u7oROPfk5fMSep1vMCd8tf5CJ2tZHYjCNeR++pmzNFtZ3SRcSaR9STbHuM3Xuwfyp5IvNL9HA+CMBcCxjmlIJ0tlgstrq4BLBTDfKxzAzxNjH5lElFOgvdmGEJwzuMhxlywsTqGTVKxow27mqZfpBQMGr/ElCbFQ0ZuISYeJZEw==", "key_options": null, "keyfile": "/lfs/qqork/.ssh/authorized_keys", "manage_dir": true, "path": null, "state": "present", "user": "qqork", "validate_certs": true}
+
+TASK [Add user "qqork" to PBIS ignore dest=/etc/pbis/user-ignore, line=qqork] ***********************************************************************************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Add user "qplinux" to remote server name=qplinux, comment=Enseleit Jan,FG-840,+49-89-382-28036, uid=846785, group=qpbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qplinux, password=*Will_be_changed_by_PAM, update_password=on_create] ***
+ok: [lppga03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Enseleit Jan,FG-840,+49-89-382-28036", "group": 847496, "home": "/lfs/qplinux", "move_home": false, "name": "qplinux", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 846785}
+
+TASK [Add user "qplinux" to PBIS ignore dest=/etc/pbis/user-ignore, line=qplinux] *******************************************************************************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Fix qplinux home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qplinux, state=directory, mode=0700] ******************************************************
+ok: [lppga03700vm.bmwgroup.net] => {"changed": false, "gid": 847496, "group": "qpbmw", "mode": "0700", "owner": "qplinux", "path": "/lfs/qplinux", "size": 4096, "state": "directory", "uid": 846785}
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+lppga03700vm.bmwgroup.net  : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+Info[1]: Command playbook execution succeeded
+
+=> Event 'finish' calls hook '00-01-register-in-PAM'
+>>> Call PACMA Notification for Provisioning in PAM - ignore failures...
+INFO: Failed to inform PACMA about the provisionin of lppga03700vm.bmwgroup.net
+INFO: Keep going with the installation, responsibles will be automatically notified
+INFO: Mail will be sent to javier.prieto@bmw.com
+
+=> Event 'finish' calls hook '02-90-set-master-release-dcodb'
+INFO: Not running for a SLES 12 system, no Master Release will be stored to database
+
+
+
+=> Reporting Hook results (Ignore failures: no):
+   Stage      Hook                                      RC  Result
+   start      00-instserv-set                           0   OK
+   start      01-00-rudder-cleanup-node                 0   OK
+   start      01-01-rudder-seed                         0   OK
+   start      01-51-set-master-release                  0   OK
+   start      01-61-create-passwordsafe                 0   OK
+   start      08-01-set-veritas-node-properties         0   OK
+   start      08-10-node-property-postgres-instance-id  0   OK
+   start      99-50-bugfix-rudder-property-init         0   OK
+   start      99-99-rudder-properties-sync              0   OK
+   firstboot  00-setup_qqlinux_by_qqdeploy              0   OK
+   firstboot  01-01-remove-KIWI-repos                   0   OK
+   firstboot  01-02-hardcode-dmz-hostnames              0   OK
+   firstboot  02-00-rudder-firstboot-tmpfile            0   OK
+   firstboot  02-01-rudder-agent-preconf                0   OK
+   firstboot  02-02-rudder-agent-install                0   OK
+   firstboot  02-03-rudder-agent-wait_for_compliance    0   OK
+   firstboot  03-firmware-update                        0   OK
+   firstboot  04-bios-update                            0   OK
+   firstboot  06-01-bmw-cfg-pbis-client-preconf         0   OK
+   firstboot  07-01-ossec-set-ossec-server              0   OK
+   firstboot  07-02-ossec-install-client                0   OK
+   firstboot  07-03-ossec-configure-client              0   OK
+   firstboot  08-01-bmw-cfg-netbackup-client            0   OK
+   firstboot  09-01-bmw-cfg-xen-base-preconf            0   OK
+   firstboot  10-01-veritas-create-user                 0   OK
+   finish     00-00-ansibectl-pam-enable                0   OK
+   finish     00-01-register-in-PAM                     0   OK
+   finish     02-90-set-master-release-dcodb            0   OK
+
+Calling <start>
+
+=> Event 'start' calls hook '00-instserv-set'
+Info[1]: Setting install server of 'lppgb03700vm.bmwgroup.net' to 'lpinstiaas01'.
+
+=> Event 'start' calls hook '01-00-rudder-cleanup-node'
+Info[1]: Looking for old node records for UUID 2e8f695f-55b1-43a1-a38c-e532ab78ce3b
+Info[1]: Matching records will be deleted
+Info[1]: OK:
+HASH(0x3c979e0)
+
+=> Event 'start' calls hook '01-01-rudder-seed'
+Info[1]: Policy Server: Check OK: DB match with designed target
+Info[1]: Node already exists in Rudder. Now checking consistency of documentation in DB vs. facts in Rudder.
+Info[1]: UUID: Check OK: DB UUID and Rudder UUID do match.
+Info[1]: Running additional sanity checks in Rudder
+Info[1]: Check OK: Pubkey in Rudder and on Node matches
+Info[1]: Node Data already pesent in DB
+Info[1]: Node already initialized in Rudder
+
+=> Event 'start' calls hook '01-51-set-master-release'
+INFO: Hook not needed, skipping.
+
+=> Event 'start' calls hook '01-61-create-passwordsafe'
+Info[1]: Not a SLES 12 system, nothing to do here.
+
+=> Event 'start' calls hook '08-01-set-veritas-node-properties'
+Info[1]: Only SLES12 is supported. Nothing has to be done.
+
+=> Event 'start' calls hook '08-10-node-property-postgres-instance-id'
+Info[1]: Nothing to do, because this is not a SLES 12 installation
+
+=> Event 'start' calls hook '99-50-bugfix-rudder-property-init'
+INFO: No need to run
+
+=> Event 'start' calls hook '99-99-rudder-properties-sync'
+Info[1]: Number of properties changed: 0
+
+Calling <firstboot>
+
+=> Event 'firstboot' calls hook '00-setup_qqlinux_by_qqdeploy'
+Info[1]: Root access with qqlinux already exists
+Info[1]: Authorized keys match
+Info[1]: User qqdeploy does not exist
+
+=> Event 'firstboot' calls hook '01-01-remove-KIWI-repos'
+Info[1]: Only applicable on SLES12 or SLES15
+
+=> Event 'firstboot' calls hook '01-02-hardcode-dmz-hostnames'
+=> Querying data...
+=> Found Server lppgb03700vm belongs to Network type 'High Availability+Data Centre'.
+=> Server not in scope for hardcoding parameter
+
+=> Event 'firstboot' calls hook '02-00-rudder-firstboot-tmpfile'
+INFO:  No need to run
+
+=> Event 'firstboot' calls hook '02-01-rudder-agent-preconf'
+Info[1]: UUID: OK SET
+Info[1]: cfkeys: wrote localhost.priv
+Info[1]: cfkeys: wrote localhost.pub
+Info[1]: Policy Server: OK KEPT
+Info[1]: DNS: OK All Set
+Info[1]: Route: OK polserv reachable via default gateway
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '02-02-rudder-agent-install'
+Info[1]: RPM: Installed successfully
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '02-03-rudder-agent-wait_for_compliance'
+
+=> Event 'firstboot' calls hook '03-firmware-update'
+Info[1]: Skipping on non-SLES12 and non-SLES15 hosts
+
+=> Event 'firstboot' calls hook '04-bios-update'
+Info[1]: Skipping on non-SLES12 and non-SLES15 hosts
+
+=> Event 'firstboot' calls hook '06-01-bmw-cfg-pbis-client-preconf'
+Warning: Unsupported OS version, only SLES12 servers supported
+
+
+=> Event 'firstboot' calls hook '07-01-ossec-set-ossec-server'
+Info[1]: Found Server: lppgb03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Determining OSSEC server for host lppgb03700vm.bmwgroup.net, SLOGID is SLOG-86315
+Info[1]: Found OSSEC server lp00sec2.bmwgroup.net
+Info[1]: Determined Rudder environment: BSS/EMEA_FIZ19
+Info[1]: Setting property: OSSEC_SERVER_FQDN => lp00sec2.bmwgroup.net, OSSEC_SERVER_IP => 160.46.128.151
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '07-02-ossec-install-client'
+Info[1]: Found Server: lppgb03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Creating/modifying group ossec with GID 280676
+Info[1]: Creating/modifying user ossec with UID 280676
+Info[1]: Setting authorized_keys for user ossec
+Info[1]: RPM: Uploading... '/global/instserv/packages/ossec/SLES11_4/ossec-hids-2.8.3-1.1.x86_64.rpm'
+Info[1]: RPM: Installing...
+Info[1]: RPM: Already installed: /global/instserv/packages/ossec/SLES11_4/ossec-hids-2.8.3-1.1.x86_64.rpm
+Info[1]: RPM: Uploading... '/global/instserv/packages/ossec/SLES11_4/ossec-hids-client-2.8.3-1.1.x86_64.rpm'
+Info[1]: RPM: Installing...
+Info[1]: RPM: Already installed: /global/instserv/packages/ossec/SLES11_4/ossec-hids-client-2.8.3-1.1.x86_64.rpm
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '07-03-ossec-configure-client'
+Info[1]: Found Server: lppgb03700vm.bmwgroup.net
+Info[1]: Found OS version: SLES11SP4
+Info[1]: Host is lppgb03700vm.bmwgroup.net, OSSEC Server is lp00sec2.bmwgroup.net
+Info[1]: ClientID: 6000
+Info[1]: Exporting key for host lppgb03700vm.bmwgroup.net on OSSEC Server lp00sec2.bmwgroup.net
+Info[1]: Importing key on host lppgb03700vm.bmwgroup.net
+Info[1]: Setting IP of OSSEC server on client lppgb03700vm.bmwgroup.net
+Info[1]: Restarting OSSEC Agent on host lppgb03700vm.bmwgroup.net
+Killing ossec-logcollector ..
+Killing ossec-syscheckd ..
+Killing ossec-agentd ..
+Killing ossec-execd ..
+OSSEC HIDS v2.8.3 Stopped
+Starting OSSEC HIDS v2.8.3 (by Trend Micro Inc.)...
+Started ossec-execd...
+2020/06/13 23:32:21 ossec-agentd: INFO: Using notify time: 600 and max time to reconnect: 1800
+Started ossec-agentd...
+Started ossec-logcollector...
+Started ossec-syscheckd...
+Completed.
+Info[1]: Making service ossec-hids boot persistent on host lppgb03700vm.bmwgroup.net
+Info[1]: Finished successful.
+
+=> Event 'firstboot' calls hook '08-01-bmw-cfg-netbackup-client'
+this is 08-01-bmw-cfg-netbackup-client
+Unsupported product, only SLES12 servers supported!
+
+=> Event 'firstboot' calls hook '09-01-bmw-cfg-xen-base-preconf'
+Warning: Unsupported server type, only Xen Dom0s supported!
+
+
+=> Event 'firstboot' calls hook '10-01-veritas-create-user'
+Info[1]: Only SLES12 is supported. Nothing has to be done.
+
+Calling <finish>
+
+=> Event 'finish' calls hook '00-00-ansibectl-pam-enable'
+Info[1]: Querying single Server
+Info[1]: Executing ansible playbook PAM_EnableCommon.yaml for fqdn.lppgb03700vm.bmwgroup.net
+Info[1]: Logging started at /global/instserv/logs/ansible/2020.06.13.23.32.35.qxr7732.fqdn.lppgb03700vm.bmwgroup.net.log
+Using /global/instserv/tmp/ansible_runtime/2020.06.13.23.32.35.qxr7732.fqdn.lppgb03700vm.bmwgroup.net/ansible.cfg as config file
+
+PLAY [all] ******************************************************************************************************************************************************************************************
+
+TASK [Add group "qpbmw" to remote server name=qpbmw, gid=847496, state=present] *********************************************************************************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"changed": false, "gid": 847496, "name": "qpbmw", "state": "present", "system": false}
+
+TASK [Add user "qqpam0r" to remote server name=qqpam0r, comment=Baumann Rene,FG-151, uid=786466, group=qqbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qqpam0r, password=$6$rounds=100000$j3VwdaF7$pEWoZO9UU1wt/40.Ob4Y2goKbRY1rwxVVBIXR.9sPoxpWT0/A.MtECRtBpgYD/wyuljAkIFgIsUtJnyMxiGtg1, update_password=on_create] ***
+ok: [lppgb03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Baumann Rene,FG-151", "group": 33547, "home": "/lfs/qqpam0r", "move_home": false, "name": "qqpam0r", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 786466}
+
+TASK [Add user "qqpam0r" to PBIS ignore dest=/etc/pbis/user-ignore, line=qqpam0r] *******************************************************************************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Fix qqpam0r home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qqpam0r, state=directory, mode=0700] ******************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"changed": false, "gid": 33547, "group": "qqbmw", "mode": "0700", "owner": "qqpam0r", "path": "/lfs/qqpam0r", "size": 4096, "state": "directory", "uid": 786466}
+
+TASK [Add user "qqork" to remote server name=qqork, comment=Enseleit Jan,FG-840,+49-89-382-28036, uid=846894, group=qqbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qqork, password=*sshkeyonly, update_password=on_create] ***
+[WARNING]: The input password appears not to have been hashed. The 'password' argument must be encrypted for this module to work properly.
+ok: [lppgb03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Enseleit Jan,FG-840,+49-89-382-28036", "group": 33547, "home": "/lfs/qqork", "move_home": false, "name": "qqork", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 846894}
+
+TASK [Fix qqork home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qqork, state=directory, mode=0700] **********************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"changed": false, "gid": 33547, "group": "qqbmw", "mode": "0700", "owner": "qqork", "path": "/lfs/qqork", "size": 4096, "state": "directory", "uid": 846894}
+
+TASK [Set "qqork" authorized key taken from file user=qqork, state=present, key={{ lookup('file', '/global/instserv/share/keys/id_qqork.pub') }}] ***************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"changed": false, "comment": null, "exclusive": false, "follow": false, "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+VSh0lzYsmKgb8lQsk+Qmf/+2Th/pFvkdxi4kufvjq3o9ihOtXtZnSHe3NS9f1X9Gm1g8anxSIAEbzhimhce0CQ6ATC6n4iD1Va1AbQ6gsAD9FKkKeOth0oDLREviUKBHMzwK3lpSRMX97KxpX5hJkmjpefHqW3uT9p/zPnhDKy+ZNr3vZTLNfcd7Ynqw9rCemm0+dSNj2TYczb0K4M2VFKG1UufiJx54RHTht3B7t/y7/2pCF67Du0NBjdCLAvKToEIxMqIUOxlA4mekf246dlzG5uZ8TtBY1D/G3bk86n1mErYG8J14UuKM8VIG4gipiJKr878+0ViITm6hTTioXnt3G3E8Jx5VNRtqqqV1nk5XwKDyyAETZgG7YvZl8Wwt+qbgZXd9+xU22uqmPr4Y2mB7bUqW9lpBxXyCkuFFWtupVHmZ50HVHn4evMok2xUfoAtLFPlDKcKGa/+vh0EOwHkOYOQWpLS98ByMnW+x7lclynfqaVI/sy44665b+85u7oROPfk5fMSep1vMCd8tf5CJ2tZHYjCNeR++pmzNFtZ3SRcSaR9STbHuM3Xuwfyp5IvNL9HA+CMBcCxjmlIJ0tlgstrq4BLBTDfKxzAzxNjH5lElFOgvdmGEJwzuMhxlywsTqGTVKxow27mqZfpBQMGr/ElCbFQ0ZuISYeJZEw==", "key_options": null, "keyfile": "/lfs/qqork/.ssh/authorized_keys", "manage_dir": true, "path": null, "state": "present", "user": "qqork", "validate_certs": true}
+
+TASK [Add user "qqork" to PBIS ignore dest=/etc/pbis/user-ignore, line=qqork] ***********************************************************************************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Add user "qplinux" to remote server name=qplinux, comment=Enseleit Jan,FG-840,+49-89-382-28036, uid=846785, group=qpbmw, append=True, shell=/bin/bash, create_home=True, home=/lfs/qplinux, password=*Will_be_changed_by_PAM, update_password=on_create] ***
+ok: [lppgb03700vm.bmwgroup.net] => {"append": true, "changed": false, "comment": "Enseleit Jan,FG-840,+49-89-382-28036", "group": 847496, "home": "/lfs/qplinux", "move_home": false, "name": "qplinux", "password": "NOT_LOGGING_PASSWORD", "shell": "/bin/bash", "state": "present", "uid": 846785}
+
+TASK [Add user "qplinux" to PBIS ignore dest=/etc/pbis/user-ignore, line=qplinux] *******************************************************************************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"backup": "", "changed": false, "msg": ""}
+
+TASK [Fix qplinux home folder permissions on SLES12 SP4 servers due to UMASK in /etc/login.defs path=/lfs/qplinux, state=directory, mode=0700] ******************************************************
+ok: [lppgb03700vm.bmwgroup.net] => {"changed": false, "gid": 847496, "group": "qpbmw", "mode": "0700", "owner": "qplinux", "path": "/lfs/qplinux", "size": 4096, "state": "directory", "uid": 846785}
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+lppgb03700vm.bmwgroup.net  : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+Info[1]: Command playbook execution succeeded
+
+=> Event 'finish' calls hook '00-01-register-in-PAM'
+>>> Call PACMA Notification for Provisioning in PAM - ignore failures...
+INFO: Failed to inform PACMA about the provisionin of lppgb03700vm.bmwgroup.net
+INFO: Keep going with the installation, responsibles will be automatically notified
+INFO: Mail will be sent to javier.prieto@bmw.com
+
+=> Event 'finish' calls hook '02-90-set-master-release-dcodb'
+INFO: Not running for a SLES 12 system, no Master Release will be stored to database
+
+
+
+=> Reporting Hook results (Ignore failures: no):
+   Stage      Hook                                      RC  Result
+   start      00-instserv-set                           0   OK
+   start      01-00-rudder-cleanup-node                 0   OK
+   start      01-01-rudder-seed                         0   OK
+   start      01-51-set-master-release                  0   OK
+   start      01-61-create-passwordsafe                 0   OK
+   start      08-01-set-veritas-node-properties         0   OK
+   start      08-10-node-property-postgres-instance-id  0   OK
+   start      99-50-bugfix-rudder-property-init         0   OK
+   start      99-99-rudder-properties-sync              0   OK
+   firstboot  00-setup_qqlinux_by_qqdeploy              0   OK
+   firstboot  01-01-remove-KIWI-repos                   0   OK
+   firstboot  01-02-hardcode-dmz-hostnames              0   OK
+   firstboot  02-00-rudder-firstboot-tmpfile            0   OK
+   firstboot  02-01-rudder-agent-preconf                0   OK
+   firstboot  02-02-rudder-agent-install                0   OK
+   firstboot  02-03-rudder-agent-wait_for_compliance    0   OK
+   firstboot  03-firmware-update                        0   OK
+   firstboot  04-bios-update                            0   OK
+   firstboot  06-01-bmw-cfg-pbis-client-preconf         0   OK
+   firstboot  07-01-ossec-set-ossec-server              0   OK
+   firstboot  07-02-ossec-install-client                0   OK
+   firstboot  07-03-ossec-configure-client              0   OK
+   firstboot  08-01-bmw-cfg-netbackup-client            0   OK
+   firstboot  09-01-bmw-cfg-xen-base-preconf            0   OK
+   firstboot  10-01-veritas-create-user                 0   OK
+   finish     00-00-ansibectl-pam-enable                0   OK
+   finish     00-01-register-in-PAM                     0   OK
+   finish     02-90-set-master-release-dcodb            0   OK
+
+[INSTSERV][qxr7732][lpinstiaas01] ~ $
+
+=======================
+
+
+[INSTSERV][qxz0gjm][lpinstiaas01] ~ $ for i in lppga03700vm - lppgb03700vm ; do echo "$i: "; cmdb $i ; c6000 $i ; done
+lppga03700vm:
+******************************************
+Server: lppga03700vm.bmwgroup.net
+******************************************
+machine type:          -
+vendor:                -
+OS version:            SP4
+OS name:               SLES 11
+serial number:         HRFS2T2
+Logical ID:            SLOG-86314
+location:              01.50 / 019.0 / -3 / RZ2-RA3
+lampe:                 Q4
+rack ID:               RZ-005531
+description:           Provision - 08.06.2020 - CRQ000001426328
+modul:                 POSTGRES
+usage:                 PaaS DB INT
+service owner:         NTT_DATA
+status:                Installation
+DNS domain:            .bmwgroup.net
+nagios:                N
+virtual server:        Y
+farm name:             lpxenppg069.bmwgroup.net_lpxenppg070.bmwgroup.net
+farmservers:           lpxenppg069, lpxenppg070
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:
+warranty until:        30-SEP-23
+BU-Name:               Postgres-BU
+BU-EMail:              thomas.seelandt@partner.bmw.de
+accountable BU-EMail:  Dieter.Klingbeil@bmw.de,wolfgang.lippert.bmw.de
+criticality:           unknown/no criticality
+====== Server Owner Overview =======
+.------------------------------------------------.
+|                  lppga03700vm                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lppga03700vm |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      lppga03700vm.bmwgroup.net |
+| ALIAS         |                   PLPGA03700VM |
+| IP_ADDRESS    |                  10.101.90.178 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.101.90.1 |
+| NET_ID        |                    10.101.90.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                      ProSecNet |
+| BROADCAST     |                  10.101.90.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lppga03700vmb                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  lppga03700vmb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      lppga03700vm.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.101.92.21 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.101.92.1 |
+| NET_ID        |                    10.101.92.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                      ProSecNet |
+| BROADCAST     |                  10.101.92.255 |
+'---------------+--------------------------------'
+
+
+
+lppgb03700vm:
+******************************************
+Server: lppgb03700vm.bmwgroup.net
+******************************************
+machine type:          -
+vendor:                -
+OS version:            SP4
+OS name:               SLES 11
+serial number:         HRFS2T2
+Logical ID:            SLOG-86315
+location:              01.50 / 019.0 / -3 / RZ2-RA3
+lampe:                 Q4
+rack ID:               RZ-005531
+description:           Provision - 08.06.2020 - CRQ000001426328
+modul:                 POSTGRES
+usage:                 PaaS DB INT
+service owner:         NTT_DATA
+status:                Installation
+DNS domain:            .bmwgroup.net
+nagios:                N
+virtual server:        Y
+farm name:             lpxenppg069.bmwgroup.net_lpxenppg070.bmwgroup.net
+farmservers:           lpxenppg069, lpxenppg070
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:
+warranty until:        30-SEP-23
+BU-Name:               Postgres-BU
+BU-EMail:              thomas.seelandt@partner.bmw.de
+accountable BU-EMail:  Dieter.Klingbeil@bmw.de,wolfgang.lippert.bmw.de
+criticality:           unknown/no criticality
+====== Server Owner Overview =======
+.------------------------------------------------.
+|                  lppgb03700vm                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lppgb03700vm |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      lppgb03700vm.bmwgroup.net |
+| ALIAS         |                   PLPGB03700VM |
+| IP_ADDRESS    |                  10.101.90.171 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.101.90.1 |
+| NET_ID        |                    10.101.90.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                      ProSecNet |
+| BROADCAST     |                  10.101.90.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lppgb03700vmb                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  lppgb03700vmb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |      lppgb03700vm.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.101.92.25 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.101.92.1 |
+| NET_ID        |                    10.101.92.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                      ProSecNet |
+| BROADCAST     |                  10.101.92.255 |
+'---------------+--------------------------------'
+
+
+Server not found in DCODB. Aborting.
+[INSTSERV][qxz0gjm][lpinstiaas01] ~ $

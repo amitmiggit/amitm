@@ -1,0 +1,134 @@
+ 
+
+Minimum lead time: 4 Hours
+Execution Time: 48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Mount Task for the DataPump-filesystem:
+
+IMPORTANT: ONLY TEXT WITHIN "[ ]" OR "-->  <--" WILL BE PARSED!
+
+Please ensure that the share is properly exported and visible for the desired servers!
+Please visit istore.muc for further information regarding the visibility of your shares.
+
+Servername: lp01ctmmft01.bmwgroup.net
+nfs-share: nv01501978.bmwgroup.net:/f04470/t046343/LocalApplications
+  (Unix path as in "nv0001.bmwgroup.net:/f000001/t000001")
+Actions: mount
+mount-point: /nfs/MFT/mounts/MILES_NL_ARCHIVE
+  (Unix path as in "/nfs/your_module/path_to_your_app/")
+mount options: <optional>
+
+[ ] Mount <filesystem name> 
+
+Note: For the DataPump-filesystem, the mount options will be by default set to:
+
+"rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr"
+
+And the access permissions and ownership will be set to:
+
+"oracle:dba" read/write/execute access
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< enter here >>> <contact, tel.>
+---- during change
+<<< enter here >>> <contact, tel.>
+Editor for NotesStatus Reason
+Canceled
+Menu for Status ReasonPriority
+
+(1) Description of the Task to be done
+mount, umount nfs filesystem
+
+ATTENTION: Please ensure that the nfs-share is correctly exported to the requested servers before task start date!
+
+Minimum lead time: 4 Hours
+Execution Time: 48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Mount Task for the DataPump-filesystem:
+
+IMPORTANT: ONLY TEXT WITHIN "[ ]" OR "-->  <--" WILL BE PARSED!
+
+Please ensure that the share is properly exported and visible for the desired servers!
+Please visit istore.muc for further information regarding the visibility of your shares.
+
+Servername: lp01ctmmft01.bmwgroup.net
+nfs-share: nv01501978.bmwgroup.net:/f04470/t046343
+  (Unix path as in "nv0001.bmwgroup.net:/f000001/t000001")
+Actions: mount
+mount-point: /nfs/MFT/mounts/MILES_NL_ARCHIVE
+  (Unix path as in "/nfs/your_module/path_to_your_app/")
+mount options: <optional>
+
+[ ] Mount <filesystem name> 
+
+Note: For the DataPump-filesystem, the mount options will be by default set to:
+
+"rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr"
+
+And the access permissions and ownership will be set to:
+
+"oracle:dba" read/write/execute access
+
+==============================================================================================
+  
+lp01ctmmft01:~ # grep -i /nfs/MFT/mounts/MILES_NL_ARCHIVE /etc/fstab
+lp01ctmmft01:~ #
+
+
+lp01ctmmft01:~ # showmount -e nv01501978 | grep -i /f04470/t046343/LocalApplications
+/f04470/t046343/LocalApplications                         lp01ctmmft01.bmwgroup.net,lp01ctmmft01.bmwgroup.net
+
+lp01ctmmft01:~ # ls -ld /nfs/MFT/mounts/MILES_NL_ARCHIVE
+drwxr-xr-x 1 root root 0 Jun 19 10:33 /nfs/MFT/mounts/MILES_NL_ARCHIVE
+
+lp01ctmmft01:~ # df -hT /nfs/MFT/mounts/MILES_NL_ARCHIVE
+Filesystem     Type   Size  Used Avail Use% Mounted on
+/dev/xvda2     btrfs   93G   16G   77G  17% /
+
+================================
+
+backup of /etc/fstab /etc/fstab_bkup2506200
+
+
+##
+
+nv01502303.bmwgroup.net:/f05795/t011957/sap_sst_EFP  /nfs/MFT/mounts/SAP_WIT nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 0
+
+
+Servername: lp01ctmmft01.bmwgroup.net
+nfs-share: nv01501978.bmwgroup.net:/f04470/t046343/LocalApplications
+  (Unix path as in "nv0001.bmwgroup.net:/f000001/t000001")
+Actions: mount
+mount-point: /nfs/MFT/mounts/MILES_NL_ARCHIVE
+  (Unix path as in "/nfs/your_module/path_to_your_app/")
+mount options: <optional>
+
+
+nv01501978.bmwgroup.net:/f04470/t046343/LocalApplications /nfs/MFT/mounts/MILES_NL_ARCHIVE nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 0
+
+
+ 

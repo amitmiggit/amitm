@@ -1,0 +1,73 @@
+[INSTSERV][qxz10kv][lpinstiaas01] /opt/pbis/bin $ ./find-group-by-name --level 1 gu_ipsl_osm_w9
+Group info (Level 1):
+====================
+Name: gu_ipsl_osm_w9
+Gid:  814433
+SID:  S-1-5-21-43206524-2104247658-1151357142-3885014
+DN:   CN=linux_gu_ipsl_osm_w9,OU=Pgroups,OU=SCUNIX,OU=Resources-UNIX,DC=europe,DC=bmw,DC=corp
+Members:
+qxr2865
+qxr9382
+qxr2864
+Members Count: 3
+[INSTSERV][qxz10kv][lpinstiaas01] /opt/pbis/bin $
+
+
+sudoers entry
+# 25.06.2020 qxz10kv TAS000004776817
+# 
+Host_Alias  TAS000004776817_HOST = lp09ipsl01.bmwgroup.net, lp09ipsl01
+
+
+qqassy10, qqassy20, qqpcn10, qqpcn20, qqpln10, qqpln20, qqzcc10, qqncr10, qqofl10, qqofl20, qqhsd10
+
+
+/bin/rootsh -i -u qqassy10
+/bin/rootsh -i -u qqassy20
+/bin/rootsh -i -u qqpcn10 - 
+/bin/rootsh -i -u qqpcn20
+/bin/rootsh -i -u qqpln10
+/bin/rootsh -i -u qqpln20
+/bin/rootsh -i -u qqzcc10
+/bin/rootsh -i -u qqncr10 
+/bin/rootsh -i -u qqofl10
+/bin/rootsh -i -u qqofl20
+/bin/rootsh -i -u qqhsd10
+
+
+	
+# 25.06.2020 14:09 qxz10kv TAS000004776817
+%gu_ipsl_osm_w9 \
+           TAS000004776817_HOST = \
+           /bin/rootsh -i -u qqhsd10, /bin/rootsh -i -u qqncr10, \
+           /bin/rootsh -i -u qqofl10, /bin/rootsh -i -u qqofl20, \
+           /bin/rootsh -i -u qqpcn10, /bin/rootsh -i -u qqpcn20, \
+           /bin/rootsh -i -u qqpln10, /bin/rootsh -i -u qqpln20, \
+           /bin/rootsh -i -u qqzcc10, /bin/rootsh -i -u qqassy10, \
+           /bin/rootsh -i -u qqassy20
+		   
+		   
+		   Distribute sudoers-Config — distribution started	?
+Host
+lp09ipsl01.bmwgroup.net
+
+lp09ipsl01
+
+
+
+
+
+# 25.06.2020 14:09 qxz10kv TAS000004776817
+%gu_ipsl_osm_w9 \
+           TAS000004776817_HOST = \
+           /bin/rootsh -i -u qqhsd10, /bin/rootsh -i -u qqncr10, \
+           /bin/rootsh -i -u qqofl10, /bin/rootsh -i -u qqofl20, \
+           /bin/rootsh -i -u qqpcn10, /bin/rootsh -i -u qqpcn20, \
+           /bin/rootsh -i -u qqpln10, /bin/rootsh -i -u qqpln20, \
+           /bin/rootsh -i -u qqzcc10, /bin/rootsh -i -u qqassy10, \
+           /bin/rootsh -i -u qqassy20
+
+
+
+
+

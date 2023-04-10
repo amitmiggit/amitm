@@ -1,0 +1,147 @@
+TAS000004746630/CRQ000001428288 SCheduled start - 15.06.2020 18:00:00 IST
+===============================================================================
+
+server|unix|server-unix-std:global password reset for existing users
+
+
+(1) Description of the Task to be done
+Create/remove/modify standard Personal or Technical user(s) or group(s) on server(s)
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Documentation for this request:  https://atc.bmwgroup.net/confluence/display/LINUX/Linux_Group_requests
+Required Approvals:              https://atc.bmwgroup.net/confluence/display/LINUX/Approval_Matrix
+
+Approval:  All Sudo, Account and Group Add, Modify and Removals require an BMW authorized approval. 
+           Please check the Approval link above for the necessary information.  Tasks set to â€œPending 
+           Assignmentâ€ before the necessary approvals have been correctly issued will cause the task 
+           to be canceled or set to â€œPending Errorâ€ depending on the SLAs for the servers concerned. 
+
+
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+
+lpeai66
+
+- Account Request:
+
+[ ] Add Personal q/qx/qt User(s)
+        User Account Name(s):
+        Primary Group (if empty BMW default is qbmw resp. qxbmw):
+        Optional Additional Group Memberships:
+        Optional Reference User:
+
+[ ] Add Technical Application "QQ" User(s)
+        QQ Account Name:
+        Primary Group (if empty BMW default is qqbmw):
+        Optional Additional Group Memberships:
+        Home directory on application disks:
+        Optional Shell (default is bash): 
+
+[ ] Add additional local Group(s) to server
+        Group Name:
+
+
+[ ] Add existing User(s) to additional Group(s)
+        Username(s):
+        Group(s):
+
+[ ] Remove User(s)
+        Username(s):
+
+[ ] Remove User(s) from Group(s)
+	Username(s):
+        Group(s):
+[x] Password Reset
+	Username:
+
+Tittl	QXU2668
+Tarasco	QXV1658
+Koehler QXF4025
+
+We are all working for the same BMW project at NTT DATA. Unfortunately we didn't understand the process and the secpw links expired for all of us. 
+Would be great if you could reset our passwords please!
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+see header
+
+__________
+(5) Contact Information
+
+
+Christian.Tittl@nttdata.com ; Cell: +49 151 5441 0589 
+ntt_proflex_devops@nttdata.com
+victoria.koehler@nttdata.com
+
+--------------------------------------------------------------------------------------------------------------------
+
+===========================
+ANALYSIS
+===========================
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+
+lpeai66
+
+
+password reset for the following 3 accounts to be done:
+
+Tittl	QXU2668
+Tarasco	QXV1658
+Koehler QXF4025
+
+=========================================
+
+lpeai66:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 11 (x86_64)
+VERSION = 11
+PATCHLEVEL = 4
+lpeai66:~ # uptime
+ 17:21pm  up 309 days  9:02,  3 users,  load average: 0.61, 0.52, 0.42
+lpeai66:~ #
+
+lpeai66:~ # /bin/xenstore-read /tool/hostname
+lpsbxeneai02
+lpeai66:~ #
+
+=================================MODULE IS EAI=========
+
+Query 1.
+
+We are all working for the same BMW project at NTT DATA. Unfortunately we didn't understand the process and the secpw links expired for all of us. 
+Would be great if you could reset our passwords please!
+
+SO if secpw link expired which password reset he is requesting , he is mentioning 1 server lpeai66 and that is SLES11 SP4
+
+==================================
+
+ANalysis continued
+
+qxz10kv@lpinstiaas01:~> instserv uuv -gu QXU2668 ; echo $?
+una=QXU2668 usr=(NTT DATA DEUTSCHLAND GMBH PL_115222,FG-6,,31.12.2020) uid=700598
+0
+qxz10kv@lpinstiaas01:~> instserv uuv -gu QXV1658 ; echo $?
+una=QXV1658 usr=(NTT DATA DEUTSCHLAND GMBH PL_115222,FG-6,,31.12.2020) uid=719072
+0
+qxz10kv@lpinstiaas01:~> instserv uuv -gu QXF4025 ; echo $?
+una=QXF4025 usr=(NTT DATA DEUTSCHLAND GMBH PL_115222,FG-6,,31.12.2020) uid=379897
+0
+
+
+================
+
+as he said https://secpw.muc/ link expired for all three 
+
+Link followed:
+
+https://atc.bmwgroup.net/confluence/display/LINUX/Password_Reset

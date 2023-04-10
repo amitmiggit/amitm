@@ -1,0 +1,108 @@
+livcdconnapp11|livcdconnapp12|lpvcdconnapp21|lpvcdconnapp22|lpvcdconnapp23|lpvcdconnapp24|livcdconnweb11|livcdconnweb12|lpvcdconnweb21|lpvcdconnweb22|lpvcdconnweb23|lpvcdconnweb24|livcdconnapp09|livcdconnapp10|lpvcdconnapp09|lpvcdconnapp10|livcdconnweb09|livcdconnweb10|lpvcdconnweb09|lpvcdconnweb10|li10vcdconnapp07|li10vcdconnapp08|lp10vcdconnapp21|lp10vcdconnapp22|lp10vcdconnapp23|lp10vcdconnapp24|li10vcdconnweb07|li10vcdconnweb08|lp10vcdconnweb21|lp10vcdconnweb22|lp10vcdconnweb23|lp10vcdconnweb24|li10vcdconnapp09|li10vcdconnapp10|lp10vcdconnapp09|lp10vcdconnapp10|li10vcdconnweb09|li10vcdconnweb10|lp10vcdconnweb09|lp10vcdconnweb10
+
+
+sudoers entry
+# 24.06.2020 qxz10kv TAS000004757058
+# 
+Host_Alias  TAS000004757058_HOSTS = li10vcdconnapp07.bmwgroup.net, \
+           li10vcdconnapp07, li10vcdconnapp08.bmwgroup.net, \
+           li10vcdconnapp08, li10vcdconnapp09.bmwgroup.net, \
+           li10vcdconnapp09, li10vcdconnapp10.bmwgroup.net, \
+           li10vcdconnapp10, li10vcdconnweb07.bmwgroup.net, \
+           li10vcdconnweb07, li10vcdconnweb08.bmwgroup.net, \
+           li10vcdconnweb08, li10vcdconnweb09.bmwgroup.net, \
+           li10vcdconnweb09, li10vcdconnweb10.bmwgroup.net, \
+           li10vcdconnweb10, livcdconnapp09.bmwgroup.net, livcdconnapp09, \
+           livcdconnapp10.bmwgroup.net, livcdconnapp10, \
+           livcdconnapp11.bmwgroup.net, livcdconnapp11, \
+           livcdconnapp12.bmwgroup.net, livcdconnapp12, \
+           livcdconnweb09.bmwgroup.net, livcdconnweb09, \
+           livcdconnweb10.bmwgroup.net, livcdconnweb10, \
+           livcdconnweb11.bmwgroup.net, livcdconnweb11, \
+           livcdconnweb12.bmwgroup.net, livcdconnweb12, \
+           lp10vcdconnapp09.bmwgroup.net, lp10vcdconnapp09, \
+           lp10vcdconnapp10.bmwgroup.net, lp10vcdconnapp10, \
+           lp10vcdconnapp21.bmwgroup.net, lp10vcdconnapp21, \
+           lp10vcdconnapp22.bmwgroup.net, lp10vcdconnapp22, \
+           lp10vcdconnapp23.bmwgroup.net, lp10vcdconnapp23, \
+           lp10vcdconnapp24.bmwgroup.net, lp10vcdconnapp24, \
+           lp10vcdconnweb09.bmwgroup.net, lp10vcdconnweb09, \
+           lp10vcdconnweb10.bmwgroup.net, lp10vcdconnweb10, \
+           lp10vcdconnweb21.bmwgroup.net, lp10vcdconnweb21, \
+           lp10vcdconnweb22.bmwgroup.net, lp10vcdconnweb22, \
+           lp10vcdconnweb23.bmwgroup.net, lp10vcdconnweb23, \
+           lp10vcdconnweb24.bmwgroup.net, lp10vcdconnweb24, \
+           lpvcdconnapp09.bmwgroup.net, lpvcdconnapp09, \
+           lpvcdconnapp10.bmwgroup.net, lpvcdconnapp10, \
+           lpvcdconnapp21.bmwgroup.net, lpvcdconnapp21, \
+           lpvcdconnapp22.bmwgroup.net, lpvcdconnapp22, \
+           lpvcdconnapp23.bmwgroup.net, lpvcdconnapp23, \
+           lpvcdconnapp24.bmwgroup.net, lpvcdconnapp24, \
+           lpvcdconnweb09.bmwgroup.net, lpvcdconnweb09, \
+           lpvcdconnweb10.bmwgroup.net, lpvcdconnweb10, \
+           lpvcdconnweb21.bmwgroup.net, lpvcdconnweb21, \
+           lpvcdconnweb22.bmwgroup.net, lpvcdconnweb22, \
+           lpvcdconnweb23.bmwgroup.net, lpvcdconnweb23, \
+           lpvcdconnweb24.bmwgroup.net, lpvcdconnweb24
+		   
+		   
+		   sudoers entry
+# 24.06.2020 qxz10kv TAS000004757058
+# 
+User_Alias  TAS000004757058_USERS = qxf8006, qxf9351, qxg2306, qxi9331, \
+           qxj3514, qxj3624, qxk4622, qxp2162, qxp5561, qxs1334, qxt8461, \
+           qxu5183, qxv5875, qxv5876, qxv8373, qxw0259, qxw0261, qxw2096, \
+           qxw2102, qxz086l, qxz086m, qxz086n, qxz0cnw, qxz0g52, qxz0hki, \
+           qxz0pw8, qxz0pw9, qxz0pwa, qxz0y92, qxz0y93
+		   
+		   
+
+# 24.06.2020 07:21 qxz10kv TAS000004757058
+TAS000004757058_USERS \
+           TAS000004757058_HOSTS = \
+           /bin/rootsh -i -u qqb2v11, /bin/rootsh  -i  -u qqjds05, \
+           /bin/rootsh  -i  -u qquds05
+		   
+		   
+		   Distribute sudoers-Config — distribution started	?
+Host
+li10vcdconnapp07.bmwgroup.net
+li10vcdconnapp08.bmwgroup.net
+li10vcdconnapp09.bmwgroup.net
+li10vcdconnapp10.bmwgroup.net
+li10vcdconnweb07.bmwgroup.net
+li10vcdconnweb08.bmwgroup.net
+li10vcdconnweb09.bmwgroup.net
+li10vcdconnweb10.bmwgroup.net
+livcdconnapp09.bmwgroup.net
+livcdconnapp10.bmwgroup.net
+livcdconnapp11.bmwgroup.net
+livcdconnapp12.bmwgroup.net
+livcdconnweb09.bmwgroup.net
+livcdconnweb10.bmwgroup.net
+livcdconnweb11.bmwgroup.net
+livcdconnweb12.bmwgroup.net
+lp10vcdconnapp09.bmwgroup.net
+lp10vcdconnapp10.bmwgroup.net
+lp10vcdconnapp21.bmwgroup.net
+lp10vcdconnapp22.bmwgroup.net
+lp10vcdconnapp23.bmwgroup.net
+lp10vcdconnapp24.bmwgroup.net
+lp10vcdconnweb09.bmwgroup.net
+lp10vcdconnweb10.bmwgroup.net
+lp10vcdconnweb21.bmwgroup.net
+lp10vcdconnweb22.bmwgroup.net
+lp10vcdconnweb23.bmwgroup.net
+lp10vcdconnweb24.bmwgroup.net
+lpvcdconnapp09.bmwgroup.net
+lpvcdconnapp10.bmwgroup.net
+lpvcdconnapp21.bmwgroup.net
+lpvcdconnapp22.bmwgroup.net
+lpvcdconnapp23.bmwgroup.net
+lpvcdconnapp24.bmwgroup.net
+lpvcdconnweb09.bmwgroup.net
+lpvcdconnweb10.bmwgroup.net
+lpvcdconnweb21.bmwgroup.net
+lpvcdconnweb22.bmwgroup.net
+lpvcdconnweb23.bmwgroup.net
+lpvcdconnweb24.bmwgroup.net

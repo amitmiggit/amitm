@@ -1,0 +1,215 @@
+modul:                 Infrastruktur
+usage:                 TPA ( Remedy TPA )
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lptpa01 -x
+******************************************
+Server: lptpa01.bmwgroup.net
+******************************************
+machine type:          XEN-Guest
+OS version:            SP4
+OS name:               SLES 11
+serial number:         S40A5L3
+Instserv:              lpinstiaas01
+Logical ID:            SLOG-32178
+Rudder UUID:           e708b996-4edf-11e5-ab47-2f55cf67da3d
+Rudder PolSrv:         cm-relay-bss-emea-fiz19.bmwgroup.net
+location:              01.93 / 001.0 / 00.0 / RZ1
+lampe:                 L7
+rack ID:               RZ-012018
+description:
+modul:                 Infrastruktur
+usage:                 TPA ( Remedy TPA )
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .bmwgroup.net
+nagios:                Y
+virtual server:        Y
+farm name:             lpsbxen005.bmwgroup.net|lpsbxen006.bmwgroup.net
+farmservers:           lpsbxen005, lpsbxen006
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           -
+warranty until:        31-MAR-21
+BU-Name:               Infrastruktur-BU
+BU-EMail:              thomas.homilius@partner.bmw.de
+accountable BU-EMail:  Falko.Uhrig@bmw.de,Jan.Enseleit@bmw.de
+criticality:           CRITICAL
+
+
+.------------------------------------------------.
+|                     lptpa01                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                        lptpa01 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                            TPA |
+| IP_ADDRESS    |                 160.46.156.212 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.156.1 |
+| NET_ID        |                   160.46.156.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.156.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                    lptpa01b                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lptpa01b |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.8.127 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                     10.100.8.1 |
+| NET_ID        |                     10.100.8.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                   10.100.8.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                   lptpa01bnew                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    lptpa01bnew |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lptpa01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.100.13.97 |
+| NSI           |                                |                    
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
+<LPTPA01BNEW		10.100.13.97>--------------------------------AM
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 -6 lptpa01
+Server not found in DCODB. Aborting.
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+
+lpsbxen006:~ # vmc info lptpa01
+Name                      : lptpa01
+Comment                   : N/A
+Domain ID                 : 30
+Status                    : Running on lpsbxen006
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-06-27 23:00:39
+
+Cur. VCPUs                : 2
+Max. VCPUs                : 4
+Cur. Mem [MB]             : 8192
+Max. Mem [MB]             : 16384
+
+XML - Cur. VCPUs          : 2
+XML - Max. VCPUs          : 4
+XML - Cur. Mem [MB]       : 8192
+XML - Max. Mem [MB]       : 16384
+
+Network Device 1          : 00:16:3e:2e:9c:d4 (br:br_160046156000 ipname:lptpa01)
+Network Device 2          : ce:a3:79:c2:88:95 (br:br_010100008000 ipname:lptpa01b)
+
+Block Device xvda         : /dev/md/lptpa01
+Block Device xvdb         : /dev/md/lptpa01_1
+Block Device xvdc         : /dev/md/lptpa01_2
+
+
+lpsbxen006:~ # vmc storage lptpa01
+08:18:18 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName           VMDev         VMName
+
+360060e8007299a000030299a00000172 10650 0172    14G  dm-3    SAN:lptpa01_1    md/lptpa01_1 lptpa01
+360060e8007299a000030299a00000173 10650 0173    14G  dm-4    SAN:lptpa01_2    md/lptpa01_2 lptpa01
+360060e8007299a000030299a0000017e 10650 017e    56G  dm-13   SAN:lptpa01      md/lptpa01   lptpa01
+360060e8007299c000030299c00000172 10652 0172    14G  dm-48   SAN:lptpa01_1    md/lptpa01_1 lptpa01
+360060e8007299c000030299c00000173 10652 0173    14G  dm-49   SAN:lptpa01_2    md/lptpa01_2 lptpa01
+360060e8007299c000030299c0000017e 10652 017e    56G  dm-58   SAN:lptpa01      md/lptpa01   lptpa01
+lpsbxen006:~ #
+
+
+
+lptpa01:~ # df -hT
+Filesystem                 Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                 ext3    38G   13G   24G  34% /
+udev                       tmpfs  4.1G  104K  4.1G   1% /dev
+tmpfs                      tmpfs  4.1G  4.3M  4.1G   1% /dev/shm
+/dev/xvda1                 ext2   297M   41M  241M  15% /boot
+/dev/xvda5                 ext3   5.0G  2.0G  2.8G  42% /home
+/dev/mapper/dgtpaapps-lv01 xfs     28G  7.3G   21G  26% /global/tpa/apps
+lptpa01:~ #
+
+
+lptpa01:~ # cat /etc/fstab
+/dev/xvda3            /                    ext3       acl,user_xattr        1 1
+/dev/xvda1            /boot                ext2       acl,user_xattr        1 2
+/dev/xvda2            swap                 swap       pri=42              0 0
+proc                 /proc                proc       defaults              0 0
+sysfs                /sys                 sysfs      noauto                0 0
+debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+usbfs                /proc/bus/usb        usbfs      noauto                0 0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+/dev/xvda5            /home            ext3    acl,user_xattr      1 1
+
+/dev/dgtpaapps/lv01     /global/tpa/apps        xfs     defaults       0 0
+
+
+lpsbxen006:~ # vmc pvinfo lptpa01
+/dev/dm-13             00 00 00 SAN:lptpa01              01:7e NA 00010650
+/dev/dm-58             00 00 00 SAN:lptpa01              01:7e NA 00010652
+/dev/dm-3              00 00 00 SAN:lptpa01_1            01:72 NA 00010650
+/dev/dm-48             00 00 00 SAN:lptpa01_1            01:72 NA 00010652
+/dev/dm-4              00 00 00 SAN:lptpa01_2            01:73 NA 00010650
+/dev/dm-49             00 00 00 SAN:lptpa01_2            01:73 NA 00010652
+lpsbxen006:~ #
+
+
+lptpa01:~ # uptime
+ 10:34am  up 403 days 16:00,  1 user,  load average: 0.02, 0.07, 0.08
+lptpa01:~ #
+
+
+downtime -a -h 2 -c "TAS000004753354 qxz10kv" lptpa01.bmwgroup.net
+
+
+downtime -l lptpa01.bmwgroup.net
+
+
+
+
+
+=============================
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 2 -c "TAS000004753354 qxz10kv" lporch21.bmwgroup.net
+Argument: lptpa01.bmwgroup.net
+[1593356460] SCHEDULE_HOST_DOWNTIME;lptpa01.bmwgroup.net;1593356460;1593363660;1;0;7200;remote;TAS000004753354 qxz10kv
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -l lporch21.bmwgroup.net
+34357 : host lptpa01.bmwgroup.net down between Sun Jun 28 17:01:00 2020 and Sun Jun 28 19:01:00 2020
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+vmc rmconfig -p lptpa01
+
+

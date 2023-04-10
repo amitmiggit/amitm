@@ -1,0 +1,277 @@
+server-unix-std:global|06|025c-cluster-switch-package
+
+======================================================================
+
+
+precheck
+
+lpcop09:~ # date; hastatus -sum
+Sun Jun 14 08:07:08 CEST 2020
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpcop09              RUNNING              0
+A  lpcop10              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpcop09              Y          N               ONLINE
+B  NIC             lpcop10              Y          N               ONLINE
+B  icoics10        lpcop09              Y          N               ONLINE
+B  icoics10        lpcop10              Y          N               OFFLINE
+B  pcopcs00        lpcop09              Y          N               OFFLINE
+B  pcopcs00        lpcop10              Y          N               ONLINE
+lpcop09:~ #
+
+==================================================
+
+
+(1) Description of the Task to be done
+
+Switch a Cluster Package to lpcop09 and back to lpcop10
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+
+Task required lead time:   1 day
+Task minimum runtime:      2 hours
+
+
+Please see http://unix.bmwgroup.net/tasks for further information on task execution timing, lead time and when the task contacts are contacted.
+
+__________
+(2) Required Information
+
+Create [ ] Modify [x] Remove [ ]
+Cluster name:
+Cluster Server name: lpcop09 & lpcop10
+Package name: pcopcs20 & pcopdb20
+Target node: lpcop09 and back to lpcop10
+Switch back package:  yes
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+
+Actions by OS Operations:
+
+- Switch a Cluster Package to lpcop09 and back to lpcop10
+
+__________
+(4)
+Minimum lead time: see header
+Minimum solution time: see header
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+================
+On 27 May, someone added new FS sapdata15 and did not make it part of veritas so it will create problem while package switching to other node.
+
+Need this new FS to be controlled by veritas , so asked AO to bring down the COP as the new FS is in use and not able to correct online.
+
+
+# Added by vxctl 2020-05-27 19:44:29
+/dev/vx/dsk/dgpcopcs0021/lvsapdata15 /oracle/COP/sapdata15 vxfs mincache=direct,convosync=direct,_netdev,nofail,x-systemd.device-timeout=20 0 0
+lpcop10:/tmp #
+
+lpcop10:/tmp #
+lpcop10:/tmp # /sbin/mkfs.vxfs -o bsize=8192 /dev/vx/dsk/dgpcopcs0021/lvsapdata15
+UX:vxfs mkfs.vxfs: ERROR: V-3-21015: /dev/vx/dsk/dgpcopcs0021/lvsapdata15 is mounted, cannot mkfs
+lpcop10:/tmp # umount /dev/vx/dsk/dgpcopcs0021/lvsapdata15
+umount: /oracle/COP/sapdata15: target is busy
+        (In some cases useful info about processes that
+         use the device is found by lsof(8) or fuser(1).)
+
+lpcop10:/tmp # vxdg list|grep -i dgpcopcs0021
+dgpcopcs0021 enabled,cds          1590601033.662.lpcop10
+lpcop10:/tmp #
+lpcop10:/tmp #
+lpcop10:/tmp # hares -list|grep -i sapdata15
+
+lpcop10:/tmp # hares -list|grep -i sapdata14
+pcopcs00_oracle_COP_sapdata14_mount             lpcop09
+pcopcs00_oracle_COP_sapdata14_mount             lpcop10
+
+==========================
+
+[‎6/‎14/‎2020 11:06 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Hi Suchetan.. GM .. Reg TAS000004736966 
+This conversation is being saved. You'll see it soon in your Outlook Inbox folder.
+[‎6/‎14/‎2020 11:29 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+Hi Hari
+GM
+[‎6/‎14/‎2020 11:29 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+I am just taking screenshots 
+Will update you in a min to start the test
+[‎6/‎14/‎2020 11:30 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+ok, sure
+[‎6/‎14/‎2020 11:33 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+I m done.. You can proceed..
+[‎6/‎14/‎2020 11:37 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+lpcop09:~ # date; hastatus -sum
+Sun Jun 14 08:07:08 CEST 2020
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpcop09              RUNNING              0
+A  lpcop10              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpcop09              Y          N               ONLINE
+B  NIC             lpcop10              Y          N               ONLINE
+B  icoics10        lpcop09              Y          N               ONLINE
+B  icoics10        lpcop10              Y          N               OFFLINE
+B  pcopcs00        lpcop09              Y          N               OFFLINE
+B  pcopcs00        lpcop10              Y          N               ONLINE
+lpcop09:~ # 
+pcopcs00         is running on lpcop10  and icoics10         on lpcop09               
+[‎6/‎14/‎2020 11:39 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+ok
+[‎6/‎14/‎2020 11:40 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+So, I need to bring down icoics10 on lpcop09 , then switch  pcopcs00 to lpcop09 and online  icoics10 on lpcop10
+so, kindly confirm non-prod app is down now ?
+[‎6/‎14/‎2020 11:41 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+I have not stopped yet... Let me stop non prod app..
+[‎6/‎14/‎2020 11:41 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+ok
+[‎6/‎14/‎2020 11:45 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+non prod Stop in progress.. will update you once it is down..
+[‎6/‎14/‎2020 11:52 AM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+non prod stopped
+Pls proceed 
+[‎6/‎14/‎2020 11:53 AM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+ok
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎6/‎14/‎2020 12:06 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+what is it?
+[‎6/‎14/‎2020 12:07 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+there was new Filesystem created by someone recently on prod instance, and that needs to be made part of veritas now
+# Added by vxctl 2020-05-27 19:44:29
+/dev/vx/dsk/dgpcopcs0021/lvsapdata15 /oracle/COP/sapdata15 vxfs mincache=direct,convosync=direct,_netdev,nofail,x-systemd.device-timeout=20 0 0 
+The person just added the new filesystem, which is now controlled by OS not by veritas
+[‎6/‎14/‎2020 12:08 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+oh
+[‎6/‎14/‎2020 12:08 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+So, I need to correct it now so prod package also need to be down 
+[‎6/‎14/‎2020 12:09 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Can we pls check with AO.. Looks they have some critical task in non prod today..
+means need downtime for prod?
+[‎6/‎14/‎2020 12:11 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+I have added Christiaan for asking the same, but it seems he is away
+[‎6/‎14/‎2020 12:12 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+ok. lets wait..
+[‎6/‎14/‎2020 12:18 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+Do you have ideo on AO side whom to contact
+[‎6/‎14/‎2020 12:18 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+It should be Christiaan..
+[‎6/‎14/‎2020 12:19 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+hmm, ok
+I just tried calling him, not picking up
+[‎6/‎14/‎2020 12:20 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+hmm.. Let me check in sapinfo if any other name I could find..
+[‎6/‎14/‎2020 12:21 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+Are you sure there is no downtime for prod package , it should be there as the change is planned accordingly I guess
+[‎6/‎14/‎2020 12:22 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+we should not stop it explicitly.. only cluster can migrate...
+[‎6/‎14/‎2020 12:23 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+hmm
+[‎6/‎14/‎2020 12:23 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Also Chriatiaan explicity pinged me to inform him if any issue comes.
+[‎6/‎14/‎2020 12:23 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+no for correcting the new filesystem, I need to package to be down, later we can make it up and test the cluster switch
+[‎6/‎14/‎2020 12:24 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+agreed.. But without AO confirmation, we cannot stop the system to fix the FS issue..
+I could see these contact details..
+[‎6/‎14/‎2020 12:28 PM] Reyneke Christiaan, FG-541: 
+Im here
+[‎6/‎14/‎2020 12:28 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+Hello Chris
+I can see one new FS added recently on prod pacakge
+[‎6/‎14/‎2020 12:29 PM] Reyneke Christiaan, FG-541: 
+are you in a call?
+should I join
+[‎6/‎14/‎2020 12:29 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+no
+[‎6/‎14/‎2020 12:29 PM] Reyneke Christiaan, FG-541: 
+for COP?
+[‎6/‎14/‎2020 12:29 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+I tried calling you for the same
+yes
+[‎6/‎14/‎2020 12:29 PM] Reyneke Christiaan, FG-541: 
+1 sec, Let me add Karsten
+[‎6/‎14/‎2020 12:30 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+I need small downtime for the prod package
+[‎6/‎14/‎2020 12:30 PM] Reyneke Christiaan, FG-541: 
+Hi Karsten
+Suchetan said someone added an additional FS for COP
+[‎6/‎14/‎2020 12:30 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+# Added by vxctl 2020-05-27 19:44:29
+/dev/vx/dsk/dgpcopcs0021/lvsapdata15 /oracle/COP/sapdata15 vxfs mincache=direct,convosync=direct,_netdev,nofail,x-systemd.device-timeout=20 0 0 
+[‎6/‎14/‎2020 12:31 PM] Reyneke Christiaan, FG-541: 
+he asks for an additional downtime
+how long extra do you need Suchetan
+[‎6/‎14/‎2020 12:31 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+not additional downtime but I need prod package to be down so that I can make the recently added FS as part of cluster
+Hari said it requires your approval
+[‎6/‎14/‎2020 12:32 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+yes.. As per the plan, there is no step to stop COP manaually
+[‎6/‎14/‎2020 12:33 PM] Reyneke Christiaan, FG-541: 
+that is ok to take it down
+[‎6/‎14/‎2020 12:33 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+do fix this FS, I need to to stop it completely
+ok then
+[‎6/‎14/‎2020 12:33 PM] Reyneke Christiaan, FG-541: 
+sure Hari
+[‎6/‎14/‎2020 12:33 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Let me stop COP
+[‎6/‎14/‎2020 12:33 PM] Reyneke Christiaan, FG-541: 
+do we need to do an additional change for this?
+[‎6/‎14/‎2020 12:33 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+one the new FS is fixed ,we can make it up and then try package switch test for prod
+[‎6/‎14/‎2020 12:33 PM] Reyneke Christiaan, FG-541: 
+this was unplanned, but we can do the documentation for you
+[‎6/‎14/‎2020 12:33 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+no, I don't think
+yes, I will make the entry in the task notes
+[‎6/‎14/‎2020 12:34 PM] Reyneke Christiaan, FG-541: 
+you have our co-operation, so you tell me how we help
+thank you Suchetan
+[‎6/‎14/‎2020 12:34 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+I m stopping COP
+[‎6/‎14/‎2020 12:34 PM] Reyneke Christiaan, FG-541: 
+thank you Hari!!!
+[‎6/‎14/‎2020 12:34 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Your confirmation is enough
+[‎6/‎14/‎2020 12:34 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+thanks
+let me know once it is stopped
+[‎6/‎14/‎2020 12:35 PM] Reyneke Christiaan, FG-541: 
+Karsten you also ok for COP SAP system to be stopped?
+[‎6/‎14/‎2020 12:36 PM] Reyneke Christiaan, FG-541: 
+Guess he does not see, please go ahead
+[‎6/‎14/‎2020 12:36 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+ok
+[‎6/‎14/‎2020 12:36 PM] Raecke Karsten, FG-541: 
+Sorry, it is ok for me too.
+[‎6/‎14/‎2020 12:36 PM] Swaminathan Hari, (Hari.Swaminathan@partner.bmwgroup.com): 
+Thank you all
+Stopping in progress
+[‎6/‎14/‎2020 12:41 PM] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+I have added the same note under my task notes for documentation purpose

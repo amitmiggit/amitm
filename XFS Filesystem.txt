@@ -1,0 +1,230 @@
+(1) Description of the Task to be done
+ATTENTION: The requester hereby explicitly confirms that the server owner approved this task. 
+
+Lead time: 4 hr
+Run time: 48 h
+
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+Please describe exactly your request
+
+Downtime allowed?  yes 
+Background:
+
+On Server lp10ipsic3vm the application FS
+/dev/mapper/dg10ipsic3-lvapipsic375
+/dev/mapper/dg10ipsic3--01-lvzookeeper
+were build on BTRFS but should be on XFS.
+
+Two NEW filesystems on XFS have been prepared in TAS000004734594 and mounted to
+
+/global/apipsic375/apps/apipsic375_new
+/global/apipsic375/apps/zookeeper_new
+
+IN this task we want to swap the old FS with the new.
+
+PROCEDURE:
+
+0) PLease allign with application Team :
+TBD 
+for to get the "go!" from them.
+
+1). After go from the APP Team sync the data (volume about 504GB) from
+/global/apipsic375/apps/apipsic375 needs 
+to 
+/global/apipsic375/apps/apipsic375_new
+and from 
+/global/apipsic375/apps/zookeeper
+(volume 18MB) to 
+/global/apipsic375/apps/zookeeper_new
+
+2). then swapp the mountpoints of the old FS with the new FS (also in fstab):
+a)
+
+/global/apipsic375/apps/apipsic375 -> /global/apipsic375/apps/apipsic375_OLD
+/global/apipsic375/apps/zookeeper -> /global/apipsic375/apps/zookeeper
+
+b)
+
+/global/apipsic375/apps/apipsic375_new -> /global/apipsic375/apps/apipsic375
+/global/apipsic375/apps/zookeeper_new -> /global/apipsic375/apps/zookeeper
+
+
+3).  App Team will then start/test application.
+4) If fallback needed undo the changes of the mountpoints done in 2)
+
+
+Thanks for your support.
+Christian
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+Rollback-Plan: (if none is provided, in case of errors the task is stopped where it is and if provided the contact person is contacted to deliver a rollback plan to server operations)
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< enter here >>> <contact, tel.>
+---- during change
+<<< enter here >>> <contact, tel.>
+
+
+==============================
+
+
+lp10ipsic3vm:~ # df -hT
+Filesystem                                Type      Size  Used Avail Use% Mounted on
+devtmpfs                                  devtmpfs   16G  8.0K   16G   1% /dev
+tmpfs                                     tmpfs      16G     0   16G   0% /dev/shm
+tmpfs                                     tmpfs      16G  844K   16G   1% /run
+tmpfs                                     tmpfs      16G     0   16G   0% /sys/fs/cgroup
+/dev/xvda2                                btrfs      93G   13G   79G  14% /
+/dev/mapper/dg10ipsic3--01-lvzookeeper    btrfs      15G   18M   14G   1% /global/apipsic375/apps/zookeeper
+/dev/mapper/dg10ipsic3_03-lvzookeeper_02  xfs        14G   33M   14G   1% /global/apipsic375/apps/zookeeper_new
+/dev/xvda1                                ext3      976M   31M  894M   4% /boot
+/dev/mapper/dg10ipsic3-lvapipsic375       btrfs     1.0T  485G  538G  48% /global/apipsic375/apps/apipsic375
+/dev/xvda2                                btrfs      93G   13G   79G  14% /tmp
+/dev/xvda2                                btrfs      93G   13G   79G  14% /var/spool
+/dev/xvda2                                btrfs      93G   13G   79G  14% /lfs
+/dev/xvda2                                btrfs      93G   13G   79G  14% /var/log
+/dev/xvda2                                btrfs      93G   13G   79G  14% /var/tmp
+/dev/xvda2                                btrfs      93G   13G   79G  14% /global/local
+/dev/xvda2                                btrfs      93G   13G   79G  14% /opt
+/dev/xvda2                                btrfs      93G   13G   79G  14% /.snapshots
+/dev/xvda2                                btrfs      93G   13G   79G  14% /var/opt
+/dev/xvda2                                btrfs      93G   13G   79G  14% /var/cache
+/dev/xvda2                                btrfs      93G   13G   79G  14% /home
+tmpfs                                     tmpfs     3.1G     0  3.1G   0% /run/user/66159
+tmpfs                                     tmpfs     3.1G     0  3.1G   0% /run/user/48952
+tmpfs                                     tmpfs     3.1G     0  3.1G   0% /run/user/840160
+/dev/mapper/dg10ipsic3_02-lvapipsic375_02 xfs      1023G   33M 1023G   1% /global/apipsic375/apps/apipsic375_new
+tmpfs                                     tmpfs     3.1G     0  3.1G   0% /run/user/0
+tmpfs                                     tmpfs     3.1G     0  3.1G   0% /run/user/789268
+lp10ipsic3vm:~ # lsblk
+NAME                            MAJ:MIN RM    SIZE RO TYPE MOUNTPOINT
+xvda                            202:0    0   97.5G  0 disk
+├─xvda1                         202:1    0      1G  0 part /boot
+├─xvda2                         202:2    0   92.5G  0 part /
+└─xvda3                         202:3    0      4G  0 part [SWAP]
+xvdb                            202:16   0 1023.9G  0 disk
+└─dg10ipsic3-lvapipsic375       254:1    0 1023.9G  0 lvm  /global/apipsic375/apps/apipsic375
+xvdc                            202:32   0   14.1G  0 disk
+└─dg10ipsic3--01-lvzookeeper    254:0    0   14.1G  0 lvm  /global/apipsic375/apps/zookeeper
+xvdd                            202:48   0   14.1G  0 disk
+└─dg10ipsic3_03-lvzookeeper_02  254:2    0     14G  0 lvm  /global/apipsic375/apps/zookeeper_new
+xvde                            202:64   0 1023.9G  0 disk
+└─dg10ipsic3_02-lvapipsic375_02 254:3    0   1023G  0 lvm  /global/apipsic375/apps/apipsic375_new
+lp10ipsic3vm:~ # cat /etc/fstab
+###
+### OS mounts
+###
+LABEL=ROOT_77468                    /                             btrfs     defaults                      0 0
+LABEL=BOOT_77468                    /boot                         ext3      defaults                      1 2
+LABEL=ROOT_77468                    /lfs                          btrfs     subvol=@/lfs                  0 0
+LABEL=ROOT_77468                    /home                         btrfs     subvol=@/home                 0 0
+LABEL=ROOT_77468                    /opt                          btrfs     subvol=@/opt                  0 0
+LABEL=ROOT_77468                    /tmp                          btrfs     subvol=@/tmp                  0 0
+LABEL=ROOT_77468                    /var/log                      btrfs     subvol=@/var/log              0 0
+LABEL=ROOT_77468                    /var/opt                      btrfs     subvol=@/var/opt              0 0
+LABEL=ROOT_77468                    /var/spool                    btrfs     subvol=@/var/spool            0 0
+LABEL=ROOT_77468                    /var/cache                    btrfs     subvol=@/var/cache            0 0
+LABEL=ROOT_77468                    /global/local                 btrfs     subvol=@/global/local         0 0
+LABEL=ROOT_77468                    /var/tmp                      btrfs     subvol=@/var/tmp              0 0
+LABEL=ROOT_77468                    /.snapshots                   btrfs     subvol=@/.snapshots           0 0
+LABEL=SWAP_77468                    swap                          swap      pri=42                        0 0
+
+###
+### Application mounts
+### Mandatory mount options for SAN/NAS: nofail,x-systemd.device-timeout=20
+###
+/dev/dg10ipsic3-01/lvzookeeper  /global/apipsic375/apps/zookeeper   btrfs   defaults,nofail,x-systemd.device-timeout=20 0 0
+/dev/dg10ipsic3/lvapipsic375     /global/apipsic375/apps/apipsic375  btrfs  defaults,nofail,x-systemd.device-timeout=20 0 0
+/dev/dg10ipsic3_03/lvzookeeper_02 /global/apipsic375/apps/zookeeper_new xfs defaults,nofail,x-systemd.device-timeout=20 0 0
+/dev/dg10ipsic3_02/lvapipsic375_02 /global/apipsic375/apps/apipsic375_new xfs defaults,nofail,x-systemd.device-timeout=20 0 0
+lp10ipsic3vm:~ # du -sh /dev/mapper/dg10ipsic3-lvapipsic375
+0       /dev/mapper/dg10ipsic3-lvapipsic375
+lp10ipsic3vm:~ # cd /dev/mapper/dg10ipsic3-lvapipsic375
+bash: cd: /dev/mapper/dg10ipsic3-lvapipsic375: Not a directory
+lp10ipsic3vm:~ # ls -ld /dev/mapper/dg10ipsic3-lvapipsic375
+lrwxrwxrwx 1 root root 7 Jun 13 01:22 /dev/mapper/dg10ipsic3-lvapipsic375 -> ../dm-1
+lp10ipsic3vm:~ # df -hT /dev/mapper/dg10ipsic3-lvapipsic375
+Filesystem                          Type   Size  Used Avail Use% Mounted on
+/dev/mapper/dg10ipsic3-lvapipsic375 btrfs  1.0T  485G  538G  48% /global/apipsic375/apps/apipsic375
+lp10ipsic3vm:~ # du -sh /global/apipsic375/apps/apipsic375
+477G    /global/apipsic375/apps/apipsic375
+lp10ipsic3vm:~ # cd /global/apipsic375/apps/apipsic375
+lp10ipsic3vm:/global/apipsic375/apps/apipsic375 # du -sh *
+5.4M    bin
+4.0K    confluent
+1.4G    confluent-3.3.2
+475G    data
+4.0K    info.txt
+493M    install
+256M    java
+4.0K    netbackup
+16K     service
+lp10ipsic3vm:/global/apipsic375/apps/apipsic375 # df -hT /dev/mapper/dg10ipsic3--01-lvzookeeper
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/mapper/dg10ipsic3--01-lvzookeeper btrfs   15G   18M   14G   1% /global/apipsic375/apps/zookeeper
+lp10ipsic3vm:/global/apipsic375/apps/apipsic375 # cd /global/apipsic375/apps/zookeeper
+lp10ipsic3vm:/global/apipsic375/apps/zookeeper # du -sh .
+440K    .
+lp10ipsic3vm:/global/apipsic375/apps/zookeeper # du -sh *
+4.0K    myid
+420K    version-2
+lp10ipsic3vm:/global/apipsic375/apps/zookeeper # ls -l
+total 4
+-rw-r--r-- 1 qqipsi0 ips_a   2 Sep 18  2019 myid
+drwxr-xr-x 1 qqipsi0 ips_a 138 Jun 13 01:22 version-2
+lp10ipsic3vm:/global/apipsic375/apps/zookeeper # ls -la
+total 20
+drwxr-xr-x 1 qqipsi0 ips_a  26 May 14 10:46 .
+drwxr-xr-x 1 root    root   92 Jun 13 06:11 ..
+-rw-r--r-- 1 qqipsi0 ips_a   2 Sep 18  2019 myid
+drwxr-xr-x 1 qqipsi0 ips_a 138 Jun 13 01:22 version-2
+lp10ipsic3vm:/global/apipsic375/apps/zookeeper # cd /global/apipsic375/apps/apipsic375
+lp10ipsic3vm:/global/apipsic375/apps/apipsic375 # ls -la
+total 48
+drwxr-xr-x 1 qqipsi0 ips_a  236 May  6 03:34 .
+drwxr-xr-x 1 root    root    92 Jun 13 06:11 ..
+drwx------ 1 qqipsi0 ips_a    6 Sep 18  2019 .ansible
+-rw------- 1 qqipsi0 ips_a 5430 May 25 03:13 .bash_history
+drwx------ 1 qqipsi0 ips_a    8 Sep 18  2019 .config
+-rwxr-x--x 1 qqipsi0 ips_a  236 Sep 18  2019 .profile
+-rw------- 1 qqipsi0 ips_a 1024 Sep 18  2019 .rnd
+drwx------ 1 qqipsi0 ips_a   30 Sep 18  2019 .ssh
+-rw------- 1 qqipsi0 ips_a 3283 Sep 25  2019 .viminfo
+drwxr-xr-x 1 qqipsi0 ips_a  418 May  7 00:52 bin
+lrwxrwxrwx 1 qqipsi0 ips_a   16 Sep 18  2019 confluent -> confluent-3.3.2/
+drwxr-xr-x 1 qqipsi0 ips_a   48 Sep 18  2019 confluent-3.3.2
+drwxr-x--- 1 qqipsi0 ips_a  110 Sep 25  2019 data
+-rw-r--r-- 1 qqipsi0 ips_a  863 May  8 01:35 info.txt
+drwxr-xr-x 1 qqipsi0 ips_a  108 Sep 18  2019 install
+drwxr-xr-x 1 qqipsi0 ips_a  182 Aug 28  2017 java
+lrwxrwxrwx 1 qqipsi0 ips_a   27 Sep 18  2019 netbackup -> /usr/openv/netbackup/bin/bp
+drwxr-xr-x 1 qqipsi0 ips_a   28 Sep  7  2017 service
+lp10ipsic3vm:/global/apipsic375/apps/apipsic375 #
+================================================
+New FS:
+
+lp10ipsic3vm:~ # df -hT | grep -i new
+/dev/mapper/dg10ipsic3_03-lvzookeeper_02  xfs        14G   33M   14G   1% /global/apipsic375/apps/zookeeper_new
+/dev/mapper/dg10ipsic3_02-lvapipsic375_02 xfs      1023G   33M 1023G   1% /global/apipsic375/apps/apipsic375_new
+lp10ipsic3vm:~ #
+
+
+====================

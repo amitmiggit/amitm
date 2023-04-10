@@ -1,0 +1,88 @@
+livcdconnsd01|livcdconnsd02|livcdcassandra01|livcdcassandra02|livcdcassandra03|lpvcdconnsd01|lpvcdconnsd02|lpvcdconnsd03|lpvcdconnsd04|lpvcdcassandra01|li10vcdconnsd01|li10vcdconnsd02|li10vcdcassandra01|li10vcdcassandra02|li10vcdcassandra03|lp10vcdconnsd01|lp10vcdconnsd02|lp10vcdconnsd03|lp10vcdconnsd04|lp10vcdcassandra01|litvcdconnmqtt01|litvcdconnmqtt02|litvcdconnmqtt03|litvcdconnmqtt04|livcdconnmqtt01|livcdconnmqtt02|lpvcdconnmqtt01|lpvcdconnmqtt02|lpvcdconnmqtt03|lpvcdconnmqtt04|li10vcdconnmqtt01|li10vcdconnmqtt02|lp10vcdconnmqtt01|lp10vcdconnmqtt02|lp10vcdconnmqtt03|lp10vcdconnmqtt04
+
+sudoers entry
+# 24.06.2020 qxz10kv TAS000004757058
+# 
+Host_Alias  TAS000004757058_HOSTS = li10vcdcassandra01.bmwgroup.net, \
+           li10vcdcassandra01, li10vcdcassandra02.bmwgroup.net, \
+           li10vcdcassandra02, li10vcdcassandra03.bmwgroup.net, \
+           li10vcdcassandra03, li10vcdconnmqtt01.bmwgroup.net, \
+           li10vcdconnmqtt01, li10vcdconnmqtt02.bmwgroup.net, \
+           li10vcdconnmqtt02, li10vcdconnsd01.bmwgroup.net, \
+           li10vcdconnsd01, li10vcdconnsd02.bmwgroup.net, li10vcdconnsd02, \
+           litvcdconnmqtt01.bmwgroup.net, litvcdconnmqtt01, \
+           litvcdconnmqtt02.bmwgroup.net, litvcdconnmqtt02, \
+           litvcdconnmqtt03.bmwgroup.net, litvcdconnmqtt03, \
+           litvcdconnmqtt04.bmwgroup.net, litvcdconnmqtt04, \
+           livcdcassandra01.bmwgroup.net, livcdcassandra01, \
+           livcdcassandra02.bmwgroup.net, livcdcassandra02, \
+           livcdcassandra03.bmwgroup.net, livcdcassandra03, \
+           livcdconnmqtt01.bmwgroup.net, livcdconnmqtt01, \
+           livcdconnmqtt02.bmwgroup.net, livcdconnmqtt02, \
+           livcdconnsd01.bmwgroup.net, livcdconnsd01, \
+           livcdconnsd02.bmwgroup.net, livcdconnsd02, \
+           lp10vcdcassandra01.bmwgroup.net, lp10vcdcassandra01, \
+           lp10vcdconnmqtt01.bmwgroup.net, lp10vcdconnmqtt01, \
+           lp10vcdconnmqtt02.bmwgroup.net, lp10vcdconnmqtt02, \
+           lp10vcdconnmqtt03.bmwgroup.net, lp10vcdconnmqtt03, \
+           lp10vcdconnmqtt04.bmwgroup.net, lp10vcdconnmqtt04, \
+           lp10vcdconnsd01.bmwgroup.net, lp10vcdconnsd01, \
+           lp10vcdconnsd02.bmwgroup.net, lp10vcdconnsd02, \
+           lp10vcdconnsd03.bmwgroup.net, lp10vcdconnsd03, \
+           lp10vcdconnsd04.bmwgroup.net, lp10vcdconnsd04, \
+           lpvcdcassandra01.bmwgroup.net, lpvcdcassandra01, \
+           lpvcdconnmqtt01.bmwgroup.net, lpvcdconnmqtt01, \
+           lpvcdconnmqtt02.bmwgroup.net, lpvcdconnmqtt02, \
+           lpvcdconnmqtt03.bmwgroup.net, lpvcdconnmqtt03, \
+           lpvcdconnmqtt04.bmwgroup.net, lpvcdconnmqtt04, \
+           lpvcdconnsd01.bmwgroup.net, lpvcdconnsd01, \
+           lpvcdconnsd02.bmwgroup.net, lpvcdconnsd02, \
+           lpvcdconnsd03.bmwgroup.net, lpvcdconnsd03, \
+           lpvcdconnsd04.bmwgroup.net, lpvcdconnsd04
+		   
+		   
+		   # 24.06.2020 07:41 qxz10kv TAS000004757058
+TAS000004757058_USERS \
+           TAS000004757058_HOSTS = \
+           /bin/rootsh -i -u qqb2v11, /bin/rootsh -i -u qqjds05, \
+           /bin/rootsh -i -u qquds05
+		   
+		   
+		   Distribute sudoers-Config — distribution started	?
+Host
+li10vcdcassandra01.bmwgroup.net
+li10vcdcassandra02.bmwgroup.net
+li10vcdcassandra03.bmwgroup.net
+li10vcdconnmqtt01.bmwgroup.net
+li10vcdconnmqtt02.bmwgroup.net
+li10vcdconnsd01.bmwgroup.net
+li10vcdconnsd02.bmwgroup.net
+litvcdconnmqtt01.bmwgroup.net
+litvcdconnmqtt02.bmwgroup.net
+litvcdconnmqtt03.bmwgroup.net
+litvcdconnmqtt04.bmwgroup.net
+livcdcassandra01.bmwgroup.net
+livcdcassandra02.bmwgroup.net
+livcdcassandra03.bmwgroup.net
+livcdconnmqtt01.bmwgroup.net
+livcdconnmqtt02.bmwgroup.net
+livcdconnsd01.bmwgroup.net
+livcdconnsd02.bmwgroup.net
+lp10vcdcassandra01.bmwgroup.net
+lp10vcdconnmqtt01.bmwgroup.net
+lp10vcdconnmqtt02.bmwgroup.net
+lp10vcdconnmqtt03.bmwgroup.net
+lp10vcdconnmqtt04.bmwgroup.net
+lp10vcdconnsd01.bmwgroup.net
+lp10vcdconnsd02.bmwgroup.net
+lp10vcdconnsd03.bmwgroup.net
+lp10vcdconnsd04.bmwgroup.net
+lpvcdcassandra01.bmwgroup.net
+lpvcdconnmqtt01.bmwgroup.net
+lpvcdconnmqtt02.bmwgroup.net
+lpvcdconnmqtt03.bmwgroup.net
+lpvcdconnmqtt04.bmwgroup.net
+lpvcdconnsd01.bmwgroup.net
+lpvcdconnsd02.bmwgroup.net
+lpvcdconnsd03.bmwgroup.net
+lpvcdconnsd04.bmwgroup.net

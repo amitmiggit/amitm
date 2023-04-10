@@ -1,0 +1,115 @@
+(1) Description of the Task to be done
+Create/remove/modify standard Personal or Technical user(s) or group(s) on server(s)
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Documentation for this request:  https://atc.bmwgroup.net/confluence/display/LINUX/Linux_Group_requests
+Required Approvals:              https://atc.bmwgroup.net/confluence/display/LINUX/Approval_Matrix
+
+Approval:  All Sudo, Account and Group Add, Modify and Removals require an BMW authorized approval. 
+           Please check the Approval link above for the necessary information.  Tasks set to â€œPending 
+           Assignmentâ€ before the necessary approvals have been correctly issued will cause the task 
+           to be canceled or set to â€œPending Errorâ€ depending on the SLAs for the servers concerned. 
+
+
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+limq11vm.bmwgroup.net
+ltdynatsv01.bmwgroup.net
+
+- Account Request:
+
+[ ] Add Personal q/qx/qt User(s)
+        User Account Name(s):
+        Primary Group (if empty BMW default is qbmw resp. qxbmw):
+        Optional Additional Group Memberships:
+        Optional Reference User:
+
+[x ] Add Technical Application "QQ" User(s)
+        QQ Account Name: QQDYNMQ
+        Primary Group (if empty BMW default is qqbmw):
+        Optional Additional Group Memberships:
+        Home directory on application disks: /global/qqdynmq
+        Optional Shell (default is bash): 
+
+[ ] Add additional local Group(s) to server
+        Group Name:
+
+
+[ ] Add existing User(s) to additional Group(s)
+        Username(s):
+        Group(s):
+
+[ ] Remove User(s)
+        Username(s):
+
+[ ] Remove User(s) from Group(s)
+	Username(s):
+        Group(s):
+[ ] Password Reset
+	Username:
+ Approval from the user should be provided. User should be a Requester.
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< enter here >>> <contact, tel.>
+---- during change
+<<< enter here >>> <contact, tel.>
+
+
+======================
+
+
+[INSTSERV][qxz087m][lpinstiaas01] ~ $ uuv -gu qqdynmq
+[INSTSERV][qxz087m][lpinstiaas01] ~ $
+
+
+===========================
+
+
+From: Gussain Ravinder, (Ravinder.Gussain@partner.bmw.de) 
+Sent: Tuesday, June 9, 2020 3:05 PM
+To: Pfeiffer Markus, FG-8-I-3 <Markus.Pfeiffer@bmw.de>
+Subject: CRQ000001424831 >> TAS000004734465 >> User-mgmt
+
+Hi Markus,
+
+The user qqdynmq is not present in IDAS please get it created in IDAS first so that we can create locally on the Server.
+
+I am keeping task into Pending Error.
+
+
+
+[INSTSERV][qxz087m][lpinstiaas01] ~ $ uuv -gu qqdynmq
+[INSTSERV][qxz087m][lpinstiaas01] ~ $
+
+
+Thanks & Regards,
+Ravinder Gussain
+IaaS Infrastructure as a Service 
+NTT DATA Services Germany GmbH
+Lyonerstrasse 15
+60528 Frankfurt 
+----------------------------------------------------------------
+Geschäftsführer: Croxville, William David, Pryor, Robert David
+Eingetragen beim Amtsgericht Frankfurt am Main unter HRB HRB 112607
+----------------------------------------------------------------
+Im Auftrag der BMW Group
+Postanschrift: 80788 München
+Mobile: +91-9711990892
+Mail: ravinder.gussain@partner.bmw.de

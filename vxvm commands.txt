@@ -1,0 +1,208 @@
+ltdbpri7:~ # history
+    1  2020-08-04 05:49:24 ##############--- 20200628.172323 ---##############
+    2  2020-06-28 17:23:25 sudo vxdisk list | grep -i fail ; sudo cat /tmp/vxedit.sh ; sudo sh /tmp/vxedit.sh ; sudo vxprint | grep -i deta ; sudo cat /tmp/vxplex.sh ; sudo sh /tmp/vxplex.sh ; su - qqnagio
+    3  2020-06-28 17:23:36 vim /tmp/vxedit.sh
+    4  2020-06-28 17:24:07 vim /tmp/vxplex.sh
+    5  2020-06-28 17:24:41 sudo vxdisk list | grep -i fail ; sudo cat /tmp/vxedit.sh ; sudo sh /tmp/vxedit.sh ; sudo vxprint | grep -i deta ; sudo cat /tmp/vxplex.sh ; sudo sh /tmp/vxplex.sh ; su - qqnagio
+    6  2020-08-04 05:49:24 ##############--- 20200804.054923 ---##############
+    7  2020-08-04 05:50:50 df -hT /global/tlprisma1/bkup
+    8  2020-08-04 05:51:06 date
+    9  2020-08-04 05:51:17 san_rescan -o
+   10  2020-08-04 05:52:30 df -hT /global/tlprisma1/bkup
+   11  2020-08-04 07:55:02 san_shortinfo | grep -i 50:7C
+   12  2020-08-04 07:55:22 san_shortinfo | grep -i 51:54
+   13  2020-08-04 08:04:35 rpm -qa | grep -i vcs
+   14  2020-08-04 08:04:45 rpm -qa | grep -i vxvm
+   15  2020-08-04 08:05:09 rpm -qa | grep -i vrts*odm
+   16  2020-08-04 08:05:40 vxdisk -list
+   17  2020-08-04 08:05:45 vxdisk list
+   18  2020-08-04 08:06:07 vxdisk list | grep -i invalid
+   19  2020-08-04 08:06:32 vxdg list
+   20  2020-08-04 08:06:50 whereis hastatus
+   21  2020-08-04 08:07:06 which hasstatus
+   22  2020-08-04 08:07:53 vxdisk -eo alldgs
+   23  2020-08-04 08:08:08 vxdisk -eo alldgs list | grep -i invalid
+   24  2020-08-04 08:10:27 df -hT /global/tlprisma1/bkup
+   25  2020-08-04 08:11:06 df -hT
+   26  2020-08-04 08:13:26 san_shortinfo | grep -i 51:54
+   27  2020-08-04 08:13:44 san_info
+   28  2020-08-04 08:14:28 san_info | grep -i 51:54
+   29  2020-08-04 08:22:11 df -hT /global/tlprisma1/bkup
+   30  2020-08-04 08:22:48 vxprint -hvt -g dgtlprisma1bkup
+   31  2020-08-04 08:23:24 vxprint -hvt -g dgtlprisma1bkup lvbkup
+   32  2020-08-04 08:23:31 vxprint -hvt -g dgtlprisma1bkup lvbkup
+   33  2020-08-04 08:26:39 vxassist -g dgtlprisma1bkup maxgrow lvbkup
+   34  2020-08-04 08:29:13 vxprint -hvt -g dgtlprisma1bkup lvbkup
+   35  2020-08-04 08:31:35 vxresize -b -g dgtlprisma1bkup lvbkup 2831708160
+   36  2020-08-04 08:31:53 df -hT /global/tlprisma1/bkup
+   37  2020-08-04 08:32:41 vxprint -d
+   38  2020-08-04 08:33:16 history
+ltdbpri7:~ # vxdisk -eo alldgs list
+DEVICE       TYPE           DISK        GROUP        STATUS               OS_NATIVE_NAME   ATTR
+hitachi_vsp0_03ff auto:cdsdisk   19_97153_03ff  dgtlprisma1bkup online               sdd              hdprclm fc
+hitachi_vsp0_06da auto:cdsdisk   19_97153_06da  dgtlprisma1bkup online thinrclm      sdv              hdprclm fc
+hitachi_vsp0_06d2 auto:cdsdisk   19_97153_06d2  dgtlprisma1db online thinrclm      sdn              hdprclm fc
+hitachi_vsp0_06d3 auto:cdsdisk   19_97153_06d3  dgtlprisma1db online thinrclm      sdo              hdprclm fc
+hitachi_vsp0_06d4 auto:cdsdisk   19_97153_06d4  dgtlprisma1db online thinrclm      sdp              hdprclm fc
+hitachi_vsp0_06d5 auto:cdsdisk   19_97153_06d5  dgtlprisma1db online thinrclm      sdq              hdprclm fc
+hitachi_vsp0_06d6 auto:cdsdisk   19_97153_06d6  dgtlprisma1db online thinrclm      sdr              hdprclm fc
+hitachi_vsp0_06d7 auto:cdsdisk   19_97153_06d7  dgtlprisma1db online thinrclm      sds              hdprclm fc
+hitachi_vsp0_06d8 auto:cdsdisk   19_97153_06d8  dgtlprisma1bkup online thinrclm      sdt              hdprclm fc
+hitachi_vsp0_06d9 auto:cdsdisk   19_97153_06d9  dgtlprisma1bkup online thinrclm      sdu              hdprclm fc
+hitachi_vsp0_50a6 auto:cdsdisk   19_97153_50a6  dgoracle_ltdbpri7 online               sdc              hdprclm fc
+hitachi_vsp0_50bc auto:cdsdisk   19_97153_50bc  dgtlprisma1db online               sdy              hdprclm fc
+hitachi_vsp0_068a auto:cdsdisk   19_97153_068a  dgtlprisma2db online               sdj              hdprclm fc
+hitachi_vsp0_068b auto:cdsdisk   19_97153_068b  dgtlprisma2db online               sdk              hdprclm fc
+hitachi_vsp0_068c auto:cdsdisk   19_97153_068c  dgtlprisma2bkup online               sdl              hdprclm fc
+hitachi_vsp0_068d auto:cdsdisk   19_97153_068d  dgtlprisma2bkup online               sdm              hdprclm fc
+hitachi_vsp0_0400 auto:cdsdisk   19_97153_0400  dgtlprisma1bkup online               sde              hdprclm fc
+hitachi_vsp0_509d auto:none      -            -           online invalid thinrclm sdb              hdprclm fc
+hitachi_vsp0_0686 auto:cdsdisk   19_97153_0686  dgtlprisma2redo1 online               sdf              hdprclm fc
+hitachi_vsp0_0687 auto:cdsdisk   19_97153_0687  dgtlprisma2redo2 online               sdg              hdprclm fc
+hitachi_vsp0_0688 auto:cdsdisk   19_97153_0688  dgtlprisma2db online               sdh              hdprclm fc
+hitachi_vsp0_0689 auto:cdsdisk   19_97153_0689  dgtlprisma2db online               sdi              hdprclm fc
+hitachi_vsp0_5001 auto:cdsdisk   19_97153_5001  dgtlprisma2db online               sdw              hdprclm fc
+hitachi_vsp0_5002 auto:cdsdisk   19_97153_5002  dgtlprisma2db online               sdx              hdprclm fc
+hitachi_vsp0_5154 auto:cdsdisk   19_97153_5154  dgtlprisma1bkup online               sdct             hdprclm fc
+hitachi_vsp1_03ff auto:cdsdisk   18_97236_03ff  dgtlprisma1bkup online               sdab             hdprclm fc
+hitachi_vsp1_06da auto:cdsdisk   18_97236_06da  dgtlprisma1bkup online thinrclm      sdat             hdprclm fc
+hitachi_vsp1_06d2 auto:cdsdisk   18_97236_06d2  dgtlprisma1db online thinrclm      sdal             hdprclm fc
+hitachi_vsp1_06d3 auto:cdsdisk   18_97236_06d3  dgtlprisma1db online thinrclm      sdam             hdprclm fc
+hitachi_vsp1_06d4 auto:cdsdisk   18_97236_06d4  dgtlprisma1db online thinrclm      sdan             hdprclm fc
+hitachi_vsp1_06d5 auto:cdsdisk   18_97236_06d5  dgtlprisma1db online thinrclm      sdao             hdprclm fc
+hitachi_vsp1_06d6 auto:cdsdisk   18_97236_06d6  dgtlprisma1db online thinrclm      sdap             hdprclm fc
+hitachi_vsp1_06d7 auto:cdsdisk   18_97236_06d7  dgtlprisma1db online thinrclm      sdaq             hdprclm fc
+hitachi_vsp1_06d8 auto:cdsdisk   18_97236_06d8  dgtlprisma1bkup online thinrclm      sdar             hdprclm fc
+hitachi_vsp1_06d9 auto:cdsdisk   18_97236_06d9  dgtlprisma1bkup online thinrclm      sdas             hdprclm fc
+hitachi_vsp1_50a6 auto:cdsdisk   18_97236_50a6  dgoracle_ltdbpri7 online               sdaa             hdprclm fc
+hitachi_vsp1_50bc auto:cdsdisk   18_97236_50bc  dgtlprisma1db online               sdaw             hdprclm fc
+hitachi_vsp1_068a auto:cdsdisk   18_97236_068a  dgtlprisma2db online               sdah             hdprclm fc
+hitachi_vsp1_068b auto:cdsdisk   18_97236_068b  dgtlprisma2db online               sdai             hdprclm fc
+hitachi_vsp1_068c auto:cdsdisk   18_97236_068c  dgtlprisma2bkup online               sdaj             hdprclm fc
+hitachi_vsp1_068d auto:cdsdisk   18_97236_068d  dgtlprisma2bkup online               sdak             hdprclm fc
+hitachi_vsp1_0400 auto:cdsdisk   18_97236_0400  dgtlprisma1bkup online               sdac             hdprclm fc
+hitachi_vsp1_509d auto:none      -            -           online invalid thinrclm sdz              hdprclm fc
+hitachi_vsp1_0686 auto:cdsdisk   18_97236_0686  dgtlprisma2redo1 online               sdad             hdprclm fc
+hitachi_vsp1_0687 auto:cdsdisk   18_97236_0687  dgtlprisma2redo2 online               sdae             hdprclm fc
+hitachi_vsp1_0688 auto:cdsdisk   18_97236_0688  dgtlprisma2db online               sdaf             hdprclm fc
+hitachi_vsp1_0689 auto:cdsdisk   18_97236_0689  dgtlprisma2db online               sdag             hdprclm fc
+hitachi_vsp1_5001 auto:cdsdisk   18_97236_5001  dgtlprisma2db online               sdau             hdprclm fc
+hitachi_vsp1_5002 auto:cdsdisk   18_97236_5002  dgtlprisma2db online               sdav             hdprclm fc
+hitachi_vsp1_5154 auto:cdsdisk   18_97236_5154  dgtlprisma1bkup online               sdcu             hdprclm fc
+ltdbpri7_disk_0 auto:none      -            -           online invalid       sda              -
+ltdbpri7:~ # vxdisk -eo alldgs list | grep -i sdct
+hitachi_vsp0_5154 auto:cdsdisk   19_97153_5154  dgtlprisma1bkup online               sdct             hdprclm fc
+ltdbpri7:~ # vxdisk -list
+VxVM vxdisk ERROR V-5-1-693 Incorrect usage
+VxVM vxdisk INFO V-5-1-1443
+    Usage: vxdisk [-f] keyword arg ...
+For detailed help use: vxdisk -H | help
+ltdbpri7:~ # vxdisk list
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vsp0_03ff auto:cdsdisk    19_97153_03ff  dgtlprisma1bkup online
+hitachi_vsp0_06da auto:cdsdisk    19_97153_06da  dgtlprisma1bkup online thinrclm
+hitachi_vsp0_06d2 auto:cdsdisk    19_97153_06d2  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d3 auto:cdsdisk    19_97153_06d3  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d4 auto:cdsdisk    19_97153_06d4  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d5 auto:cdsdisk    19_97153_06d5  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d6 auto:cdsdisk    19_97153_06d6  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d7 auto:cdsdisk    19_97153_06d7  dgtlprisma1db online thinrclm
+hitachi_vsp0_06d8 auto:cdsdisk    19_97153_06d8  dgtlprisma1bkup online thinrclm
+hitachi_vsp0_06d9 auto:cdsdisk    19_97153_06d9  dgtlprisma1bkup online thinrclm
+hitachi_vsp0_50a6 auto:cdsdisk    19_97153_50a6  dgoracle_ltdbpri7 online
+hitachi_vsp0_50bc auto:cdsdisk    19_97153_50bc  dgtlprisma1db online
+hitachi_vsp0_068a auto:cdsdisk    19_97153_068a  dgtlprisma2db online
+hitachi_vsp0_068b auto:cdsdisk    19_97153_068b  dgtlprisma2db online
+hitachi_vsp0_068c auto:cdsdisk    19_97153_068c  dgtlprisma2bkup online
+hitachi_vsp0_068d auto:cdsdisk    19_97153_068d  dgtlprisma2bkup online
+hitachi_vsp0_0400 auto:cdsdisk    19_97153_0400  dgtlprisma1bkup online
+hitachi_vsp0_509d auto:none       -            -            online invalid thinrclm
+hitachi_vsp0_0686 auto:cdsdisk    19_97153_0686  dgtlprisma2redo1 online
+hitachi_vsp0_0687 auto:cdsdisk    19_97153_0687  dgtlprisma2redo2 online
+hitachi_vsp0_0688 auto:cdsdisk    19_97153_0688  dgtlprisma2db online
+hitachi_vsp0_0689 auto:cdsdisk    19_97153_0689  dgtlprisma2db online
+hitachi_vsp0_5001 auto:cdsdisk    19_97153_5001  dgtlprisma2db online
+hitachi_vsp0_5002 auto:cdsdisk    19_97153_5002  dgtlprisma2db online
+hitachi_vsp0_5154 auto:cdsdisk    19_97153_5154  dgtlprisma1bkup online
+hitachi_vsp1_03ff auto:cdsdisk    18_97236_03ff  dgtlprisma1bkup online
+hitachi_vsp1_06da auto:cdsdisk    18_97236_06da  dgtlprisma1bkup online thinrclm
+hitachi_vsp1_06d2 auto:cdsdisk    18_97236_06d2  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d3 auto:cdsdisk    18_97236_06d3  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d4 auto:cdsdisk    18_97236_06d4  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d5 auto:cdsdisk    18_97236_06d5  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d6 auto:cdsdisk    18_97236_06d6  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d7 auto:cdsdisk    18_97236_06d7  dgtlprisma1db online thinrclm
+hitachi_vsp1_06d8 auto:cdsdisk    18_97236_06d8  dgtlprisma1bkup online thinrclm
+hitachi_vsp1_06d9 auto:cdsdisk    18_97236_06d9  dgtlprisma1bkup online thinrclm
+hitachi_vsp1_50a6 auto:cdsdisk    18_97236_50a6  dgoracle_ltdbpri7 online
+hitachi_vsp1_50bc auto:cdsdisk    18_97236_50bc  dgtlprisma1db online
+hitachi_vsp1_068a auto:cdsdisk    18_97236_068a  dgtlprisma2db online
+hitachi_vsp1_068b auto:cdsdisk    18_97236_068b  dgtlprisma2db online
+hitachi_vsp1_068c auto:cdsdisk    18_97236_068c  dgtlprisma2bkup online
+hitachi_vsp1_068d auto:cdsdisk    18_97236_068d  dgtlprisma2bkup online
+hitachi_vsp1_0400 auto:cdsdisk    18_97236_0400  dgtlprisma1bkup online
+hitachi_vsp1_509d auto:none       -            -            online invalid thinrclm
+hitachi_vsp1_0686 auto:cdsdisk    18_97236_0686  dgtlprisma2redo1 online
+hitachi_vsp1_0687 auto:cdsdisk    18_97236_0687  dgtlprisma2redo2 online
+hitachi_vsp1_0688 auto:cdsdisk    18_97236_0688  dgtlprisma2db online
+hitachi_vsp1_0689 auto:cdsdisk    18_97236_0689  dgtlprisma2db online
+hitachi_vsp1_5001 auto:cdsdisk    18_97236_5001  dgtlprisma2db online
+hitachi_vsp1_5002 auto:cdsdisk    18_97236_5002  dgtlprisma2db online
+hitachi_vsp1_5154 auto:cdsdisk    18_97236_5154  dgtlprisma1bkup online
+ltdbpri7_disk_0 auto:none       -            -            online invalid
+ltdbpri7:~ # vxdisk list | grep -i hitachi_vsp1_5154
+hitachi_vsp1_5154 auto:cdsdisk    18_97236_5154  dgtlprisma1bkup online
+ltdbpri7:~ # vxdisk list | grep -i 5154
+hitachi_vsp0_5154 auto:cdsdisk    19_97153_5154  dgtlprisma1bkup online
+hitachi_vsp1_5154 auto:cdsdisk    18_97236_5154  dgtlprisma1bkup online
+ltdbpri7:~ # vxdisk -p list hitachi_vsp1_5154
+DISK                : hitachi_vsp1_5154
+VID                 : HITACHI
+UDID                : HITACHI%5FOPEN-V%5F17BD4%5F5154
+TP_PREF_RCLMCMD     : write_same
+TP_RECLM_CMDS       : -
+TP_ALLOC_UNIT       : 44040192
+TP_MAX_REC_SIZE     : 1409286144
+TP_LUN_SHIFT_OF     : 0
+SCSI_VERSION        : 3
+SCSI3_VPD_ID        : NAA:60060E80167BD40000017BD400005154
+REVISION            : 7001
+PORT_SERIAL_NO      : 7J
+PID                 : OPEN-V
+PHYS_CTLR_NAME      : c17
+MEDIA_TYPE          : hdd
+LUN_TYPE            : std
+LUN_SNO_ORDER       : 24
+LUN_SERIAL_NO       : 5154
+LIBNAME             : libvxhdsusp.so
+HARDWARE_MIRROR     : no
+DMP_DEVICE          : hitachi_vsp1_5154
+DDL_THIN_DISK       : thinrclm
+DDL_DEVICE_ATTR     : hdprclm fc
+CAB_SERIAL_NO       : 97236
+ATYPE               : A/A
+ARRAY_VOLUME_ID     : 5154
+ARRAY_PORT_PWWN     : 50:06:0e:80:07:2a:b2:68
+ARRAY_CTLR_ID       : 7
+ANAME               : Hitachi_VSP
+TRANSPORT           : FC
+ENCLOSURE_NAME      : hitachi_vsp1
+LUN_SIZE            : 472043520
+NUM_PATHS           : 2
+STATE               : online
+HOSTID              : ltdbpri7
+DISK_TYPE           : auto
+FORMAT              : cdsdisk
+DA_INFO             : format=cdsdisk,privoffset=256,pubslice=3,privslice=3
+PRIV_OFF            : 256
+PRIV_LEN            : 65536
+PUB_OFF             : 65792
+PUB_LEN             : 471961632
+PRIV_UDID           : HITACHI%5FOPEN-V%5F17BD4%5F5154
+DG_NAME             : dgtlprisma1bkup
+DGID                : 1224854150.2086.lpdbpri1
+DG_STATE            : imported
+DISKID              : 1596522009.70.ltdbpri7
+DISK_TIMESTAMP      : Tue Aug  4 08:20:09 AM 2020
+ltdbpri7:~ # exit
+qplinux@ltdbpri7:~>

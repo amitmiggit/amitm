@@ -1,0 +1,108 @@
+(1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server:  
+lpapp12001vm.bmwgroup.net
+lpapp12002vm.bmwgroup.net
+lpintra12001vm.bmwgroup.net
+lpintra12002vm.bmwgroup.net
+ltapppoc1vm.bmwgroup.net
+ltapppoc2vm.bmwgroup.net
+ltintrapoc1vm.bmwgroup.net
+ltintrapoc2vm.bmwgroup.net
+
+APP-ID: APP-113692
+FS : Add [X] / Extend [ ] / Reduce [ ]
+FS Name: xvdb
+Mount point: /global/willnotbeused
+FS size change( in GB ): 1000 GB (1 TB)
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096 - 1 GB
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+[INSTSERV][qxz081y][lpinstiaas01] ~ $ autosan.pl order-disks-vm -O TAS000004727830 -d 1024:8:DB-Data --vmname lpapp12002vm
+Script started, file is /global/instserv/logs/full_outputs/2020/06/03/2020-06-03_02-08-10_autosan.pl.qxz081y.log
+
+AutoSAN version 20190320
+User qxz081y called command: "/global/instserv/bin/autosan.pl order-disks-vm -O TAS000004727830 -d 1024:8:DB-Data --vmname lpapp12002vm"
+
+Info[1]: 2020-06-03 02:08:11 Collecting storage data from server(s)
+Info[1]: 2020-06-03 02:08:33 Collecting SAN name, contract, APP-ID...
+Info[1]: 2020-06-03 02:08:44 Server names: lpxenpwb2020 lpxenpwb2021, SAN name is EDC306 (19.0 2.1/13.4 1.2), contract is SAN_GS_3, APP-ID is APP-108617
+Info[1]: 2020-06-03 02:08:44 Server: lpxenpwb2020, target ports are 3F/4F, WWNs are 10:00:00:10:9b:9f:42:d3/10:00:00:10:9b:9f:44:19
+Info[1]: 2020-06-03 02:08:44 Server: lpxenpwb2021, target ports are 3F/4F, WWNs are 10:00:00:10:9b:9f:41:46/10:00:00:10:9b:9f:42:ac
+Info[1]: 2020-06-03 02:08:44 Ordering storage through SPS, this may take a while...
+Info[1]: 2020-06-03 02:08:48 Storm ticket ID: 316998, OrderPOSid(s): 316999
+Info[1]: 2020-06-03 02:08:49 OrderPOSid: 316999: Status: Submitted - SPS automated ticket submitted, is_automated_ticket: Y
+Info[1]: 2020-06-03 02:10:20 OrderPOSid: 316999: Status: Work in Progress - work in progress, is_automated_ticket: Y
+Info[1]: 2020-06-03 02:24:29 OrderPOSid: 316999: Status: Closed - storage provisioned, is_automated_ticket: Y
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:8E
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:BD
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:A8
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:BE
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:79
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:C1
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:CB
+Info[1]: 2020-06-03 02:25:20 Array: 10633, LUN: 00:01:7E
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:A8
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:79
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:BD
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:BE
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:7E
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:8E
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:C1
+Info[1]: 2020-06-03 02:25:20 Array: 20074, LUN: 00:01:CB
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,keyboard-interactive).
+Error: 2020-06-03 02:25:21 BMW::AutoSAN::Server::_build_SSH: error logging in to lpxenpwb2020 using username qqasan0: unable to establish master SSH connection: master process exited unexpectedly
+Script done, file is /global/instserv/logs/full_outputs/2020/06/03/2020-06-03_02-08-10_autosan.pl.qxz081y.log
+[INSTSERV][qxz081y][lpinstiaas01] ~ $
+
+
+
+lpxenpwb2020:~ # vmc storage | egrep --color "0179|017e|018e|01a8|01bd|01be|01c1|01cb"
+360060e80072989000030298900000179 10633 0179  1024G  dm-20   no md header                                    N/A
+360060e8007298900003029890000017e 10633 017e  1024G  dm-15   no md header                                    N/A
+360060e8007298900003029890000018e 10633 018e  1024G  dm-18   no md header                                    N/A
+360060e800729890000302989000001a8 10633 01a8  1024G  dm-22   no md header                                    N/A
+360060e800729890000302989000001bd 10633 01bd  1024G  dm-14   no md header                                    N/A
+360060e800729890000302989000001be 10633 01be  1024G  dm-16   no md header                                    N/A
+360060e800729890000302989000001c1 10633 01c1  1024G  dm-11   no md header                                    N/A
+360060e800729890000302989000001cb 10633 01cb  1024G  dm-23   no md header                                    N/A
+360060e80074e6a0000304e6a00000179 20074 0179  1024G  dm-13   no md header                                    N/A
+360060e80074e6a0000304e6a0000017e 20074 017e  1024G  dm-19   no md header                                    N/A
+360060e80074e6a0000304e6a0000018e 20074 018e  1024G  dm-21   no md header                                    N/A
+360060e80074e6a0000304e6a000001a8 20074 01a8  1024G  dm-12   no md header                                    N/A
+360060e80074e6a0000304e6a000001bd 20074 01bd  1024G  dm-9    no md header                                    N/A
+360060e80074e6a0000304e6a000001be 20074 01be  1024G  dm-17   no md header                                    N/A
+360060e80074e6a0000304e6a000001c1 20074 01c1  1024G  dm-24   no md header                                    N/A
+360060e80074e6a0000304e6a000001cb 20074 01cb  1024G  dm-10   no md header                                    N/A
+lpxenpwb2020:~ #

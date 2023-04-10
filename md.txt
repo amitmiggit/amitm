@@ -1,0 +1,156 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpstor6
+.------------------------------------------------.
+|                     lpstor6                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                        lpstor6 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lpstor6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 160.46.156.135 |
+| NSI           |                           YAG1 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.156.1 |
+| NET_ID        |                   160.46.156.0 |
+| INT_VLAN      |                          TRUNK |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.156.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                  lpstor6-newb                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                   lpstor6-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           lpstor6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.13.136 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.13.1 |
+| NET_ID        |                    10.100.13.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.13.255 |
+'---------------+--------------------------------'
+
+<LPSTOR6-NEWB		10.100.13.136>---------------------AM
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 -6 lpstor6
+Server not found in DCODB. Aborting.
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+lpsbxen006:~ # vmc info lpstor6
+Name                      : lpstor6
+Comment                   : N/A
+Domain ID                 : 35
+Status                    : Running on lpsbxen006
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles11sp4_x86_64
+Last Backup (UTC)         : 2020-06-27 22:55:34
+
+Cur. VCPUs                : 4
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 4096
+Max. Mem [MB]             : 8192
+
+XML - Cur. VCPUs          : 4
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 4096
+XML - Max. Mem [MB]       : 8192
+
+Network Device 1          : 2e:57:28:45:a7:2b (br:br_160046156000 ipname:lpstor6)
+
+Block Device xvda         : /dev/md/lpstor6
+
+
+
+lpsbxen006:~ # vmc storage lpstor6
+08:11:33 Gathering VM and Storage data, please wait                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName           VMDev        VMName
+
+360060e8007299a000030299a00000b78 10650 0b78    56G  dm-213  SAN:lpstor6      md/lpstor6  lpstor6
+360060e8007299c000030299c00000b78 10652 0b78    56G  dm-214  SAN:lpstor6      md/lpstor6  lpstor6
+lpsbxen006:~ #
+
+
+lpstor6:~ # df -hT
+Filesystem                              Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                              ext3    37G  8.1G   27G  24% /
+udev                                    tmpfs  2.1G   68K  2.1G   1% /dev
+tmpfs                                   tmpfs  2.1G   16K  2.1G   1% /dev/shm
+/dev/xvda1                              ext2   277M   42M  222M  16% /boot
+/dev/xvda5                              ext3   4.7G  173M  4.3G   4% /home
+nv01501998.bmwgroup.net:/f04397/t054046 nfs     10G  1.2G  8.9G  12% /nfs/backup_integration
+nv01502238.bmwgroup.net:/f05264/t020469 nfs     70G   47G   24G  67% /nfs/qqstorm_nasspace
+lpstor6:~ #
+lpstor6:~ #
+lpstor6:~ #
+lpstor6:~ #
+lpstor6:~ #
+lpstor6:~ # cat /etc/fstab
+/dev/xvda3            /                    ext3       acl,user_xattr       1 1
+/dev/xvda1            /boot                ext2       acl,user_xattr       1 2
+/dev/xvda2            swap                 swap       pri=42               0 0
+proc                 /proc                proc       defaults              0 0
+sysfs                /sys                 sysfs      noauto                0 0
+debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+usbfs                /proc/bus/usb        usbfs      noauto                0 0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+/dev/xvda5         /home         ext3    acl,user_xattr      1 1
+
+# TAS000003144077
+nv01502238.bmwgroup.net:/f05264/t020469 /nfs/qqstorm_nasspace nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 2
+#nv01500819.bmwgroup.net:/f01340/t012253 /nfs/backup_integration nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 2
+#nv01501998.bmwgroup.net:/f04397/t054046 /nfs/backup_integration_2 nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 0
+
+#TAS000003213744
+nv01500819.bmwgroup.net:/f01340/t012253 /nfs/backup_integration_1 nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 2
+nv01501998.bmwgroup.net:/f04397/t054046 /nfs/backup_integration nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr 0 0
+
+lpstor6:~ #
+
+
+lpsbxen006:~ # vmc pvinfo lpstor6
+/dev/dm-213            00 00 00 SAN:lpstor6              0b:78 NA 00010650
+/dev/dm-214            00 00 00 SAN:lpstor6              0b:78 NA 00010652
+
+lpstor6:~ # uptime
+ 10:30am  up 272 days 19:53,  1 user,  load average: 0.95, 0.77, 0.78
+lpstor6:~ #
+
+
+=================================================
+
+downtime set for the server 
+
+
+
+lpstor6.bmwgroup.net
+
+
+downtime -a -h 2 -c "TAS000004753354 qxz10kv" lpstor6.bmwgroup.net
+downtime -l lpstor6.bmwgroup.net
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 2 -c "TAS000004753354 qxz10kv" lpstor6.bmwgroup.net
+Argument: lpstor6.bmwgroup.net
+[1593349336] SCHEDULE_HOST_DOWNTIME;lpstor6.bmwgroup.net;1593349336;1593356536;1;0;7200;remote;TAS000004753354 qxz10kv
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -l lpstor6.bmwgroup.net
+34355 : host lpstor6.bmwgroup.net down between Sun Jun 28 15:02:16 2020 and Sun Jun 28 17:02:16 2020
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+

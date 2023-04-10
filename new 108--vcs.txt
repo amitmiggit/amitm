@@ -1,0 +1,1279 @@
+(1) Description of this service request to be done
+
+
+-> Please relate relevant CIs to the change
+-> ATTENTION: The requester hereby explicitly confirms that the BMW authorized persons have approved this task.
+-> Tasks need to be set to “Pending Assignment”. 
+-> If any information is missing or required times are not met, task will be set to “Pending Error” depending on the SLAs for the servers concerned.
+-> ATTENTION: Service request cannot include downtimes.
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+Please see http://unix.bmwgroup.net/tasks  for further information and how you could order it for a specific time.
+
+__________
+(2) Required Information
+
+Server:lp09d10.w9
+APP-ID: APP 113641
+FS : Add [ ] / Extend [ ] / Reduce [ ]
+	Extend
+FS size change( in GB ): +506GB
+FS Name: /global/dbipst92/db
+Mount point: /global/dbipst92/db
+FS size change( in GB ): +506GB
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096 
+
+_________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- see header
+
+__________
+(5) Contact Information
+Service requests are excecuted without explicit contact. If there is an issue after successful implementation, please raise an incident ticket to os-unix-std-06:global:2nd
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact) 
+
+Thanks,
+DB Operations Team
+
+
+
+lp09d09:~ # df -hT /global/dbipst92/db
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/sda3      ext3   50G   18G   30G  37% /
+lp09d09:~ # date
+Fri Jul 17 14:36:42 SAST 2020
+
+lp09d10:~ #  df -hT /global/dbipst92/db
+Filesystem                            Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgdbipst92db/lvdbipst92db vxfs  218G  198G   21G  91% /global/dbipst92/db
+lp09d10:~ # date
+Fri Jul 17 14:41:09 SAST 2020
+lp09d10:~ #
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lp09d10 -x
+******************************************
+Server: lp09d10.w9
+******************************************
+machine type:          3650-M5-8871
+vendor:                LENOVO
+OS version:            SP4
+OS name:               SLES 11
+serial number:         S40A5L6
+Instserv:              lpinstiaas09
+Logical ID:            SLOG-46901
+Rudder UUID:           718a3acd-59a0-4b3a-8f14-1d3bd495bcc1
+Rudder PolSrv:         cm-relay-bss-za.bmwgroup.net
+country:               SUDAFRIKA | ROSSLYN
+location:              09.20 / 086.0 / Data Centre 3 / Data Centre 3 Server Room
+rack ID:               RZ-0903023 (Rack 23)
+description:           CRQ000000594836 - Provision - 17.01.2017
+modul:                 ORACLE
+usage:                 ORASRV INT
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .w9
+nagios:                Y
+virtual server:        N
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           10277
+warranty until:        31-MAR-21
+BU-Name:               W09-BU
+BU-EMail:              karin.klein@partner.bmw.de
+accountable BU-EMail:  Tian.Vaneijk@partner.bmw.co.za,Eben.Roux@bmw.co.za
+criticality:           HIGH CRITICAL
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lp09d9 -x
+lp09d9 not found in CMDB
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lp09d09 -x
+******************************************
+Server: lp09d09.w9
+******************************************
+machine type:          3650-M5-8871
+vendor:                LENOVO
+OS version:            SP4
+OS name:               SLES 11
+serial number:         S40A5L7
+Instserv:              lpinstiaas09
+Logical ID:            SLOG-46898
+Rudder UUID:           2b83aaa3-c742-4b19-a5c3-340e64db014c
+Rudder PolSrv:         cm-relay-bss-za.bmwgroup.net
+country:               SUDAFRIKA | ROSSLYN
+location:              09.20 / 010.8 / Ground / Main-DC
+rack ID:               RZ-098650
+description:           CRQ000000594836 - Provision - 17.01.2017
+modul:                 ORACLE
+usage:                 ORASRV INT
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .w9
+nagios:                Y
+virtual server:        N
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           10276
+warranty until:        31-MAR-21
+BU-Name:               W09-BU
+BU-EMail:              karin.klein@partner.bmw.de
+accountable BU-EMail:  Tian.Vaneijk@partner.bmw.co.za,Eben.Roux@bmw.co.za
+criticality:           HIGH CRITICAL
+
+
+
+(2) Required Information
+
+Server:lp09d10.w9
+APP-ID: APP 113641
+FS : Add [ ] / Extend [ ] / Reduce [ ]
+	Extend
+FS size change( in GB ): +506GB
+FS Name: /global/dbipst92/db
+Mount point: /global/dbipst92/db
+FS size change( in GB ): +506GB
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096
+
+
+lp09d10:~ # san_rescan -o
+** Starting with PID '19349' and options '-o'
+
+** HBA Check...
+ - Checking host1   (0x10000090fae0bc94): 'Link Up - Ready Fabric'
+ - Checking host3   (0x10000090fae0bcac): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host1 host3'.
+
+** Rescanning host1
+ = Triggering Scan on host1
+ - Checking host1:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host1
+
+** Rescanning host3
+ = Triggering Scan on host3
+ - Checking host3:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host3
+
+** Device summary
+ - Found 4 new devices: sdff sdfg sdfh sdfi
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   VSP_97013_5165    | sdfh  51:65   3B   97013 518602 | sdff  51:65   4B   97013 518602 |
+   VSP_97158_5165    | sdfi  51:65   3B   97158 518602 | sdfg  51:65   4B   97158 518602 |
+
+ - Found 2 new Veritas device(s): 'VSP_97013_5165 VSP_97158_5165'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 15 sec.
+
+
+lp09d10:~ # vxdisk list | grep -i VSP_97013_5165
+VSP_97013_5165 auto:none       -            -            online invalid thinrclm
+lp09d10:~ # vxdisk list | grep -i VSP_97158_5165
+VSP_97158_5165 auto:none       -            -            online invalid thinrclm
+lp09d10:~ # san_shortinfo | grep -i 5165
+VSP_97013_5165     | sdfh  51:65   3B   97013   518602 | sdff  51:65   4B   97013   518602 |
+VSP_97158_5165     | sdfi  51:65   3B   97158   518602 | sdfg  51:65   4B   97158   518602 |
+lp09d10:~ #
+
+
+
+
+lp09d09:~ # san_rescan -o
+** Starting with PID '13773' and options '-o'
+
+** HBA Check...
+ - Checking host1   (0x10000090fae0bc48): 'Link Up - Ready Fabric'
+ - Checking host3   (0x10000090fae0bca0): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host1 host3'.
+
+** Rescanning host1
+ = Triggering Scan on host1
+ - Checking host1:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 4 new os-device(s) on host1
+
+** Rescanning host3
+ = Triggering Scan on host3
+ - Checking host3:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 4 new os-device(s) on host3
+
+** Device summary
+ - Found 8 new devices: sdtn sdto sdtp sdtq sdtj sdtk sdtl sdtm
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   VSP_97013_5162    | sdtn  51:62   3B   97013 518602 | sdtj  51:62   4B   97013 518602 | dgkiqaw9db
+   VSP_97013_5165    | sdto  51:65   3B   97013 518602 | sdtk  51:65   4B   97013 518602 |
+   VSP_97158_5162    | sdtp  51:62   3B   97158 518602 | sdtl  51:62   4B   97158 518602 | dgkiqaw9db
+   VSP_97158_5165    | sdtq  51:65   3B   97158 518602 | sdtm  51:65   4B   97158 518602 |
+
+ - Found 4 new Veritas device(s): 'VSP_97013_5162 VSP_97013_5165 VSP_97158_5162 VSP_97158_5165'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 15 sec.
+
+
+lp09d09:~ # san_shortinfo | grep -i 5165
+VSP_97013_5165     | sdto  51:65   3B   97013   518602 | sdtk  51:65   4B   97013   518602 |
+VSP_97158_5165     | sdtq  51:65   3B   97158   518602 | sdtm  51:65   4B   97158   518602 |
+lp09d09:~ #
+
+
+
+ 
+lp09d10:~ # vxdg list | grep -i dgdbipst92db
+dgdbipst92db enabled,cds          1248278507.83.lp09d01
+lp09d10:~ # vxprint -htq | grep -i dgdbipst92db
+Disk group: dgdbipst92db
+dg dgdbipst92db default      default  11000    1248278507.83.lp09d01
+lp09d10:~ #
+
+
+
+lp09d10:~ # vxprint | grep -i lvdbipst92db
+v  lvdbipst92db fsgen        ENABLED  456887392 -       ACTIVE   -       -
+pl lvdbipst92db-97013 lvdbipst92db ENABLED 456887392 -  ACTIVE   -       -
+sd 58_97013_a0b7-01 lvdbipst92db-97013 ENABLED 117819168 0 -     -       -
+sd 58_97013_0273-02 lvdbipst92db-97013 ENABLED 51273024 117819168 - -    -
+sd 58_97013_0273-10 lvdbipst92db-97013 ENABLED 52073104 169092192 - -    -
+sd 58_97013_506b-01 lvdbipst92db-97013 ENABLED 117940560 221165296 - -   -
+sd 58_97013_507f-01 lvdbipst92db-97013 ENABLED 117781536 339105856 - -   -
+pl lvdbipst92db-97158 lvdbipst92db ENABLED 456887392 -  ACTIVE   -       -
+sd 10_97158_a0d8-01 lvdbipst92db-97158 ENABLED 117940560 0 -     -       -
+sd 10_97158_0273-01 lvdbipst92db-97158 ENABLED 51151632 117940560 - -    -
+sd 10_97158_0273-10 lvdbipst92db-97158 ENABLED 52194496 169092192 - -    -
+sd 10_97158_506b-01 lvdbipst92db-97158 ENABLED 117940560 221286688 - -   -
+sd 10_97158_507f-01 lvdbipst92db-97158 ENABLED 117660144 339227248 - -   -
+pl lvdbipst92db_drl-97013 lvdbipst92db ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_0273-01 lvdbipst92db_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvdbipst92db_drl-97158 lvdbipst92db ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_0273-02 lvdbipst92db_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvdbipst92db_dco lvdbipst92db -    -        -        -        -       -
+v  lvdbipst92db_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipst92db_dcl-97158 lvdbipst92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_0273-03 lvdbipst92db_dcl-97158 ENABLED 2112 0 -      -       -
+pl lvdbipst92db_dcl-97013 lvdbipst92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_0273-03 lvdbipst92db_dcl-97013 ENABLED 2112 0 -      -       -
+lp09d10:~ #
+
+
+
+lp09d10:~ # vxprint
+Disk group: dgoracle_lp09d10
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgoracle_lp09d10 dgoracle_lp09d10 - -       -        -        -       -
+
+dm 10_97158_5149 VSP_97158_5149 -     471961632 -       -        -       -
+dm 58_97013_5149 VSP_97013_5149 -     471961632 -       -        -       -
+
+v  lvoracle     fsgen        ENABLED  367001600 -       ACTIVE   -       -
+pl lvoracle-97013 lvoracle   ENABLED  367001600 -       ACTIVE   -       -
+sd 58_97013_5149-01 lvoracle-97013 ENABLED 367001600 0  -        -       -
+pl lvoracle-97158 lvoracle   ENABLED  367001600 -       ACTIVE   -       -
+sd 10_97158_5149-01 lvoracle-97158 ENABLED 367001600 0  -        -       -
+pl lvoracle_drl-97013 lvoracle ENABLED LOGONLY -        ACTIVE   -       -
+sd 58_97013_5149-03 lvoracle_drl-97013 ENABLED 2112 LOG -        -       -
+pl lvoracle_drl-97158 lvoracle ENABLED LOGONLY -        ACTIVE   -       -
+sd 10_97158_5149-03 lvoracle_drl-97158 ENABLED 2112 LOG -        -       -
+dc lvoracle_dco lvoracle     -        -        -        -        -       -
+v  lvoracle_dcl gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvoracle_dcl-97013 lvoracle_dcl ENABLED 2112 -       ACTIVE   -       -
+sd 58_97013_5149-02 lvoracle_dcl-97013 ENABLED 2112 0   -        -       -
+pl lvoracle_dcl-97158 lvoracle_dcl ENABLED 2112 -       ACTIVE   -       -
+sd 10_97158_5149-02 lvoracle_dcl-97158 ENABLED 2112 0   -        -       -
+
+v  lvoracleaudit fsgen       ENABLED  104857600 -       ACTIVE   -       -
+pl lvoracleaudit-97013 lvoracleaudit ENABLED 104857600 - ACTIVE  -       -
+sd 58_97013_5149-04 lvoracleaudit-97013 ENABLED 104857600 0 -    -       -
+pl lvoracleaudit-97158 lvoracleaudit ENABLED 104857600 - ACTIVE  -       -
+sd 10_97158_5149-04 lvoracleaudit-97158 ENABLED 104857600 0 -    -       -
+pl lvoracleaudit_drl-97013 lvoracleaudit ENABLED LOGONLY - ACTIVE -      -
+sd 58_97013_5149-06 lvoracleaudit_drl-97013 ENABLED 2112 LOG -   -       -
+pl lvoracleaudit_drl-97158 lvoracleaudit ENABLED LOGONLY - ACTIVE -      -
+sd 10_97158_5149-06 lvoracleaudit_drl-97158 ENABLED 2112 LOG -   -       -
+dc lvoracleaudit_dco lvoracleaudit -  -        -        -        -       -
+v  lvoracleaudit_dcl gen     ENABLED  2112     -        ACTIVE   -       -
+pl lvoracleaudit_dcl-97013 lvoracleaudit_dcl ENABLED 2112 - ACTIVE -     -
+sd 58_97013_5149-05 lvoracleaudit_dcl-97013 ENABLED 2112 0 -     -       -
+pl lvoracleaudit_dcl-97158 lvoracleaudit_dcl ENABLED 2112 - ACTIVE -     -
+sd 10_97158_5149-05 lvoracleaudit_dcl-97158 ENABLED 2112 0 -     -       -
+
+Disk group: dgdbipso92bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipso92bkup dgdbipso92bkup -    -        -        -        -       -
+
+dm 10_97158_000c VSP_97158_000c -     471961632 -       -        -       -
+dm 10_97158_00f4 VSP_97158_00f4 -     471961632 -       -        -       -
+dm 58_97013_000c VSP_97013_000c -     471961632 -       -        -       -
+dm 58_97013_00f4 VSP_97013_00f4 -     471961632 -       -        -       -
+
+v  lvdbipso92bkup fsgen      ENABLED  943718400 -       ACTIVE   -       -
+pl lvdbipso92bkup-97013 lvdbipso92bkup ENABLED 943718400 - ACTIVE -      -
+sd 58_97013_00f4-02 lvdbipso92bkup-97013 ENABLED 336334624 0 -   -       -
+sd 58_97013_000c-01 lvdbipso92bkup-97013 ENABLED 471961632 336334624 - - -
+sd 58_97013_00f4-04 lvdbipso92bkup-97013 ENABLED 135422144 808296256 - - -
+pl lvdbipso92bkup-97158 lvdbipso92bkup ENABLED 943718400 - ACTIVE -      -
+sd 10_97158_00f4-01 lvdbipso92bkup-97158 ENABLED 336334624 0 -   -       -
+sd 10_97158_000c-01 lvdbipso92bkup-97158 ENABLED 471961632 336334624 - - -
+sd 10_97158_00f4-04 lvdbipso92bkup-97158 ENABLED 135422144 808296256 - - -
+pl lvdbipso92bkup_drl-97013 lvdbipso92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 58_97013_00f4-01 lvdbipso92bkup_drl-97013 ENABLED 2112 LOG -  -       -
+pl lvdbipso92bkup_drl-97158 lvdbipso92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 10_97158_00f4-02 lvdbipso92bkup_drl-97158 ENABLED 2112 LOG -  -       -
+dc lvdbipso92bkup_dco lvdbipso92bkup - -       -        -        -       -
+v  lvdbipso92bkup_dcl gen    ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipso92bkup_dcl-97013 lvdbipso92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 58_97013_00f4-03 lvdbipso92bkup_dcl-97013 ENABLED 2112 0 -    -       -
+pl lvdbipso92bkup_dcl-97158 lvdbipso92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 10_97158_00f4-03 lvdbipso92bkup_dcl-97158 ENABLED 2112 0 -    -       -
+
+Disk group: dgdbipso92db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipso92db dgdbipso92db -        -        -        -        -       -
+
+dm 10_97158_a0d5 VSP_97158_a0d5 -     235848720 -       -        -       -
+dm 10_97158_027b VSP_97158_027b -     235946912 -       -        -       -
+dm 10_97158_027d VSP_97158_027d -     235946912 -       -        -       -
+dm 58_97013_a0b5 VSP_97013_a0b5 -     235848720 -       -        -       -
+dm 58_97013_027b VSP_97013_027b -     235946912 -       -        -       -
+dm 58_97013_027d VSP_97013_027d -     235946912 -       -        -       -
+
+v  lvdbipso92db fsgen        ENABLED  467802304 -       ACTIVE   -       -
+pl lvdbipso92db-97013 lvdbipso92db ENABLED 467802304 -  ACTIVE   -       -
+sd 58_97013_a0b5-01 lvdbipso92db-97013 ENABLED 231855392 0 -     -       -
+sd 58_97013_027d-01 lvdbipso92db-97013 ENABLED 235946912 231855392 - -   -
+pl lvdbipso92db-97158 lvdbipso92db ENABLED 467802304 -  ACTIVE   -       -
+sd 10_97158_027b-01 lvdbipso92db-97158 ENABLED 231855392 0 -     -       -
+sd 10_97158_027d-01 lvdbipso92db-97158 ENABLED 235946912 231855392 - -   -
+pl lvdbipso92db_drl-97013 lvdbipso92db ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_027b-01 lvdbipso92db_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvdbipso92db_drl-97158 lvdbipso92db ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_027b-02 lvdbipso92db_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvdbipso92db_dco lvdbipso92db -    -        -        -        -       -
+v  lvdbipso92db_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipso92db_dcl-97013 lvdbipso92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_027b-02 lvdbipso92db_dcl-97013 ENABLED 2112 0 -      -       -
+pl lvdbipso92db_dcl-97158 lvdbipso92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_027b-03 lvdbipso92db_dcl-97158 ENABLED 2112 0 -      -       -
+
+v  lvdbipso92redo1 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbipso92redo1-97013 lvdbipso92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_027b-04 lvdbipso92redo1-97013 ENABLED 7290880 0 -    -       -
+pl lvdbipso92redo1-97158 lvdbipso92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_a0d5-01 lvdbipso92redo1-97158 ENABLED 7290880 0 -    -       -
+pl lvdbipso92redo1_drl-97013 lvdbipso92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_027b-03 lvdbipso92redo1_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipso92redo1_drl-97158 lvdbipso92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_027b-04 lvdbipso92redo1_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipso92redo1_dco lvdbipso92redo1 - -     -        -        -       -
+v  lvdbipso92redo1_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipso92redo1_dcl-97013 lvdbipso92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_027b-05 lvdbipso92redo1_dcl-97013 ENABLED 2112 0 -   -       -
+pl lvdbipso92redo1_dcl-97158 lvdbipso92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_027b-05 lvdbipso92redo1_dcl-97158 ENABLED 2112 0 -   -       -
+
+v  lvdbipso92redo2 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbipso92redo2-97013 lvdbipso92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_027b-07 lvdbipso92redo2-97013 ENABLED 7290880 0 -    -       -
+pl lvdbipso92redo2-97158 lvdbipso92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_a0d5-02 lvdbipso92redo2-97158 ENABLED 7290880 0 -    -       -
+pl lvdbipso92redo2_drl-97013 lvdbipso92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_027b-06 lvdbipso92redo2_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipso92redo2_drl-97158 lvdbipso92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_027b-06 lvdbipso92redo2_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipso92redo2_dco lvdbipso92redo2 - -     -        -        -       -
+v  lvdbipso92redo2_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipso92redo2_dcl-97013 lvdbipso92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_027b-08 lvdbipso92redo2_dcl-97013 ENABLED 2112 0 -   -       -
+pl lvdbipso92redo2_dcl-97158 lvdbipso92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_027b-07 lvdbipso92redo2_dcl-97158 ENABLED 2112 0 -   -       -
+
+Disk group: dgdbipsp92bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipsp92bkup dgdbipsp92bkup -    -        -        -        -       -
+
+dm 10_97158_0006 VSP_97158_0006 -     29435792 -        -        -       -
+dm 10_97158_0282 VSP_97158_0282 -     29435792 -        -        -       -
+dm 10_97158_0340 VSP_97158_0340 -     29435792 -        -        -       -
+dm 10_97158_0341 VSP_97158_0341 -     29435792 -        -        -       -
+dm 10_97158_0342 VSP_97158_0342 -     29435792 -        -        -       -
+dm 10_97158_0343 VSP_97158_0343 -     29435792 -        -        -       -
+dm 10_97158_0344 VSP_97158_0344 -     29435792 -        -        -       -
+dm 10_97158_0345 VSP_97158_0345 -     29435792 -        -        -       -
+dm 10_97158_0346 VSP_97158_0346 -     29435792 -        -        -       -
+dm 10_97158_0347 VSP_97158_0347 -     29435792 -        -        -       -
+dm 58_97013_0006 VSP_97013_0006 -     29435792 -        -        -       -
+dm 58_97013_0282 VSP_97013_0282 -     29435792 -        -        -       -
+dm 58_97013_0340 VSP_97013_0340 -     29435792 -        -        -       -
+dm 58_97013_0341 VSP_97013_0341 -     29435792 -        -        -       -
+dm 58_97013_0342 VSP_97013_0342 -     29435792 -        -        -       -
+dm 58_97013_0343 VSP_97013_0343 -     29435792 -        -        -       -
+dm 58_97013_0344 VSP_97013_0344 -     29435792 -        -        -       -
+dm 58_97013_0345 VSP_97013_0345 -     29435792 -        -        -       -
+dm 58_97013_0346 VSP_97013_0346 -     29435792 -        -        -       -
+dm 58_97013_0347 VSP_97013_0347 -     29435792 -        -        -       -
+
+v  lvdbipsp92bkup fsgen      ENABLED  294316640 -       ACTIVE   -       -
+pl lvdbipsp92bkup-97013 lvdbipsp92bkup ENABLED 294316640 - ACTIVE -      -
+sd 58_97013_0282-02 lvdbipsp92bkup-97013 ENABLED 28924512 0 -    -       -
+sd 58_97013_0282-03 lvdbipsp92bkup-97013 ENABLED 507056 28924512 - -     -
+sd 58_97013_0006-01 lvdbipsp92bkup-97013 ENABLED 29435792 29431568 - -   -
+sd 58_97013_0340-01 lvdbipsp92bkup-97013 ENABLED 29435792 58867360 - -   -
+sd 58_97013_0341-01 lvdbipsp92bkup-97013 ENABLED 29435792 88303152 - -   -
+sd 58_97013_0342-01 lvdbipsp92bkup-97013 ENABLED 29435792 117738944 - -  -
+sd 58_97013_0343-01 lvdbipsp92bkup-97013 ENABLED 29435792 147174736 - -  -
+sd 58_97013_0344-01 lvdbipsp92bkup-97013 ENABLED 29435792 176610528 - -  -
+sd 58_97013_0345-01 lvdbipsp92bkup-97013 ENABLED 29435792 206046320 - -  -
+sd 58_97013_0346-01 lvdbipsp92bkup-97013 ENABLED 29435792 235482112 - -  -
+sd 58_97013_0347-01 lvdbipsp92bkup-97013 ENABLED 29398736 264917904 - -  -
+pl lvdbipsp92bkup-97158 lvdbipsp92bkup ENABLED 294316640 - ACTIVE -      -
+sd 10_97158_0282-01 lvdbipsp92bkup-97158 ENABLED 28924512 0 -    -       -
+sd 10_97158_0282-02 lvdbipsp92bkup-97158 ENABLED 507056 28924512 - -     -
+sd 10_97158_0006-01 lvdbipsp92bkup-97158 ENABLED 29435792 29431568 - -   -
+sd 10_97158_0340-01 lvdbipsp92bkup-97158 ENABLED 29435792 58867360 - -   -
+sd 10_97158_0341-01 lvdbipsp92bkup-97158 ENABLED 29435792 88303152 - -   -
+sd 10_97158_0342-01 lvdbipsp92bkup-97158 ENABLED 29435792 117738944 - -  -
+sd 10_97158_0343-01 lvdbipsp92bkup-97158 ENABLED 29435792 147174736 - -  -
+sd 10_97158_0344-01 lvdbipsp92bkup-97158 ENABLED 29435792 176610528 - -  -
+sd 10_97158_0345-01 lvdbipsp92bkup-97158 ENABLED 29435792 206046320 - -  -
+sd 10_97158_0346-01 lvdbipsp92bkup-97158 ENABLED 29435792 235482112 - -  -
+sd 10_97158_0347-01 lvdbipsp92bkup-97158 ENABLED 29398736 264917904 - -  -
+pl lvdbipsp92bkup_drl-97013 lvdbipsp92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 58_97013_0282-01 lvdbipsp92bkup_drl-97013 ENABLED 2112 LOG -  -       -
+pl lvdbipsp92bkup_drl-97158 lvdbipsp92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 10_97158_0282-03 lvdbipsp92bkup_drl-97158 ENABLED 2112 LOG -  -       -
+dc lvdbipsp92bkup_dco lvdbipsp92bkup - -       -        -        -       -
+v  lvdbipsp92bkup_dcl gen    ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipsp92bkup_dcl-97158 lvdbipsp92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 10_97158_0282-04 lvdbipsp92bkup_dcl-97158 ENABLED 2112 0 -    -       -
+pl lvdbipsp92bkup_dcl-97013 lvdbipsp92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 58_97013_0282-04 lvdbipsp92bkup_dcl-97013 ENABLED 2112 0 -    -       -
+
+Disk group: dgdbipsp92db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipsp92db dgdbipsp92db -        -        -        -        -       -
+
+dm 10_97158_02ac VSP_97158_02ac -     29435792 -        -        -       -
+dm 10_97158_027f VSP_97158_027f -     29435792 -        -        -       -
+dm 10_97158_0280 VSP_97158_0280 -     29435792 -        -        -       -
+dm 10_97158_0281 VSP_97158_0281 -     29435792 -        -        -       -
+dm 10_97158_5053 VSP_97158_5053 -     235946912 -       -        -       -
+dm 58_97013_a075 VSP_97013_a075 -     29417728 -        -        -       -
+dm 58_97013_027f VSP_97013_027f -     29435792 -        -        -       -
+dm 58_97013_0280 VSP_97013_0280 -     29435792 -        -        -       -
+dm 58_97013_0281 VSP_97013_0281 -     29435792 -        -        -       -
+dm 58_97013_5053 VSP_97013_5053 -     235946912 -       -        -       -
+
+v  lvdbipsp92db fsgen        ENABLED  338918496 -       ACTIVE   -       -
+pl lvdbipsp92db-97013 lvdbipsp92db ENABLED 338918496 -  ACTIVE   -       -
+sd 58_97013_a075-01 lvdbipsp92db-97013 ENABLED 26340864 0 -      -       -
+sd 58_97013_0280-01 lvdbipsp92db-97013 ENABLED 29435792 26340864 - -     -
+sd 58_97013_0281-02 lvdbipsp92db-97013 ENABLED 29429456 55776656 - -     -
+sd 58_97013_a075-02 lvdbipsp92db-97013 ENABLED 2917776 85206112 - -      -
+sd 58_97013_027f-06 lvdbipsp92db-97013 ENABLED 14847696 88123888 - -     -
+sd 58_97013_5053-01 lvdbipsp92db-97013 ENABLED 235946912 102971584 - -   -
+pl lvdbipsp92db-97158 lvdbipsp92db ENABLED 338918496 -  ACTIVE   -       -
+sd 10_97158_02ac-01 lvdbipsp92db-97158 ENABLED 22144912 0 -      -       -
+sd 10_97158_027f-01 lvdbipsp92db-97158 ENABLED 29435792 22144912 - -     -
+sd 10_97158_0280-01 lvdbipsp92db-97158 ENABLED 4195952 51580704 - -      -
+sd 10_97158_0281-02 lvdbipsp92db-97158 ENABLED 29429456 55776656 - -     -
+sd 10_97158_0280-06 lvdbipsp92db-97158 ENABLED 17765472 85206112 - -     -
+sd 10_97158_5053-01 lvdbipsp92db-97158 ENABLED 235946912 102971584 - -   -
+pl lvdbipsp92db_drl-97013 lvdbipsp92db ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_0281-01 lvdbipsp92db_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvdbipsp92db_drl-97158 lvdbipsp92db ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_0281-01 lvdbipsp92db_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvdbipsp92db_dco lvdbipsp92db -    -        -        -        -       -
+v  lvdbipsp92db_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipsp92db_dcl-97158 lvdbipsp92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_0280-02 lvdbipsp92db_dcl-97158 ENABLED 2112 0 -      -       -
+pl lvdbipsp92db_dcl-97013 lvdbipsp92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_027f-01 lvdbipsp92db_dcl-97013 ENABLED 2112 0 -      -       -
+
+v  lvdbipsp92redo1 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbipsp92redo1-97013 lvdbipsp92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_027f-02 lvdbipsp92redo1-97013 ENABLED 7290880 0 -    -       -
+pl lvdbipsp92redo1-97158 lvdbipsp92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_0280-03 lvdbipsp92redo1-97158 ENABLED 7290880 0 -    -       -
+pl lvdbipsp92redo1_drl-97013 lvdbipsp92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0281-03 lvdbipsp92redo1_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipsp92redo1_drl-97158 lvdbipsp92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0281-03 lvdbipsp92redo1_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipsp92redo1_dco lvdbipsp92redo1 - -     -        -        -       -
+v  lvdbipsp92redo1_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipsp92redo1_dcl-97158 lvdbipsp92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0280-04 lvdbipsp92redo1_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbipsp92redo1_dcl-97013 lvdbipsp92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_027f-03 lvdbipsp92redo1_dcl-97013 ENABLED 2112 0 -   -       -
+
+v  lvdbipsp92redo2 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbipsp92redo2-97013 lvdbipsp92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_027f-04 lvdbipsp92redo2-97013 ENABLED 7290880 0 -    -       -
+pl lvdbipsp92redo2-97158 lvdbipsp92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_02ac-02 lvdbipsp92redo2-97158 ENABLED 7290880 0 -    -       -
+pl lvdbipsp92redo2_drl-97013 lvdbipsp92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0281-04 lvdbipsp92redo2_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipsp92redo2_drl-97158 lvdbipsp92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0281-04 lvdbipsp92redo2_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipsp92redo2_dco lvdbipsp92redo2 - -     -        -        -       -
+v  lvdbipsp92redo2_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipsp92redo2_dcl-97158 lvdbipsp92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0280-05 lvdbipsp92redo2_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbipsp92redo2_dcl-97013 lvdbipsp92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_027f-05 lvdbipsp92redo2_dcl-97013 ENABLED 2112 0 -   -       -
+
+Disk group: dgdbipst92bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipst92bkup dgdbipst92bkup -    -        -        -        -       -
+
+dm 10_97158_a0cf VSP_97158_a0cf -     29417728 -        -        -       -
+dm 10_97158_a0db VSP_97158_a0db -     29333152 -        -        -       -
+dm 10_97158_a095 VSP_97158_a095 -     117819168 -       -        -       -
+dm 10_97158_a098 VSP_97158_a098 -     29417728 -        -        -       -
+dm 10_97158_02aa VSP_97158_02aa -     117940560 -       -        -       -
+dm 10_97158_02ab VSP_97158_02ab -     29435792 -        -        -       -
+dm 10_97158_02f5 VSP_97158_02f5 -     117940560 -       -        -       -
+dm 10_97158_02f6 VSP_97158_02f6 -     117940560 -       -        -       -
+dm 58_97013_a0ab VSP_97013_a0ab -     29417728 -        -        -       -
+dm 58_97013_a0be VSP_97013_a0be -     29333152 -        -        -       -
+dm 58_97013_a072 VSP_97013_a072 -     117819168 -       -        -       -
+dm 58_97013_a077 VSP_97013_a077 -     29417728 -        -        -       -
+dm 58_97013_02aa VSP_97013_02aa -     117940560 -       -        -       -
+dm 58_97013_02ab VSP_97013_02ab -     29435792 -        -        -       -
+dm 58_97013_02f5 VSP_97013_02f5 -     117940560 -       -        -       -
+dm 58_97013_02f6 VSP_97013_02f6 -     117940560 -       -        -       -
+
+v  lvdbipst92bkup fsgen      ENABLED  589085792 -       ACTIVE   -       -
+pl lvdbipst92bkup-97013 lvdbipst92bkup ENABLED 589085792 - ACTIVE -      -
+sd 58_97013_a077-01 lvdbipst92bkup-97013 ENABLED 29417728 0 -    -       -
+sd 58_97013_a0ab-01 lvdbipst92bkup-97013 ENABLED 29417728 29417728 - -   -
+sd 58_97013_a0be-01 lvdbipst92bkup-97013 ENABLED 29333152 58835456 - -   -
+sd 58_97013_a072-01 lvdbipst92bkup-97013 ENABLED 117816256 88168608 - -  -
+sd 58_97013_02f5-01 lvdbipst92bkup-97013 ENABLED 117940560 205984864 - - -
+sd 58_97013_02f6-01 lvdbipst92bkup-97013 ENABLED 117940560 323925424 - - -
+sd 58_97013_02aa-01 lvdbipst92bkup-97013 ENABLED 117940560 441865984 - - -
+sd 58_97013_02ab-01 lvdbipst92bkup-97013 ENABLED 29279248 559806544 - -  -
+pl lvdbipst92bkup-97158 lvdbipst92bkup ENABLED 589085792 - ACTIVE -      -
+sd 10_97158_a098-01 lvdbipst92bkup-97158 ENABLED 29417728 0 -    -       -
+sd 10_97158_a0cf-01 lvdbipst92bkup-97158 ENABLED 29417728 29417728 - -   -
+sd 10_97158_a0db-01 lvdbipst92bkup-97158 ENABLED 29333152 58835456 - -   -
+sd 10_97158_a095-01 lvdbipst92bkup-97158 ENABLED 117817312 88168608 - -  -
+sd 10_97158_02f5-01 lvdbipst92bkup-97158 ENABLED 117940560 205985920 - - -
+sd 10_97158_02f6-01 lvdbipst92bkup-97158 ENABLED 117940560 323926480 - - -
+sd 10_97158_02aa-01 lvdbipst92bkup-97158 ENABLED 117940560 441867040 - - -
+sd 10_97158_02ab-01 lvdbipst92bkup-97158 ENABLED 29278192 559807600 - -  -
+pl lvdbipst92bkup_drl-97013 lvdbipst92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 58_97013_a072-02 lvdbipst92bkup_drl-97013 ENABLED 1056 LOG -  -       -
+pl lvdbipst92bkup_drl-97158 lvdbipst92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 10_97158_a095-02 lvdbipst92bkup_drl-97158 ENABLED 1056 LOG -  -       -
+
+Disk group: dgdbipst92db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbipst92db dgdbipst92db -        -        -        -        -       -
+
+dm 10_97158_a0d8 VSP_97158_a0d8 -     117940560 -       -        -       -
+dm 10_97158_0273 VSP_97158_0273 -     117940560 -       -        -       -
+dm 10_97158_506b VSP_97158_506b -     117940560 -       -        -       -
+dm 10_97158_507f VSP_97158_507f -     117940560 -       -        -       -
+dm 10_97158_5062 VSP_97158_5062 -     29435792 -        -        -       -
+dm 10_97158_5063 VSP_97158_5063 -     29435792 -        -        -       -
+dm 58_97013_a0b7 VSP_97013_a0b7 -     117819168 -       -        -       -
+dm 58_97013_0273 VSP_97013_0273 -     117940560 -       -        -       -
+dm 58_97013_506b VSP_97013_506b -     117940560 -       -        -       -
+dm 58_97013_507f VSP_97013_507f -     117940560 -       -        -       -
+dm 58_97013_5062 VSP_97013_5062 -     29435792 -        -        -       -
+dm 58_97013_5063 VSP_97013_5063 -     29435792 -        -        -       -
+
+v  lvdbipst92db fsgen        ENABLED  456887392 -       ACTIVE   -       -
+pl lvdbipst92db-97013 lvdbipst92db ENABLED 456887392 -  ACTIVE   -       -
+sd 58_97013_a0b7-01 lvdbipst92db-97013 ENABLED 117819168 0 -     -       -
+sd 58_97013_0273-02 lvdbipst92db-97013 ENABLED 51273024 117819168 - -    -
+sd 58_97013_0273-10 lvdbipst92db-97013 ENABLED 52073104 169092192 - -    -
+sd 58_97013_506b-01 lvdbipst92db-97013 ENABLED 117940560 221165296 - -   -
+sd 58_97013_507f-01 lvdbipst92db-97013 ENABLED 117781536 339105856 - -   -
+pl lvdbipst92db-97158 lvdbipst92db ENABLED 456887392 -  ACTIVE   -       -
+sd 10_97158_a0d8-01 lvdbipst92db-97158 ENABLED 117940560 0 -     -       -
+sd 10_97158_0273-01 lvdbipst92db-97158 ENABLED 51151632 117940560 - -    -
+sd 10_97158_0273-10 lvdbipst92db-97158 ENABLED 52194496 169092192 - -    -
+sd 10_97158_506b-01 lvdbipst92db-97158 ENABLED 117940560 221286688 - -   -
+sd 10_97158_507f-01 lvdbipst92db-97158 ENABLED 117660144 339227248 - -   -
+pl lvdbipst92db_drl-97013 lvdbipst92db ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_0273-01 lvdbipst92db_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvdbipst92db_drl-97158 lvdbipst92db ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_0273-02 lvdbipst92db_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvdbipst92db_dco lvdbipst92db -    -        -        -        -       -
+v  lvdbipst92db_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipst92db_dcl-97158 lvdbipst92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_0273-03 lvdbipst92db_dcl-97158 ENABLED 2112 0 -      -       -
+pl lvdbipst92db_dcl-97013 lvdbipst92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_0273-03 lvdbipst92db_dcl-97013 ENABLED 2112 0 -      -       -
+
+v  lvdbipst92redo1 fsgen     ENABLED  36726896 -        ACTIVE   -       -
+pl lvdbipst92redo1-97013 lvdbipst92redo1 ENABLED 36726896 - ACTIVE -     -
+sd 58_97013_0273-05 lvdbipst92redo1-97013 ENABLED 7290880 0 -    -       -
+sd 58_97013_507f-02 lvdbipst92redo1-97013 ENABLED 224 7290880 -  -       -
+sd 58_97013_5062-01 lvdbipst92redo1-97013 ENABLED 29435792 7291104 - -   -
+pl lvdbipst92redo1-97158 lvdbipst92redo1 ENABLED 36726896 - ACTIVE -     -
+sd 10_97158_0273-04 lvdbipst92redo1-97158 ENABLED 7290880 0 -    -       -
+sd 10_97158_507f-02 lvdbipst92redo1-97158 ENABLED 224 7290880 -  -       -
+sd 10_97158_5062-01 lvdbipst92redo1-97158 ENABLED 29435792 7291104 - -   -
+pl lvdbipst92redo1_drl-97013 lvdbipst92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0273-04 lvdbipst92redo1_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipst92redo1_drl-97158 lvdbipst92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0273-05 lvdbipst92redo1_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipst92redo1_dco lvdbipst92redo1 - -     -        -        -       -
+v  lvdbipst92redo1_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipst92redo1_dcl-97158 lvdbipst92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0273-06 lvdbipst92redo1_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbipst92redo1_dcl-97013 lvdbipst92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_0273-06 lvdbipst92redo1_dcl-97013 ENABLED 2112 0 -   -       -
+
+v  lvdbipst92redo2 fsgen     ENABLED  36726672 -        ACTIVE   -       -
+pl lvdbipst92redo2-97013 lvdbipst92redo2 ENABLED 36726672 - ACTIVE -     -
+sd 58_97013_0273-07 lvdbipst92redo2-97013 ENABLED 7290880 0 -    -       -
+sd 58_97013_5063-01 lvdbipst92redo2-97013 ENABLED 29435792 7290880 - -   -
+pl lvdbipst92redo2-97158 lvdbipst92redo2 ENABLED 36726672 - ACTIVE -     -
+sd 10_97158_0273-07 lvdbipst92redo2-97158 ENABLED 7290880 0 -    -       -
+sd 10_97158_5063-01 lvdbipst92redo2-97158 ENABLED 29435792 7290880 - -   -
+pl lvdbipst92redo2_drl-97013 lvdbipst92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0273-08 lvdbipst92redo2_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbipst92redo2_drl-97158 lvdbipst92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0273-08 lvdbipst92redo2_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbipst92redo2_dco lvdbipst92redo2 - -     -        -        -       -
+v  lvdbipst92redo2_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbipst92redo2_dcl-97158 lvdbipst92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0273-09 lvdbipst92redo2_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbipst92redo2_dcl-97013 lvdbipst92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_0273-09 lvdbipst92redo2_dcl-97013 ENABLED 2112 0 -   -       -
+
+Disk group: dgdboid4w9bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdboid4w9bkup dgdboid4w9bkup -    -        -        -        -       -
+
+dm 10_97158_030b VSP_97158_030b -     117940560 -       -        -       -
+dm 10_97158_50b4 VSP_97158_50b4 -     117940560 -       -        -       -
+dm 10_97158_50b5 VSP_97158_50b5 -     117940560 -       -        -       -
+dm 10_97158_50b6 VSP_97158_50b6 -     117940560 -       -        -       -
+dm 10_97158_0125 VSP_97158_0125 -     29435792 -        -        -       -
+dm 58_97013_030b VSP_97013_030b -     117940560 -       -        -       -
+dm 58_97013_50b4 VSP_97013_50b4 -     117940560 -       -        -       -
+dm 58_97013_50b5 VSP_97013_50b5 -     117940560 -       -        -       -
+dm 58_97013_50b6 VSP_97013_50b6 -     117940560 -       -        -       -
+dm 58_97013_0125 VSP_97013_0125 -     29435792 -        -        -       -
+
+v  lvbkup       fsgen        ENABLED  501166080 -       ACTIVE   -       -
+pl lvbkup-97013 lvbkup       ENABLED  501166080 -       ACTIVE   -       -
+sd 58_97013_030b-02 lvbkup-97013 ENABLED 117919744 0    -        -       -
+sd 58_97013_0125-01 lvbkup-97013 ENABLED 29435792 117919744 -    -       -
+sd 58_97013_50b4-01 lvbkup-97013 ENABLED 117940560 147355536 -   -       -
+sd 58_97013_50b5-01 lvbkup-97013 ENABLED 117940560 265296096 -   -       -
+sd 58_97013_50b6-01 lvbkup-97013 ENABLED 117929424 383236656 -   -       -
+pl lvbkup-97158 lvbkup       ENABLED  501166080 -       ACTIVE   -       -
+sd 10_97158_030b-02 lvbkup-97158 ENABLED 117919744 0    -        -       -
+sd 10_97158_0125-01 lvbkup-97158 ENABLED 29435792 117919744 -    -       -
+sd 10_97158_50b4-01 lvbkup-97158 ENABLED 117940560 147355536 -   -       -
+sd 10_97158_50b5-01 lvbkup-97158 ENABLED 117940560 265296096 -   -       -
+sd 10_97158_50b6-01 lvbkup-97158 ENABLED 117929424 383236656 -   -       -
+pl lvbkup_drl-97013 lvbkup   ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_030b-01 lvbkup_drl-97013 ENABLED 2112 LOG   -        -       -
+pl lvbkup_drl-97158 lvbkup   ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_030b-01 lvbkup_drl-97158 ENABLED 2112 LOG   -        -       -
+dc lvbkup_dco   lvbkup       -        -        -        -        -       -
+v  lvbkup_dcl   gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvbkup_dcl-97013 lvbkup_dcl ENABLED 2112    -        ACTIVE   -       -
+sd 58_97013_030b-03 lvbkup_dcl-97013 ENABLED 2112 0     -        -       -
+pl lvbkup_dcl-97158 lvbkup_dcl ENABLED 2112    -        ACTIVE   -       -
+sd 10_97158_030b-03 lvbkup_dcl-97158 ENABLED 2112 0     -        -       -
+
+Disk group: dgdboid4w9db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdboid4w9db dgdboid4w9db -        -        -        -        -       -
+
+dm 10_97158_0308 VSP_97158_0308 -     29435792 -        -        -       -
+dm 58_97013_0308 VSP_97013_0308 -     29435792 -        -        -       -
+
+v  lvdb         fsgen        ENABLED  29413376 -        ACTIVE   -       -
+pl lvdb-97013   lvdb         ENABLED  29413376 -        ACTIVE   -       -
+sd 58_97013_0308-02 lvdb-97013 ENABLED 29413376 0       -        -       -
+pl lvdb-97158   lvdb         ENABLED  29413376 -        ACTIVE   -       -
+sd 10_97158_0308-02 lvdb-97158 ENABLED 29413376 0       -        -       -
+pl lvdb_drl-97013 lvdb       ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_0308-01 lvdb_drl-97013 ENABLED 2112 LOG     -        -       -
+pl lvdb_drl-97158 lvdb       ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_0308-01 lvdb_drl-97158 ENABLED 2112 LOG     -        -       -
+dc lvdb_dco     lvdb         -        -        -        -        -       -
+v  lvdb_dcl     gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvdb_dcl-97013 lvdb_dcl   ENABLED  2112     -        ACTIVE   -       -
+sd 58_97013_0308-03 lvdb_dcl-97013 ENABLED 2112 0       -        -       -
+pl lvdb_dcl-97158 lvdb_dcl   ENABLED  2112     -        ACTIVE   -       -
+sd 10_97158_0308-03 lvdb_dcl-97158 ENABLED 2112 0       -        -       -
+
+Disk group: dgdboid4w9redo1
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdboid4w9redo1 dgdboid4w9redo1 -  -        -        -        -       -
+
+dm 10_97158_0309 VSP_97158_0309 -     29435792 -        -        -       -
+dm 58_97013_0309 VSP_97013_0309 -     29435792 -        -        -       -
+
+v  lvredo1      fsgen        ENABLED  29413376 -        ACTIVE   -       -
+pl lvredo1-97013 lvredo1     ENABLED  29413376 -        ACTIVE   -       -
+sd 58_97013_0309-02 lvredo1-97013 ENABLED 29413376 0    -        -       -
+pl lvredo1-97158 lvredo1     ENABLED  29413376 -        ACTIVE   -       -
+sd 10_97158_0309-01 lvredo1-97158 ENABLED 29413376 0    -        -       -
+pl lvredo1_drl-97013 lvredo1 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_0309-01 lvredo1_drl-97013 ENABLED 2112 LOG  -        -       -
+pl lvredo1_drl-97158 lvredo1 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_0309-02 lvredo1_drl-97158 ENABLED 2112 LOG  -        -       -
+dc lvredo1_dco  lvredo1      -        -        -        -        -       -
+v  lvredo1_dcl  gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvredo1_dcl-97013 lvredo1_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 58_97013_0309-03 lvredo1_dcl-97013 ENABLED 2112 0    -        -       -
+pl lvredo1_dcl-97158 lvredo1_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 10_97158_0309-03 lvredo1_dcl-97158 ENABLED 2112 0    -        -       -
+
+Disk group: dgdboid4w9redo2
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdboid4w9redo2 dgdboid4w9redo2 -  -        -        -        -       -
+
+dm 10_97158_030a VSP_97158_030a -     29435792 -        -        -       -
+dm 58_97013_030a VSP_97013_030a -     29435792 -        -        -       -
+
+v  lvredo2      fsgen        ENABLED  29413376 -        ACTIVE   -       -
+pl lvredo2-97013 lvredo2     ENABLED  29413376 -        ACTIVE   -       -
+sd 58_97013_030a-02 lvredo2-97013 ENABLED 29413376 0    -        -       -
+pl lvredo2-97158 lvredo2     ENABLED  29413376 -        ACTIVE   -       -
+sd 10_97158_030a-02 lvredo2-97158 ENABLED 29413376 0    -        -       -
+pl lvredo2_drl-97013 lvredo2 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_030a-01 lvredo2_drl-97013 ENABLED 2112 LOG  -        -       -
+pl lvredo2_drl-97158 lvredo2 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_030a-01 lvredo2_drl-97158 ENABLED 2112 LOG  -        -       -
+dc lvredo2_dco  lvredo2      -        -        -        -        -       -
+v  lvredo2_dcl  gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvredo2_dcl-97013 lvredo2_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 58_97013_030a-03 lvredo2_dcl-97013 ENABLED 2112 0    -        -       -
+pl lvredo2_dcl-97158 lvredo2_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 10_97158_030a-03 lvredo2_dcl-97158 ENABLED 2112 0    -        -       -
+
+Disk group: dgdbqaro92bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbqaro92bkup dgdbqaro92bkup -    -        -        -        -       -
+
+dm 10_97158_01b7 VSP_97158_01b7 -     29435792 -        -        -       -
+dm 10_97158_018b VSP_97158_018b -     29435792 -        -        -       -
+dm 10_97158_018c VSP_97158_018c -     29435792 -        -        -       -
+dm 10_97158_50b7 VSP_97158_50b7 -     235946912 -       -        -       -
+dm 10_97158_0176 VSP_97158_0176 -     29435792 -        -        -       -
+dm 10_97158_0177 VSP_97158_0177 -     29435792 -        -        -       -
+dm 10_97158_0283 VSP_97158_0283 -     29435792 -        -        -       -
+dm 10_97158_515e VSP_97158_515e -     471961632 -       -        -       -
+dm 58_97013_01b7 VSP_97013_01b7 -     29435792 -        -        -       -
+dm 58_97013_018b VSP_97013_018b -     29435792 -        -        -       -
+dm 58_97013_018c VSP_97013_018c -     29435792 -        -        -       -
+dm 58_97013_50b7 VSP_97013_50b7 -     235946912 -       -        -       -
+dm 58_97013_0176 VSP_97013_0176 -     29435792 -        -        -       -
+dm 58_97013_0177 VSP_97013_0177 -     29435792 -        -        -       -
+dm 58_97013_0283 VSP_97013_0283 -     29435792 -        -        -       -
+dm 58_97013_515e VSP_97013_515e -     471961632 -       -        -       -
+
+v  lvdbqaro92bkup fsgen      ENABLED  884517472 -       ACTIVE   -       -
+pl lvdbqaro92bkup-97013 lvdbqaro92bkup ENABLED 884517472 - ACTIVE -      -
+sd 58_97013_01b7-01 lvdbqaro92bkup-97013 ENABLED 29435792 0 -    -       -
+sd 58_97013_0283-02 lvdbqaro92bkup-97013 ENABLED 29431568 29435792 - -   -
+sd 58_97013_0176-01 lvdbqaro92bkup-97013 ENABLED 29435792 58867360 - -   -
+sd 58_97013_0177-01 lvdbqaro92bkup-97013 ENABLED 29435792 88303152 - -   -
+sd 58_97013_018b-01 lvdbqaro92bkup-97013 ENABLED 29435792 117738944 - -  -
+sd 58_97013_018c-01 lvdbqaro92bkup-97013 ENABLED 29435792 147174736 - -  -
+sd 58_97013_50b7-01 lvdbqaro92bkup-97013 ENABLED 235946912 176610528 - - -
+sd 58_97013_515e-01 lvdbqaro92bkup-97013 ENABLED 471960032 412557440 - - -
+pl lvdbqaro92bkup-97158 lvdbqaro92bkup ENABLED 884517472 - ACTIVE -      -
+sd 10_97158_01b7-01 lvdbqaro92bkup-97158 ENABLED 29435792 0 -    -       -
+sd 10_97158_0283-01 lvdbqaro92bkup-97158 ENABLED 29431568 29435792 - -   -
+sd 10_97158_0176-01 lvdbqaro92bkup-97158 ENABLED 29435792 58867360 - -   -
+sd 10_97158_0177-01 lvdbqaro92bkup-97158 ENABLED 29435792 88303152 - -   -
+sd 10_97158_018b-01 lvdbqaro92bkup-97158 ENABLED 29435792 117738944 - -  -
+sd 10_97158_018c-01 lvdbqaro92bkup-97158 ENABLED 29435792 147174736 - -  -
+sd 10_97158_50b7-01 lvdbqaro92bkup-97158 ENABLED 235946912 176610528 - - -
+sd 10_97158_515e-01 lvdbqaro92bkup-97158 ENABLED 471960032 412557440 - - -
+pl lvdbqaro92bkup_drl-97013 lvdbqaro92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 58_97013_0283-01 lvdbqaro92bkup_drl-97013 ENABLED 2112 LOG -  -       -
+pl lvdbqaro92bkup_drl-97158 lvdbqaro92bkup ENABLED LOGONLY - ACTIVE -    -
+sd 10_97158_0283-02 lvdbqaro92bkup_drl-97158 ENABLED 2112 LOG -  -       -
+dc lvdbqaro92bkup_dco lvdbqaro92bkup - -       -        -        -       -
+v  lvdbqaro92bkup_dcl gen    ENABLED  2112     -        ACTIVE   -       -
+pl lvdbqaro92bkup_dcl-97158 lvdbqaro92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 10_97158_0283-03 lvdbqaro92bkup_dcl-97158 ENABLED 2112 0 -    -       -
+pl lvdbqaro92bkup_dcl-97013 lvdbqaro92bkup_dcl ENABLED 2112 - ACTIVE -   -
+sd 58_97013_0283-03 lvdbqaro92bkup_dcl-97013 ENABLED 2112 0 -    -       -
+
+Disk group: dgdbqaro92db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbqaro92db dgdbqaro92db -        -        -        -        -       -
+
+dm 10_97158_00c5 VSP_97158_00c5 -     29435792 -        -        -       -
+dm 10_97158_0274 VSP_97158_0274 -     29435792 -        -        -       -
+dm 10_97158_503f VSP_97158_503f -     117940560 -       -        -       -
+dm 10_97158_515c VSP_97158_515c -     235946912 -       -        -       -
+dm 58_97013_00c5 VSP_97013_00c5 -     29435792 -        -        -       -
+dm 58_97013_0274 VSP_97013_0274 -     29435792 -        -        -       -
+dm 58_97013_503f VSP_97013_503f -     117940560 -       -        -       -
+dm 58_97013_515c VSP_97013_515c -     235946912 -       -        -       -
+
+v  lvdbqaro92db fsgen        ENABLED  398006880 -       ACTIVE   -       -
+pl lvdbqaro92db-97013 lvdbqaro92db ENABLED 398006880 -  ACTIVE   -       -
+sd 58_97013_00c5-01 lvdbqaro92db-97013 ENABLED 29435792 0 -      -       -
+sd 58_97013_0274-02 lvdbqaro92db-97013 ENABLED 14639824 29435792 - -     -
+sd 58_97013_0274-10 lvdbqaro92db-97013 ENABLED 42672 44075616 -  -       -
+sd 58_97013_503f-01 lvdbqaro92db-97013 ENABLED 117940560 44118288 - -    -
+sd 58_97013_0274-11 lvdbqaro92db-97013 ENABLED 1120 162058848 -  -       -
+sd 58_97013_515c-01 lvdbqaro92db-97013 ENABLED 235946912 162059968 - -   -
+pl lvdbqaro92db-97158 lvdbqaro92db ENABLED 398006880 -  ACTIVE   -       -
+sd 10_97158_00c5-01 lvdbqaro92db-97158 ENABLED 29435792 0 -      -       -
+sd 10_97158_0274-02 lvdbqaro92db-97158 ENABLED 14639824 29435792 - -     -
+sd 10_97158_0274-10 lvdbqaro92db-97158 ENABLED 42672 44075616 -  -       -
+sd 10_97158_503f-01 lvdbqaro92db-97158 ENABLED 117940560 44118288 - -    -
+sd 10_97158_0274-11 lvdbqaro92db-97158 ENABLED 1120 162058848 -  -       -
+sd 10_97158_515c-01 lvdbqaro92db-97158 ENABLED 235946912 162059968 - -   -
+pl lvdbqaro92db_drl-97013 lvdbqaro92db ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_0274-01 lvdbqaro92db_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvdbqaro92db_drl-97158 lvdbqaro92db ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_0274-01 lvdbqaro92db_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvdbqaro92db_dco lvdbqaro92db -    -        -        -        -       -
+v  lvdbqaro92db_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvdbqaro92db_dcl-97158 lvdbqaro92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_0274-03 lvdbqaro92db_dcl-97158 ENABLED 2112 0 -      -       -
+pl lvdbqaro92db_dcl-97013 lvdbqaro92db_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_0274-03 lvdbqaro92db_dcl-97013 ENABLED 2112 0 -      -       -
+
+v  lvdbqaro92redo1 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbqaro92redo1-97013 lvdbqaro92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_0274-05 lvdbqaro92redo1-97013 ENABLED 7290880 0 -    -       -
+pl lvdbqaro92redo1-97158 lvdbqaro92redo1 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_0274-05 lvdbqaro92redo1-97158 ENABLED 7290880 0 -    -       -
+pl lvdbqaro92redo1_drl-97013 lvdbqaro92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0274-04 lvdbqaro92redo1_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbqaro92redo1_drl-97158 lvdbqaro92redo1 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0274-04 lvdbqaro92redo1_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbqaro92redo1_dco lvdbqaro92redo1 - -     -        -        -       -
+v  lvdbqaro92redo1_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbqaro92redo1_dcl-97158 lvdbqaro92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0274-06 lvdbqaro92redo1_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbqaro92redo1_dcl-97013 lvdbqaro92redo1_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_0274-06 lvdbqaro92redo1_dcl-97013 ENABLED 2112 0 -   -       -
+
+v  lvdbqaro92redo2 fsgen     ENABLED  7290880  -        ACTIVE   -       -
+pl lvdbqaro92redo2-97013 lvdbqaro92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 58_97013_0274-07 lvdbqaro92redo2-97013 ENABLED 7290880 0 -    -       -
+pl lvdbqaro92redo2-97158 lvdbqaro92redo2 ENABLED 7290880 - ACTIVE -      -
+sd 10_97158_0274-07 lvdbqaro92redo2-97158 ENABLED 7290880 0 -    -       -
+pl lvdbqaro92redo2_drl-97013 lvdbqaro92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 58_97013_0274-08 lvdbqaro92redo2_drl-97013 ENABLED 2112 LOG - -       -
+pl lvdbqaro92redo2_drl-97158 lvdbqaro92redo2 ENABLED LOGONLY - ACTIVE -  -
+sd 10_97158_0274-08 lvdbqaro92redo2_drl-97158 ENABLED 2112 LOG - -       -
+dc lvdbqaro92redo2_dco lvdbqaro92redo2 - -     -        -        -       -
+v  lvdbqaro92redo2_dcl gen   ENABLED  2112     -        ACTIVE   -       -
+pl lvdbqaro92redo2_dcl-97158 lvdbqaro92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 10_97158_0274-09 lvdbqaro92redo2_dcl-97158 ENABLED 2112 0 -   -       -
+pl lvdbqaro92redo2_dcl-97013 lvdbqaro92redo2_dcl ENABLED 2112 - ACTIVE - -
+sd 58_97013_0274-09 lvdbqaro92redo2_dcl-97013 ENABLED 2112 0 -   -       -
+
+Disk group: dgdbstr1w9bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbstr1w9bkup dgdbstr1w9bkup -    -        -        -        -       -
+
+dm 10_97158_03db VSP_97158_03db -     29435792 -        -        -       -
+dm 58_97013_03db VSP_97013_03db -     29435792 -        -        -       -
+
+v  lvbkup       fsgen        ENABLED  29407232 -        ACTIVE   -       -
+pl lvbkup-97013 lvbkup       ENABLED  29407232 -        ACTIVE   -       -
+sd 58_97013_03db-01 lvbkup-97013 ENABLED 29407232 0     -        -       -
+pl lvbkup-97158 lvbkup       ENABLED  29407232 -        ACTIVE   -       -
+sd 10_97158_03db-01 lvbkup-97158 ENABLED 29407232 0     -        -       -
+pl lvbkup_drl-97013 lvbkup   ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_03db-03 lvbkup_drl-97013 ENABLED 2112 LOG   -        -       -
+pl lvbkup_drl-97158 lvbkup   ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_03db-03 lvbkup_drl-97158 ENABLED 2112 LOG   -        -       -
+dc lvbkup_dco   lvbkup       -        -        -        -        -       -
+v  lvbkup_dcl   gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvbkup_dcl-97013 lvbkup_dcl ENABLED 2112    -        ACTIVE   -       -
+sd 58_97013_03db-02 lvbkup_dcl-97013 ENABLED 2112 0     -        -       -
+pl lvbkup_dcl-97158 lvbkup_dcl ENABLED 2112    -        ACTIVE   -       -
+sd 10_97158_03db-02 lvbkup_dcl-97158 ENABLED 2112 0     -        -       -
+
+Disk group: dgdbstr1w9db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbstr1w9db dgdbstr1w9db -        -        -        -        -       -
+
+dm 10_97158_03da VSP_97158_03da -     235946912 -       -        -       -
+dm 58_97013_03da VSP_97013_03da -     235946912 -       -        -       -
+
+v  lvdb         fsgen        ENABLED  146800640 -       ACTIVE   -       -
+pl lvdb-97013   lvdb         ENABLED  146800640 -       ACTIVE   -       -
+sd 58_97013_03da-01 lvdb-97013 ENABLED 146800640 0      -        -       -
+pl lvdb-97158   lvdb         ENABLED  146800640 -       ACTIVE   -       -
+sd 10_97158_03da-01 lvdb-97158 ENABLED 146800640 0      -        -       -
+pl lvdb_drl-97013 lvdb       ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_03da-03 lvdb_drl-97013 ENABLED 2112 LOG     -        -       -
+pl lvdb_drl-97158 lvdb       ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_03da-03 lvdb_drl-97158 ENABLED 2112 LOG     -        -       -
+dc lvdb_dco     lvdb         -        -        -        -        -       -
+v  lvdb_dcl     gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvdb_dcl-97013 lvdb_dcl   ENABLED  2112     -        ACTIVE   -       -
+sd 58_97013_03da-02 lvdb_dcl-97013 ENABLED 2112 0       -        -       -
+pl lvdb_dcl-97158 lvdb_dcl   ENABLED  2112     -        ACTIVE   -       -
+sd 10_97158_03da-02 lvdb_dcl-97158 ENABLED 2112 0       -        -       -
+
+Disk group: dgdbstr1w9redo1
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbstr1w9redo1 dgdbstr1w9redo1 -  -        -        -        -       -
+
+dm 10_97158_03dc VSP_97158_03dc -     29435792 -        -        -       -
+dm 58_97013_03dc VSP_97013_03dc -     29435792 -        -        -       -
+
+v  lvredo1      fsgen        ENABLED  29407232 -        ACTIVE   -       -
+pl lvredo1-97013 lvredo1     ENABLED  29407232 -        ACTIVE   -       -
+sd 58_97013_03dc-01 lvredo1-97013 ENABLED 29407232 0    -        -       -
+pl lvredo1-97158 lvredo1     ENABLED  29407232 -        ACTIVE   -       -
+sd 10_97158_03dc-01 lvredo1-97158 ENABLED 29407232 0    -        -       -
+pl lvredo1_drl-97013 lvredo1 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_03dc-03 lvredo1_drl-97013 ENABLED 2112 LOG  -        -       -
+pl lvredo1_drl-97158 lvredo1 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_03dc-03 lvredo1_drl-97158 ENABLED 2112 LOG  -        -       -
+dc lvredo1_dco  lvredo1      -        -        -        -        -       -
+v  lvredo1_dcl  gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvredo1_dcl-97013 lvredo1_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 58_97013_03dc-02 lvredo1_dcl-97013 ENABLED 2112 0    -        -       -
+pl lvredo1_dcl-97158 lvredo1_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 10_97158_03dc-02 lvredo1_dcl-97158 ENABLED 2112 0    -        -       -
+
+Disk group: dgdbstr1w9redo2
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgdbstr1w9redo2 dgdbstr1w9redo2 -  -        -        -        -       -
+
+dm 10_97158_03dd VSP_97158_03dd -     29435792 -        -        -       -
+dm 58_97013_03dd VSP_97013_03dd -     29435792 -        -        -       -
+
+v  lvredo2      fsgen        ENABLED  29407232 -        ACTIVE   -       -
+pl lvredo2-97013 lvredo2     ENABLED  29407232 -        ACTIVE   -       -
+sd 58_97013_03dd-01 lvredo2-97013 ENABLED 29407232 0    -        -       -
+pl lvredo2-97158 lvredo2     ENABLED  29407232 -        ACTIVE   -       -
+sd 10_97158_03dd-01 lvredo2-97158 ENABLED 29407232 0    -        -       -
+pl lvredo2_drl-97013 lvredo2 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 58_97013_03dd-03 lvredo2_drl-97013 ENABLED 2112 LOG  -        -       -
+pl lvredo2_drl-97158 lvredo2 ENABLED  LOGONLY  -        ACTIVE   -       -
+sd 10_97158_03dd-03 lvredo2_drl-97158 ENABLED 2112 LOG  -        -       -
+dc lvredo2_dco  lvredo2      -        -        -        -        -       -
+v  lvredo2_dcl  gen          ENABLED  2112     -        ACTIVE   -       -
+pl lvredo2_dcl-97013 lvredo2_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 58_97013_03dd-02 lvredo2_dcl-97013 ENABLED 2112 0    -        -       -
+pl lvredo2_dcl-97158 lvredo2_dcl ENABLED 2112  -        ACTIVE   -       -
+sd 10_97158_03dd-02 lvredo2_dcl-97158 ENABLED 2112 0    -        -       -
+
+Disk group: dghiqaw9bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dghiqaw9bkup dghiqaw9bkup -        -        -        -        -       -
+
+dm 10_97158_02a1 VSP_97158_02a1 -     235946912 -       -        -       -
+dm 10_97158_02a2 VSP_97158_02a2 -     235946912 -       -        -       -
+dm 10_97158_02a3 VSP_97158_02a3 -     235946912 -       -        -       -
+dm 10_97158_02a4 VSP_97158_02a4 -     235946912 -       -        -       -
+dm 10_97158_02a5 VSP_97158_02a5 -     235946912 -       -        -       -
+dm 58_97013_02a1 VSP_97013_02a1 -     235946912 -       -        -       -
+dm 58_97013_02a2 VSP_97013_02a2 -     235946912 -       -        -       -
+dm 58_97013_02a3 VSP_97013_02a3 -     235946912 -       -        -       -
+dm 58_97013_02a4 VSP_97013_02a4 -     235946912 -       -        -       -
+dm 58_97013_02a5 VSP_97013_02a5 -     235946912 -       -        -       -
+
+v  lvhiqaw9bkup fsgen        ENABLED  1056268288 -      ACTIVE   -       -
+pl lvhiqaw9bkup-97013 lvhiqaw9bkup ENABLED 1056268288 - ACTIVE   -       -
+sd 58_97013_02a1-01 lvhiqaw9bkup-97013 ENABLED 235946912 0 -     -       -
+sd 58_97013_02a2-01 lvhiqaw9bkup-97013 ENABLED 112480640 235946912 - -   -
+sd 58_97013_02a3-01 lvhiqaw9bkup-97013 ENABLED 235946912 348427552 - -   -
+sd 58_97013_02a4-01 lvhiqaw9bkup-97013 ENABLED 235946912 584374464 - -   -
+sd 58_97013_02a5-01 lvhiqaw9bkup-97013 ENABLED 235946912 820321376 - -   -
+pl lvhiqaw9bkup-97158 lvhiqaw9bkup ENABLED 1056268288 - ACTIVE   -       -
+sd 10_97158_02a1-01 lvhiqaw9bkup-97158 ENABLED 235946912 0 -     -       -
+sd 10_97158_02a2-02 lvhiqaw9bkup-97158 ENABLED 112480640 235946912 - -   -
+sd 10_97158_02a3-01 lvhiqaw9bkup-97158 ENABLED 235946912 348427552 - -   -
+sd 10_97158_02a4-01 lvhiqaw9bkup-97158 ENABLED 235946912 584374464 - -   -
+sd 10_97158_02a5-01 lvhiqaw9bkup-97158 ENABLED 235946912 820321376 - -   -
+pl lvhiqaw9bkup_drl-97013 lvhiqaw9bkup ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_02a2-02 lvhiqaw9bkup_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvhiqaw9bkup_drl-97158 lvhiqaw9bkup ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_02a2-01 lvhiqaw9bkup_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvhiqaw9bkup_dco lvhiqaw9bkup -    -        -        -        -       -
+v  lvhiqaw9bkup_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvhiqaw9bkup_dcl-97013 lvhiqaw9bkup_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_02a2-03 lvhiqaw9bkup_dcl-97013 ENABLED 2112 0 -      -       -
+pl lvhiqaw9bkup_dcl-97158 lvhiqaw9bkup_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_02a2-03 lvhiqaw9bkup_dcl-97158 ENABLED 2112 0 -      -       -
+
+Disk group: dghiqaw9db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dghiqaw9db   dghiqaw9db   -        -        -        -        -       -
+
+dm 10_97158_a0dc VSP_97158_a0dc -     471859648 -       -        -       -
+dm 10_97158_027e VSP_97158_027e -     471961632 -       -        -       -
+dm 10_97158_028b VSP_97158_028b -     471961632 -       -        -       -
+dm 10_97158_028c VSP_97158_028c -     471961632 -       -        -       -
+dm 58_97013_a0ba VSP_97013_a0ba -     471859648 -       -        -       -
+dm 58_97013_027e VSP_97013_027e -     471961632 -       -        -       -
+dm 58_97013_028b VSP_97013_028b -     471961632 -       -        -       -
+dm 58_97013_028c VSP_97013_028c -     471961632 -       -        -       -
+
+v  lvhiqaw9db   fsgen        ENABLED  1729233088 -      ACTIVE   -       -
+pl lvhiqaw9db-97013 lvhiqaw9db ENABLED 1729233088 -     ACTIVE   -       -
+sd 58_97013_027e-02 lvhiqaw9db-97013 ENABLED 313450176 0 -       -       -
+sd 58_97013_a0ba-01 lvhiqaw9db-97013 ENABLED 471859648 313450176 - -     -
+sd 58_97013_028b-01 lvhiqaw9db-97013 ENABLED 471961632 785309824 - -     -
+sd 58_97013_028c-01 lvhiqaw9db-97013 ENABLED 471961632 1257271456 - -    -
+pl lvhiqaw9db-97158 lvhiqaw9db ENABLED 1729233088 -     ACTIVE   -       -
+sd 10_97158_027e-01 lvhiqaw9db-97158 ENABLED 313450176 0 -       -       -
+sd 10_97158_a0dc-01 lvhiqaw9db-97158 ENABLED 471859648 313450176 - -     -
+sd 10_97158_028b-01 lvhiqaw9db-97158 ENABLED 471961632 785309824 - -     -
+sd 10_97158_028c-01 lvhiqaw9db-97158 ENABLED 471961632 1257271456 - -    -
+pl lvhiqaw9db_drl-97013 lvhiqaw9db ENABLED LOGONLY -    ACTIVE   -       -
+sd 58_97013_027e-01 lvhiqaw9db_drl-97013 ENABLED 2112 LOG -      -       -
+pl lvhiqaw9db_drl-97158 lvhiqaw9db ENABLED LOGONLY -    ACTIVE   -       -
+sd 10_97158_027e-02 lvhiqaw9db_drl-97158 ENABLED 2112 LOG -      -       -
+dc lvhiqaw9db_dco lvhiqaw9db -        -        -        -        -       -
+v  lvhiqaw9db_dcl gen        ENABLED  2112     -        ACTIVE   -       -
+pl lvhiqaw9db_dcl-97158 lvhiqaw9db_dcl ENABLED 2112 -   ACTIVE   -       -
+sd 10_97158_027e-03 lvhiqaw9db_dcl-97158 ENABLED 2112 0 -        -       -
+pl lvhiqaw9db_dcl-97013 lvhiqaw9db_dcl ENABLED 2112 -   ACTIVE   -       -
+sd 58_97013_027e-03 lvhiqaw9db_dcl-97013 ENABLED 2112 0 -        -       -
+
+v  lvhiqaw9redo1 fsgen       ENABLED  7290880  -        ACTIVE   -       -
+pl lvhiqaw9redo1-97013 lvhiqaw9redo1 ENABLED 7290880 -  ACTIVE   -       -
+sd 58_97013_027e-05 lvhiqaw9redo1-97013 ENABLED 7290880 0 -      -       -
+pl lvhiqaw9redo1-97158 lvhiqaw9redo1 ENABLED 7290880 -  ACTIVE   -       -
+sd 10_97158_027e-04 lvhiqaw9redo1-97158 ENABLED 7290880 0 -      -       -
+pl lvhiqaw9redo1_drl-97013 lvhiqaw9redo1 ENABLED LOGONLY - ACTIVE -      -
+sd 58_97013_027e-04 lvhiqaw9redo1_drl-97013 ENABLED 2112 LOG -   -       -
+pl lvhiqaw9redo1_drl-97158 lvhiqaw9redo1 ENABLED LOGONLY - ACTIVE -      -
+sd 10_97158_027e-05 lvhiqaw9redo1_drl-97158 ENABLED 2112 LOG -   -       -
+dc lvhiqaw9redo1_dco lvhiqaw9redo1 -  -        -        -        -       -
+v  lvhiqaw9redo1_dcl gen     ENABLED  2112     -        ACTIVE   -       -
+pl lvhiqaw9redo1_dcl-97158 lvhiqaw9redo1_dcl ENABLED 2112 - ACTIVE -     -
+sd 10_97158_027e-06 lvhiqaw9redo1_dcl-97158 ENABLED 2112 0 -     -       -
+pl lvhiqaw9redo1_dcl-97013 lvhiqaw9redo1_dcl ENABLED 2112 - ACTIVE -     -
+sd 58_97013_027e-06 lvhiqaw9redo1_dcl-97013 ENABLED 2112 0 -     -       -
+
+v  lvhiqaw9redo2 fsgen       ENABLED  7290880  -        ACTIVE   -       -
+pl lvhiqaw9redo2-97013 lvhiqaw9redo2 ENABLED 7290880 -  ACTIVE   -       -
+sd 58_97013_027e-08 lvhiqaw9redo2-97013 ENABLED 7290880 0 -      -       -
+pl lvhiqaw9redo2-97158 lvhiqaw9redo2 ENABLED 7290880 -  ACTIVE   -       -
+sd 10_97158_027e-07 lvhiqaw9redo2-97158 ENABLED 7290880 0 -      -       -
+pl lvhiqaw9redo2_drl-97013 lvhiqaw9redo2 ENABLED LOGONLY - ACTIVE -      -
+sd 58_97013_027e-07 lvhiqaw9redo2_drl-97013 ENABLED 2112 LOG -   -       -
+pl lvhiqaw9redo2_drl-97158 lvhiqaw9redo2 ENABLED LOGONLY - ACTIVE -      -
+sd 10_97158_027e-08 lvhiqaw9redo2_drl-97158 ENABLED 2112 LOG -   -       -
+dc lvhiqaw9redo2_dco lvhiqaw9redo2 -  -        -        -        -       -
+v  lvhiqaw9redo2_dcl gen     ENABLED  2112     -        ACTIVE   -       -
+pl lvhiqaw9redo2_dcl-97158 lvhiqaw9redo2_dcl ENABLED 2112 - ACTIVE -     -
+sd 10_97158_027e-09 lvhiqaw9redo2_dcl-97158 ENABLED 2112 0 -     -       -
+pl lvhiqaw9redo2_dcl-97013 lvhiqaw9redo2_dcl ENABLED 2112 - ACTIVE -     -
+sd 58_97013_027e-09 lvhiqaw9redo2_dcl-97013 ENABLED 2112 0 -     -       -
+
+Disk group: dgkiqaw9bkup
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgkiqaw9bkup dgkiqaw9bkup -        -        -        -        -       -
+
+dm 10_97158_0194 VSP_97158_0194 -     117940560 -       -        -       -
+dm 10_97158_0195 VSP_97158_0195 -     117940560 -       -        -       -
+dm 10_97158_0196 VSP_97158_0196 -     117940560 -       -        -       -
+dm 10_97158_0204 VSP_97158_0204 -     117940560 -       -        -       -
+dm 10_97158_0205 VSP_97158_0205 -     117940560 -       -        -       -
+dm 58_97013_0194 VSP_97013_0194 -     117940560 -       -        -       -
+dm 58_97013_0195 VSP_97013_0195 -     117940560 -       -        -       -
+dm 58_97013_0196 VSP_97013_0196 -     117940560 -       -        -       -
+dm 58_97013_0204 VSP_97013_0204 -     117940560 -       -        -       -
+dm 58_97013_0205 VSP_97013_0205 -     117940560 -       -        -       -
+
+v  lvkiqaw9bkup fsgen        ENABLED  466409472 -       ACTIVE   -       -
+pl lvkiqaw9bkup-97013 lvkiqaw9bkup ENABLED 466409472 -  ACTIVE   -       -
+sd 58_97013_0194-02 lvkiqaw9bkup-97013 ENABLED 115698048 0 -     -       -
+sd 58_97013_0194-03 lvkiqaw9bkup-97013 ENABLED 2238288 115698048 - -     -
+sd 58_97013_0195-01 lvkiqaw9bkup-97013 ENABLED 117940560 117936336 - -   -
+sd 58_97013_0196-01 lvkiqaw9bkup-97013 ENABLED 117940560 235876896 - -   -
+sd 58_97013_0204-01 lvkiqaw9bkup-97013 ENABLED 112592016 353817456 - -   -
+pl lvkiqaw9bkup-97158 lvkiqaw9bkup ENABLED 466409472 -  ACTIVE   -       -
+sd 10_97158_0194-02 lvkiqaw9bkup-97158 ENABLED 115698048 0 -     -       -
+sd 10_97158_0196-01 lvkiqaw9bkup-97158 ENABLED 114988672 115698048 - -   -
+sd 10_97158_0194-03 lvkiqaw9bkup-97158 ENABLED 2238288 230686720 - -     -
+sd 10_97158_0195-02 lvkiqaw9bkup-97158 ENABLED 2951888 232925008 - -     -
+sd 10_97158_0196-02 lvkiqaw9bkup-97158 ENABLED 2951888 235876896 - -     -
+sd 10_97158_0195-01 lvkiqaw9bkup-97158 ENABLED 114988672 238828784 - -   -
+sd 10_97158_0204-01 lvkiqaw9bkup-97158 ENABLED 112592016 353817456 - -   -
+pl lvkiqaw9bkup_drl-97013 lvkiqaw9bkup ENABLED LOGONLY - ACTIVE  -       -
+sd 58_97013_0194-01 lvkiqaw9bkup_drl-97013 ENABLED 2112 LOG -    -       -
+pl lvkiqaw9bkup_drl-97158 lvkiqaw9bkup ENABLED LOGONLY - ACTIVE  -       -
+sd 10_97158_0194-01 lvkiqaw9bkup_drl-97158 ENABLED 2112 LOG -    -       -
+dc lvkiqaw9bkup_dco lvkiqaw9bkup -    -        -        -        -       -
+v  lvkiqaw9bkup_dcl gen      ENABLED  2112     -        ACTIVE   -       -
+pl lvkiqaw9bkup_dcl-97158 lvkiqaw9bkup_dcl ENABLED 2112 - ACTIVE -       -
+sd 10_97158_0194-04 lvkiqaw9bkup_dcl-97158 ENABLED 2112 0 -      -       -
+pl lvkiqaw9bkup_dcl-97013 lvkiqaw9bkup_dcl ENABLED 2112 - ACTIVE -       -
+sd 58_97013_0194-04 lvkiqaw9bkup_dcl-97013 ENABLED 2112 0 -      -       -
+
+Disk group: dgkiqaw9db
+
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgkiqaw9db   dgkiqaw9db   -        -        -        -        -       -
+
+dm 10_97158_a0da VSP_97158_a0da -     235848720 -       -        -       -
+dm 10_97158_027c VSP_97158_027c -     235946912 -       -        -       -
+dm 10_97158_028a VSP_97158_028a -     235946912 -       -        -       -
+dm 10_97158_0202 VSP_97158_0202 -     235946912 -       -        -       -
+dm 10_97158_0203 VSP_97158_0203 -     235946912 -       -        -       -
+dm 10_97158_5032 VSP_97158_5032 -     1061995824 -      -        -       -
+dm 10_97158_5162 VSP_97158_5162 -     1061995824 -      -        -       -
+dm 58_97013_a0b9 VSP_97013_a0b9 -     235848720 -       -        -       -
+dm 58_97013_027c VSP_97013_027c -     235946912 -       -        -       -
+dm 58_97013_028a VSP_97013_028a -     235946912 -       -        -       -
+dm 58_97013_0202 VSP_97013_0202 -     235946912 -       -        -       -
+dm 58_97013_0203 VSP_97013_0203 -     235946912 -       -        -       -
+dm 58_97013_5032 VSP_97013_5032 -     1061995824 -      -        -       -
+dm 58_97013_5162 VSP_97013_5162 -     1061995824 -      -        -       -
+
+v  lvkiqaw9db   fsgen        ENABLED  3288873952 -      ACTIVE   -       -
+pl lvkiqaw9db-97013 lvkiqaw9db ENABLED 3288873952 -     ACTIVE   -       -
+sd 58_97013_027c-02 lvkiqaw9db-97013 ENABLED 235940576 0 -       -       -
+sd 58_97013_a0b9-01 lvkiqaw9db-97013 ENABLED 167759200 235940576 - -     -
+sd 58_97013_028a-01 lvkiqaw9db-97013 ENABLED 235946912 403699776 - -     -
+sd 58_97013_0202-01 lvkiqaw9db-97013 ENABLED 235946912 639646688 - -     -
+sd 58_97013_0203-01 lvkiqaw9db-97013 ENABLED 235946912 875593600 - -     -
+sd 58_97013_5032-01 lvkiqaw9db-97013 ENABLED 1061995824 1111540512 - -   -
+sd 58_97013_a0b9-07 lvkiqaw9db-97013 ENABLED 53341792 2173536336 - -     -
+sd 58_97013_5162-01 lvkiqaw9db-97013 ENABLED 1061995824 2226878128 - -   -
+pl lvkiqaw9db-97158 lvkiqaw9db ENABLED 3288873952 -     ACTIVE   -       -
+sd 10_97158_027c-02 lvkiqaw9db-97158 ENABLED 235940576 0 -       -       -
+sd 10_97158_a0da-01 lvkiqaw9db-97158 ENABLED 167759200 235940576 - -     -
+sd 10_97158_028a-01 lvkiqaw9db-97158 ENABLED 235946912 403699776 - -     -
+sd 10_97158_0202-01 lvkiqaw9db-97158 ENABLED 235946912 639646688 - -     -
+sd 10_97158_0203-01 lvkiqaw9db-97158 ENABLED 235946912 875593600 - -     -
+sd 10_97158_5032-01 lvkiqaw9db-97158 ENABLED 1061995824 1111540512 - -   -
+sd 10_97158_a0da-07 lvkiqaw9db-97158 ENABLED 53341792 2173536336 - -     -
+sd 10_97158_5162-01 lvkiqaw9db-97158 ENABLED 1061995824 2226878128 - -   -
+pl lvkiqaw9db_drl-97013 lvkiqaw9db ENABLED LOGONLY -    ACTIVE   -       -
+sd 58_97013_027c-01 lvkiqaw9db_drl-97013 ENABLED 2112 LOG -      -       -
+pl lvkiqaw9db_drl-97158 lvkiqaw9db ENABLED LOGONLY -    ACTIVE   -       -
+sd 10_97158_027c-01 lvkiqaw9db_drl-97158 ENABLED 2112 LOG -      -       -
+dc lvkiqaw9db_dco lvkiqaw9db -        -        -        -        -       -
+v  lvkiqaw9db_dcl gen        ENABLED  2112     -        ACTIVE   -       -
+pl lvkiqaw9db_dcl-97158 lvkiqaw9db_dcl ENABLED 2112 -   ACTIVE   -       -
+sd 10_97158_a0da-02 lvkiqaw9db_dcl-97158 ENABLED 2112 0 -        -       -
+pl lvkiqaw9db_dcl-97013 lvkiqaw9db_dcl ENABLED 2112 -   ACTIVE   -       -
+sd 58_97013_a0b9-02 lvkiqaw9db_dcl-97013 ENABLED 2112 0 -        -       -
+
+v  lvkiqaw9redo1 fsgen       ENABLED  7290880  -        ACTIVE   -       -
+pl lvkiqaw9redo1-97013 lvkiqaw9redo1 ENABLED 7290880 -  ACTIVE   -       -
+sd 58_97013_a0b9-03 lvkiqaw9redo1-97013 ENABLED 7290880 0 -      -       -
+pl lvkiqaw9redo1-97158 lvkiqaw9redo1 ENABLED 7290880 -  ACTIVE   -       -
+sd 10_97158_a0da-03 lvkiqaw9redo1-97158 ENABLED 7290880 0 -      -       -
+pl lvkiqaw9redo1_drl-97013 lvkiqaw9redo1 ENABLED LOGONLY - ACTIVE -      -
+sd 58_97013_027c-03 lvkiqaw9redo1_drl-97013 ENABLED 2112 LOG -   -       -
+pl lvkiqaw9redo1_drl-97158 lvkiqaw9redo1 ENABLED LOGONLY - ACTIVE -      -
+sd 10_97158_027c-03 lvkiqaw9redo1_drl-97158 ENABLED 2112 LOG -   -       -
+dc lvkiqaw9redo1_dco lvkiqaw9redo1 -  -        -        -        -       -
+v  lvkiqaw9redo1_dcl gen     ENABLED  2112     -        ACTIVE   -       -
+pl lvkiqaw9redo1_dcl-97158 lvkiqaw9redo1_dcl ENABLED 2112 - ACTIVE -     -
+sd 10_97158_a0da-04 lvkiqaw9redo1_dcl-97158 ENABLED 2112 0 -     -       -
+pl lvkiqaw9redo1_dcl-97013 lvkiqaw9redo1_dcl ENABLED 2112 - ACTIVE -     -
+sd 58_97013_a0b9-04 lvkiqaw9redo1_dcl-97013 ENABLED 2112 0 -     -       -
+
+v  lvkiqaw9redo2 fsgen       ENABLED  7290880  -        ACTIVE   -       -
+pl lvkiqaw9redo2-97013 lvkiqaw9redo2 ENABLED 7290880 -  ACTIVE   -       -
+sd 58_97013_a0b9-05 lvkiqaw9redo2-97013 ENABLED 7290880 0 -      -       -
+pl lvkiqaw9redo2-97158 lvkiqaw9redo2 ENABLED 7290880 -  ACTIVE   -       -
+sd 10_97158_a0da-05 lvkiqaw9redo2-97158 ENABLED 7290880 0 -      -       -
+pl lvkiqaw9redo2_drl-97013 lvkiqaw9redo2 ENABLED LOGONLY - ACTIVE -      -
+sd 58_97013_027c-04 lvkiqaw9redo2_drl-97013 ENABLED 2112 LOG -   -       -
+pl lvkiqaw9redo2_drl-97158 lvkiqaw9redo2 ENABLED LOGONLY - ACTIVE -      -
+sd 10_97158_027c-04 lvkiqaw9redo2_drl-97158 ENABLED 2112 LOG -   -       -
+dc lvkiqaw9redo2_dco lvkiqaw9redo2 -  -        -        -        -       -
+v  lvkiqaw9redo2_dcl gen     ENABLED  2112     -        ACTIVE   -       -
+pl lvkiqaw9redo2_dcl-97158 lvkiqaw9redo2_dcl ENABLED 2112 - ACTIVE -     -
+sd 10_97158_a0da-06 lvkiqaw9redo2_dcl-97158 ENABLED 2112 0 -     -       -
+pl lvkiqaw9redo2_dcl-97013 lvkiqaw9redo2_dcl ENABLED 2112 - ACTIVE -     -
+sd 58_97013_a0b9-06 lvkiqaw9redo2_dcl-97013 ENABLED 2112 0 -     -       -
+lp09d10:~ #
+
+
+lp09d10:~ # df -hT /global/dbipst92/db
+Filesystem                            Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgdbipst92db/lvdbipst92db vxfs  218G  198G   21G  91% /global/dbipst92/db
+lp09d10:~ #
+
+
+vxresize -b -g dgdbipst92db lvdbipst92db 1518883936
+
+
+
+vxresize -b -g dgdbipst92db lvdbipst92db 1518883936

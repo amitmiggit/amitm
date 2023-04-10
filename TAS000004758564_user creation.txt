@@ -1,0 +1,93 @@
+TAS000004758564 - 18.06.2020 19:00:00
+
+(1) Description of the Task to be done
+Create/remove/modify standard Personal or Technical user(s) or group(s) on server(s)
+
+Task required lead time:   4 hours
+Task minimum runtime:      48 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+Documentation for this request:  https://atc.bmwgroup.net/confluence/display/LINUX/Linux_Group_requests
+Required Approvals:              https://atc.bmwgroup.net/confluence/display/LINUX/Approval_Matrix
+
+Approval:  All Sudo, Account and Group Add, Modify and Removals require an BMW authorized approval. 
+           Please check the Approval link above for the necessary information.  Tasks set to â€œPending 
+           Assignmentâ€ before the necessary approvals have been correctly issued will cause the task 
+           to be canceled or set to â€œPending Errorâ€ depending on the SLAs for the servers concerned. 
+
+
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+<server>, <server> ...
+
+- Account Request:
+
+[ ] Add Personal q/qx/qt User(s)
+        User Account Name(s):
+        Primary Group (if empty BMW default is qbmw resp. qxbmw):
+        Optional Additional Group Memberships:
+        Optional Reference User:
+
+[ ] Add Technical Application "QQ" User(s)
+        QQ Account Name:
+        Primary Group (if empty BMW default is qqbmw):
+        Optional Additional Group Memberships:
+        Home directory on application disks:
+        Optional Shell (default is bash): 
+
+[ ] Add additional local Group(s) to server
+        Group Name:
+
+
+[ ] Add existing User(s) to additional Group(s)
+        Username(s):
+        Group(s):
+
+[ ] Remove User(s)
+        Username(s):
+
+[ ] Remove User(s) from Group(s)
+	Username(s):
+        Group(s):
+[X ] Password Reset
+	Username: qxn4415 - Herrmann, Matthias 
+                            qxn1928 - Akerkar, Salil 
+
+Server: lieai55.bmwgroup.net 
+
+ Approval from the user should be provided. User should be a Requester.
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+Sanjana.Musunuru@partner.bmw.de
+
+================================================================
+
+Analysis
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ uuv -gu qxn4415
+una=QXN4415 usr=(CAPGEMINI DEUTSCHLAND GMBH PL_294777,FG-44,,23.01.2021) uid=564352
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ uuv -gu qxn1928
+una=QXN1928 usr=(CAPGEMINI DEUTSCHLAND GMBH PL_294777,FG-44,,23.01.2021) uid=558957
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lieai55 -x | grep modul
+modul:                 EAI
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+qxn4415
+qxn1928
+
+lieai55

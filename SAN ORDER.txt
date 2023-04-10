@@ -1,0 +1,1 @@
+autosan.pl order-disks-vm -O TAS000004871024  -d 112:2:Filesystem  --vmname lppga01804vm --vmname lppgb01804vm  

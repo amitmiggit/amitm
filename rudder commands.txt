@@ -1,0 +1,133 @@
+  1  2020-06-09 16:51:14 ##############--- 20200609.161400 ---##############
+    2  2020-06-09 16:15:06 lsb_release -a
+    3  2020-06-09 16:17:17 cat /etc/suSE-release
+    4  2020-06-09 16:20:51 rudder_agent info
+    5  2020-06-09 16:20:57 rudder agent info
+    6  2020-06-09 16:21:31 date
+    7  2020-06-09 16:21:45 rudder agent update
+    8  2020-06-09 16:21:59 rudder agent run
+    9  2020-06-09 16:24:08 date
+   10  2020-06-09 16:25:03 exit
+   11  2020-06-09 16:51:14 ##############--- 20200609.162817 ---##############
+   12  2020-06-09 16:28:31 rudder agent update
+   13  2020-06-09 16:28:56 rudder agent run
+   14  2020-06-09 16:29:48 rudder agent run
+   15  2020-06-09 16:30:37 cd /lfs/oracle
+   16  2020-06-09 16:30:41 ls -l
+   17  2020-06-09 16:31:17 ./check_linux_SUSE12SP4_oracle.ksh
+   18  2020-06-09 16:31:30 su - oras
+   19  2020-06-09 16:37:25 sysctl -a | grep rmem_default
+   20  2020-06-09 16:37:43 cd /etc/sysctl.d/
+   21  2020-06-09 16:37:44 ls
+   22  2020-06-09 16:37:56 ll
+   23  2020-06-09 16:38:11 cat 51-80-ORACLE_default.conf
+   24  2020-06-09 16:38:55 sysctl -
+   25  2020-06-09 16:39:20 sysctl -a | grep rmem_default
+   26  2020-06-09 16:39:46 pwd
+   27  2020-06-09 16:41:17 grep -Ril rmem_default *
+   28  2020-06-09 16:41:38 uptime
+   29  2020-06-09 16:42:55 hastatus -sum
+   30  2020-06-09 16:46:01 exit
+   31  2020-06-09 16:51:14 ##############--- 20200609.164907 ---##############
+   32  2020-06-09 16:49:22 exit
+   33  2020-06-09 16:51:14 ##############--- 20200609.165114 ---##############
+   34  2020-06-09 16:53:44 cat /proc/cmdline
+   35  2020-06-09 17:02:16 history
+
+   
+   ====================================================================================================
+   
+   lpdbs108:~ # history
+    1  2020-06-09 16:35:47 ##############--- 20200609.162533 ---##############
+    2  2020-06-09 16:25:47 rrudder agent info
+    3  2020-06-09 16:25:55 rudder agent info
+    4  2020-06-09 16:26:14 rudder agent update
+    5  2020-06-09 16:26:30 rudder agent run
+    6  2020-06-09 16:27:09 rudder agent run
+    7  2020-06-09 16:27:50 exit
+    8  2020-06-09 16:35:47 ##############--- 20200609.163547 ---##############
+    9  2020-06-09 16:36:25 sysctl -a | grep rmem_default
+   10  2020-06-09 17:30:48 history
+   
+   
+   /global/documentum/app/medoc/shares
+   
+ 
+
+- List of Server Name(s) for the Requested Account or Group actions in (2) below:
+libkdc01.bmwgroup.net
+libkdc02.bmwgroup.net
+
+- Account Request:
+This change is created in order to update the home path of the qqtwsdoci and qqomtws (Documentum technical users) from /global/documentum/app/medoc/shares/ to /global/documentum/app/medoc/shares on server libkdc01.bmwgroup.net and libkdc02.bmwgroup.net
+The only difference is the / character at the end
+
+ /global/documentum/app/medoc/shares
+
+libkdc01:/etc # cat passwd | grep -i qqtwsdoci
+qqtwsdoci:x:866742:34756:Pohl Markus,FG-354,+49-89-382-58077:/global/documentum/app/medoc/shares/:/bin/bash
+libkdc01:/etc # cat passwd | grep -i qqomtws
+qqomtws:x:68108:27797:Ernst Stefan,FG-S-35,+49-89-382-93799,:/global/documentum/app/medoc/shares/:/bin/bash
+
+libkdc02:/etc # cat passwd | grep -i qqtwsdoci
+qqtwsdoci:x:866742:34756:Pohl Markus,FG-354,+49-89-382-58077:/global/documentum/app/medoc/shares/:/bin/bash
+libkdc02:/etc # cat passwd | grep -i qqomtws
+qqomtws:x:68108:27797:Ernst Stefan,FG-S-35,+49-89-382-93799,:/home/qqomtws:/bin/bash
+
+
+
+libkdc01:~ # cat /etc/passwd  | grep -i qqtwsdoci
+qqtwsdoci:x:866742:34756:Pohl Markus,FG-354,+49-89-382-58077:/global/documentum/app/medoc/shares:/bin/bash
+libkdc01:~ # cat /etc/passwd  | grep -i qqomtws
+qqomtws:x:68108:27797:Ernst Stefan,FG-S-35,+49-89-382-93799,:/global/documentum/app/medoc/shares:/bin/bash
+
+libkdc02:~ # cat /etc/passwd  | grep -i qqtwsdoci
+qqtwsdoci:x:866742:34756:Pohl Markus,FG-354,+49-89-382-58077:/global/documentum/app/medoc/shares:/bin/bash
+libkdc02:~ # cat /etc/passwd  | grep -i qqomtws
+qqomtws:x:68108:27797:Ernst Stefan,FG-S-35,+49-89-382-93799,:/global/documentum/app/medoc/shares:/bin/bash
+
+
+qqomtws@libkdc02:~> pwd
+/global/documentum/app/medoc/shares
+qqomtws@libkdc02:~> ls
+AutomaticApprovalScript  medoc_code                         medoc_de_int            MedocHsmPathFixingTool_bkp     medoc_spain_test
+cmd-chk-test             medocCodeDeleteTool                medoc_de_kwg_delete     medoc_kwg_doc_processing       Nebas_OLB_import_cleint-old-del.tar
+crystal_doc_process      medocCodeDeleteTool.tar.15NOV2019  medoc_de_test           medoc_kwg_doc_processing_int   Nebas_OLB_import_client
+fs01                     MedocCode_Int.tar                  medoc_france_int        medoc_kwg_doc_processing_test  Nebas_OLB_import_client_INT_setup.tar
+java                     medoc_crystal_int                  medoc_france_test       MedocMoverIssueFixTool         olbgdpr-doc-processing
+kwom                     medoc_crystal_test                 medoc_gdpr_test         medoc_olbgdpr_test             olbIn
+medoc_bwa_int            medoc_de_code_delete_int           medoc_Germany_INT       medoc_rechnungswesen_int       OPC
+medoc_bwa_test           medoc_de_code_delete_test          MedocHsmPathFixingTool  medoc_spain_int
+
+
+
+============
+
+lpbkeai100:~ # id qqpmqe0
+id: qqpmqe0: No such user
+lpbkeai100:~ # date
+Tue Jun 23 13:31:49 CEST 2020
+lpbkeai100:~ #
+
+
+Creating user scripts:
+100% [============================================================================================================================================]D 0h00m00sUser scripts have been created under directory '/global/instserv/data/usermgmt2/create/2020_06_23_133214_u3GMFNZE'.
+
+ARE YOU SURE TO CONTINUE? [y/N] y
+Fetching infos from SecPW... done
+[PASS] Running script: 'qqpmqe0-1592912492-28734.7568539435.sh' on server 'lpbkeai100.bmwgroup.net'
+100% [============================================================================================================================================]D 
+
+
+lpbkeai100:~ # id qqpmqe0
+uid=659213(qqpmqe0) gid=33547(qqbmw) groups=33547(qqbmw)
+lpbkeai100:~ # date
+Tue Jun 23 13:42:56 CEST 2020
+lpbkeai100:~ #
+
+
+[ X] Add Personal q/qx/qt User(s)
+        User Account Name(s): qqpmqe0
+        Primary Group (if empty BMW default is qbmw resp. qxbmw):
+        Optional Additional Group Memberships:
+        Optional Reference User:

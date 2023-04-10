@@ -1,0 +1,149 @@
+PBI000000325448
+================
+
+On more than 200 Linux servers IPv6 is not working, please check 
+
+
+https://sysmon.muc/gui/thruk/#cgi-bin/status.cgi?s0_op=%3D&s0_type=service&s0_value=os_linux_default_check_host_ipv6&hoststatustypes=15&servicestatustypes=28&style=detail.
+
+Please fix at least 90% of the issues, write a documentation how this can be fixed in the future and provide that documenation confluence link to Falko Uhrig.
+
+After that the altering for this monitor will be globally enabled.
+
+
+
+==============================================================================================
+
+[‎6/‎22/‎2020 7:42 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Hi Lorand
+Good afternoon , 
+may I take your few minutes
+[‎6/‎22/‎2020 7:43 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+Hello, sure
+[‎6/‎22/‎2020 7:44 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Actually I was referring to check_host_ipv6 in confluence 
+the document which you updated
+[‎6/‎22/‎2020 7:46 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+yes, that was made by me, did you find some errors?
+[‎6/‎22/‎2020 7:47 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+no its very good , but I am not sure about step 5
+as today these alerts started to come
+[‎6/‎22/‎2020 7:48 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+can you show me the link? and I will check what step 5 is
+[‎6/‎22/‎2020 7:49 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+yes I am sharing screen
+[‎6/‎22/‎2020 7:49 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+you can't, I am using the linux client here, just send me the confluence link
+[‎6/‎22/‎2020 7:49 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok
+https://atc.bmwgroup.net/confluence/display/IAAS18/check_host_ipv6 
+[‎6/‎22/‎2020 7:51 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+ok, deleting the old IP address, what is your VM?
+[‎6/‎22/‎2020 7:52 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+lp19dkpga0062vm
+[‎6/‎22/‎2020 7:54 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+here, the IP is ok
+lp19dkpga0062vm:~ # ping6 -I eth0 2400:cb80:810a:509::1
+PING 2400:cb80:810a:509::1(2400:cb80:810a:509::1) from 2400:cb80:810a:509::54 eth0: 56 data bytes
+64 bytes from 2400:cb80:810a:509::1: icmp_seq=1 ttl=64 time=0.304 ms
+64 bytes from 2400:cb80:810a:509::1: icmp_seq=2 ttl=64 time=0.271 ms
+64 bytes from 2400:cb80:810a:509::1: icmp_seq=3 ttl=64 time=0.264 ms
+you need to go to the default Ipv6 route part
+lp19dkpga0062vm:~ # ping6 lpinstiaas01
+PING lpinstiaas01(lpinstiaas01.bmwgroup.net) 56 data bytes
+64 bytes from lpinstiaas01.bmwgroup.net: icmp_seq=1 ttl=57 time=235 ms
+64 bytes from lpinstiaas01.bmwgroup.net: icmp_seq=2 ttl=57 time=235 ms
+so the IP configuration here is all good
+[‎6/‎22/‎2020 7:55 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+from 19 this sever is reachable
+[‎6/‎22/‎2020 7:55 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+what is your ticket? is that ticket only about the ping being slow?
+[‎6/‎22/‎2020 7:55 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+I mean I did ssh
+[‎6/‎22/‎2020 7:56 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+lpinstiaas01:~ # ping6 lp19dkpga0062vm
+PING lp19dkpga0062vm(lp19dkpga0062vm.bmwgroup.net) 56 data bytes
+64 bytes from lp19dkpga0062vm.bmwgroup.net: icmp_seq=1 ttl=57 time=235 ms
+64 bytes from lp19dkpga0062vm.bmwgroup.net: icmp_seq=2 ttl=57 time=235 ms
+[‎6/‎22/‎2020 7:56 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Host:     lp19dkpga0062vm.bmwgroup.net
+Service:  os_linux_default_check_host_ipv6
+State:    CRITICAL
+Date:     2020-06-22 17:16:11
+Duration: 0d 0h 6m 4s
+App:      
+---check_ping6!2400:cb80:810a:509::54!100,10%!1000,25%!3!15:
+PING CRITICAL - Packet loss = 25%, RTA = 1.63 ms 
+[‎6/‎22/‎2020 7:57 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+yes, this is only about ping being slow, but that is not covered in this Wiki
+it is only about the problem that the server is in China and it is being tested from Germany
+[‎6/‎22/‎2020 7:58 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+so do we need to work more in it?
+[‎6/‎22/‎2020 7:59 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+I think there is nothing you can do to fix it, I am checking which nagios server is responsible for it
+[‎6/‎22/‎2020 7:59 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+so what should be the standard resolution of the incident
+[‎6/‎22/‎2020 8:00 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+I re-ran the check and now it is OK
+so, this is just a temporary slowdown
+[‎6/‎22/‎2020 8:01 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+so rerun the check will resolve mostly?
+[‎6/‎22/‎2020 8:01 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+this kind of problem yes
+ping varies up and down, but
+we can't do anything to fix this
+[‎6/‎22/‎2020 8:01 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok so we have to do check process till 9 
+[‎6/‎22/‎2020 8:02 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+it depends on the network mostly
+if it is a 100% packet loss
+then the IP is probaby bad, and you do it like in on the Confluence
+[‎6/‎22/‎2020 8:03 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+if you can ping it and it responds, then it is only a temporary network slowdown
+[‎6/‎22/‎2020 8:04 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+what is the most likely occurrence any suggestion
+[‎6/‎22/‎2020 8:05 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+I don't understand this question
+[‎6/‎22/‎2020 8:06 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+I mean we have to follow the process from step 1 till 9 as per your document ,
+[‎6/‎22/‎2020 8:07 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+probably resolution may end after step 5
+or sometimes we may need to go till 9
+[‎6/‎22/‎2020 8:07 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+if you have this kind of problem
+then ignore the confluence
+[‎6/‎22/‎2020 8:09 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok , actually I am working for the solution of incidents whatever comes to UNIX bin due to os_linux_default_check_host_ipv6 
+since it started from today
+[‎6/‎22/‎2020 8:11 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+confluence is only for the 100% packet loss
+[‎6/‎22/‎2020 8:13 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+you can add details in the beginning about this other case
+[‎6/‎22/‎2020 8:15 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok so other cases needs to be considered also
+[‎6/‎22/‎2020 8:16 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+there is one more issue, which will be handled in the problem ticket and that is that there is a network in the United States
+where the IPv6  config is good, but the Ipv6 
+gateway is not sending packets into the world
+it effects all servers on that network
+[‎6/‎22/‎2020 8:17 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok , Can you share the problem ticket number please
+[‎6/‎22/‎2020 8:17 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+just a sec
+[‎6/‎22/‎2020 8:18 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+sure
+[‎6/‎22/‎2020 8:22 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+PBI000000325448
+[‎6/‎22/‎2020 8:22 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Thank you very much Lorand
+I will have a look on this PBI
+If needed may I come back to you for any query?
+[‎6/‎22/‎2020 8:23 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+yes have seen a lot of these errors
+[‎6/‎22/‎2020 8:24 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+I will come with some analysis as I need to pass on the resolution for the incidents which started arriving from today 
+and if count of alerts and then incident count increase , we need to  check it on 
+[‎6/‎22/‎2020 8:26 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Thank you again
+[‎6/‎22/‎2020 8:29 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de): 
+okay

@@ -1,0 +1,348 @@
+#########################################################################
+#
+# GROW EXISTING Filesystem
+#
+# Replace (host1) with the name of the physical server on which the filesystem is mounted
+#
+#########################################################################
+
+HOST ltdbant9
+dg dgtdbl021bkup
+# @000320583
+50:7C   97138   B1_GS3
+50:7C   97229   B1_GS3
+lv  lvbkup max
+mnt lvbkup  /global/tdbl021/bkup 
+
+
+
+hitachi_vsp0_507c  | sdjm  50:7C   7F   97138   518602 | sdjk  50:7C   8F   97138   518602 |
+hitachi_vsp1_507c  | sdjl  50:7C   7F   97229   518602 | sdjj  50:7C   8F   97229   518602 |
+
+
+ltdbant9:~ # df -hT /global/tdbl021/bkup
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdbl021bkup/lvbkup vxfs  1.7T  274G  1.4T  17% /global/tdbl021/bkup
+ltdbant9:~ #
+
+
+STEP 1
+===============
+
+ltdbant9:~ # vxassist -g dgtdbl021bkup maxgrow lvbkup ---------------------   Just for reference not essential
+Volume lvbkup can be extended by 98304 to: 3530667968 (1723958Mb+1984 sectors)
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # san_rescan -o
+** Starting with PID '6685' and options '-o'
+
+** HBA Check...
+ - Checking host16  (0x10000090faf23eea): 'Link Up - Ready Fabric'
+ - Checking host18  (0x10000090faf23f44): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host16 host18'.
+
+** Rescanning host16
+ = Triggering Scan on host16
+ - Checking host16:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host16
+
+** Rescanning host18
+ = Triggering Scan on host18
+ - Checking host18:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host18
+
+** Device summary
+ - Found 4 new devices: sdjj sdjk sdjl sdjm
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   hitachi_vsp0_507c | sdjm  50:7C   7B   97138 518602 | sdjk  50:7C   8B   97138 518602 |
+   hitachi_vsp1_507c | sdjl  50:7C   7B   97229 518602 | sdjj  50:7C   8B   97229 518602 |
+
+ - Found 2 new Veritas device(s): 'hitachi_vsp0_507c hitachi_vsp1_507c'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 7 sec.
+
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # san_shortinfo
+VXDEV              | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | DISKGROUP
+-------------------|-----------------------------------|-----------------------------------|----------
+hitachi_vsp0_0018  | sdfr  00:18   7F   97138    57622 | sdcs  00:18   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_008c  | sdfs  00:8C   7F   97138   230490 | sdcu  00:8C   8F   97138   230490 | dgiantdbl2bkup
+hitachi_vsp0_008d  | sdft  00:8D   7F   97138   230490 | sdcv  00:8D   8F   97138   230490 | dgiantdbl2bkup
+hitachi_vsp0_008e  | sdfv  00:8E   7F   97138   230490 | sdcx  00:8E   8F   97138   230490 | dgiantdbl2bkup
+hitachi_vsp0_00da  | sdfx  00:DA   7F   97138    57622 | sdcz  00:DA   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_00db  | sdfz  00:DB   7F   97138    57622 | sdda  00:DB   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_00ea  | sdga  00:EA   7F   97138   518602 | sddb  00:EA   8F   97138   518602 | dgtdbl021db
+hitachi_vsp0_00eb  | sdgc  00:EB   7F   97138   518602 | sdde  00:EB   8F   97138   518602 | dgtdbl021db
+hitachi_vsp0_0320  | sdgf  03:20   7F   97138   518602 | sddf  03:20   8F   97138   518602 | dgtdbl021db
+hitachi_vsp0_0483  | sdgk  04:83   7F   97138   518602 | sddj  04:83   8F   97138   518602 | dgtdbl021db
+hitachi_vsp0_0484  | sdgm  04:84   7F   97138   518602 | sddl  04:84   8F   97138   518602 | dgtdbl021db
+hitachi_vsp0_0499  | sdgq  04:99   7F   97138    57622 | sddn  04:99   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_049a  | sdgs  04:9A   7F   97138    57622 | sddq  04:9A   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_049b  | sdgt  04:9B   7F   97138    57622 | sddr  04:9B   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_049c  | sdgu  04:9C   7F   97138    57622 | sdds  04:9C   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04aa  | sdgw  04:AA   7F   97138    57622 | sddt  04:AA   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04ab  | sdgy  04:AB   7F   97138    57622 | sddv  04:AB   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04ac  | sdgz  04:AC   7F   97138    57622 | sddw  04:AC   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04ad  | sdhc  04:AD   7F   97138    57622 | sddz  04:AD   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04ae  | sdhe  04:AE   7F   97138    57622 | sdee  04:AE   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04af  | sdhg  04:AF   7F   97138    57622 | sdeg  04:AF   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04b0  | sdhi  04:B0   7F   97138    57622 | sdeh  04:B0   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04b1  | sdhl  04:B1   7F   97138    57622 | sdei  04:B1   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_04f6  | sdho  04:F6   7F   97138    14405 | sdej  04:F6   8F   97138    14405 | dgiantdbl2redo1
+hitachi_vsp0_04f7  | sdhq  04:F7   7F   97138    14405 | sdet  04:F7   8F   97138    14405 | dgiantdbl2redo2
+hitachi_vsp0_0510  | sdhs  05:10   7F   97138   230490 | sdew  05:10   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0511  | sdhu  05:11   7F   97138   230490 | sdey  05:11   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0512  | sdhv  05:12   7F   97138   230490 | sdfa  05:12   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0513  | sdhw  05:13   7F   97138   230490 | sdfc  05:13   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0514  | sdhx  05:14   7F   97138   230490 | sdfd  05:14   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0515  | sdhy  05:15   7F   97138   230490 | sdfg  05:15   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0516  | sdhz  05:16   7F   97138   230490 | sdfi  05:16   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0517  | sdia  05:17   7F   97138   230490 | sdfl  05:17   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0518  | sdib  05:18   7F   97138   230490 | sdfm  05:18   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_0519  | sdic  05:19   7F   97138   230490 | sdfq  05:19   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_051a  | sdid  05:1A   7F   97138   230490 | sdfu  05:1A   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_051b  | sdie  05:1B   7F   97138   230490 | sdfw  05:1B   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_051c  | sdif  05:1C   7F   97138   230490 | sdfy  05:1C   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_051d  | sdig  05:1D   7F   97138   230490 | sdgb  05:1D   8F   97138   230490 | dgiantdbl2db
+hitachi_vsp0_5053  | sdji  50:53   7F   97138   518602 | sdjg  50:53   8F   97138   518602 | dgtdbl021bkup
+hitachi_vsp0_507c  | sdjm  50:7C   7F   97138   518602 | sdjk  50:7C   8F   97138   518602 |
+hitachi_vsp0_50a5  | sdfo  50:A5   7F   97138    14405 | sdco  50:A5   8F   97138    14405 |
+hitachi_vsp0_50fb  | sdfp  50:FB   7F   97138   230490 | sdcq  50:FB   8F   97138   230490 | dgoracle_ltdbant9
+hitachi_vsp0_516e  | sdgh  51:6E   7F   97138   230490 | sddh  51:6E   8F   97138   230490 | dgtdbl021bkup
+hitachi_vsp0_51db  | sdih  51:DB   7F   97138  1048576 | sdgd  51:DB   8F   97138  1048576 |
+hitachi_vsp0_528c  | sdje  52:8C   7F   97138  1048576 | sdht  52:8C   8F   97138  1048576 | dgiantdbl2bkup
+hitachi_vsp0_a0d9  | sdii  A0:D9   7F   97138     7201 | sdge  A0:D9   8F   97138     7201 | dgtdbl021redo1
+hitachi_vsp0_a0da  | sdij  A0:DA   7F   97138     7201 | sdgg  A0:DA   8F   97138     7201 | dgtdbl021redo2
+hitachi_vsp0_a0db  | sdik  A0:DB   7F   97138     7201 | sdgi  A0:DB   8F   97138     7201 | dgiantdbl2redo1
+hitachi_vsp0_a0dc  | sdil  A0:DC   7F   97138     7201 | sdgj  A0:DC   8F   97138     7201 | dgiantdbl2redo2
+hitachi_vsp0_a0e5  | sdim  A0:E5   7F   97138    57622 | sdgl  A0:E5   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0e6  | sdin  A0:E6   7F   97138    57622 | sdgn  A0:E6   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0e7  | sdio  A0:E7   7F   97138    57622 | sdgo  A0:E7   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0e8  | sdip  A0:E8   7F   97138    57622 | sdgp  A0:E8   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0e9  | sdiq  A0:E9   7F   97138    57622 | sdgr  A0:E9   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0ea  | sdir  A0:EA   7F   97138    57622 | sdgv  A0:EA   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0eb  | sdis  A0:EB   7F   97138    57622 | sdgx  A0:EB   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0ec  | sdit  A0:EC   7F   97138    57622 | sdha  A0:EC   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f0  | sdiu  A0:F0   7F   97138    57622 | sdhb  A0:F0   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f1  | sdiv  A0:F1   7F   97138    57622 | sdhd  A0:F1   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f2  | sdiw  A0:F2   7F   97138    57622 | sdhf  A0:F2   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f3  | sdix  A0:F3   7F   97138    57622 | sdhh  A0:F3   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f4  | sdiy  A0:F4   7F   97138    57622 | sdhj  A0:F4   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_a0f5  | sdiz  A0:F5   7F   97138    57622 | sdhk  A0:F5   8F   97138    57622 | dgtdbl021bkup
+hitachi_vsp0_a0f7  | sdja  A0:F7   7F   97138    57622 | sdhm  A0:F7   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f8  | sdjb  A0:F8   7F   97138    57622 | sdhn  A0:F8   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0f9  | sdjc  A0:F9   7F   97138    57622 | sdhp  A0:F9   8F   97138    57622 | dgtdbl021db
+hitachi_vsp0_a0fa  | sdjd  A0:FA   7F   97138    57622 | sdhr  A0:FA   8F   97138    57622 | dgtdbl021db
+hitachi_vsp1_0018  | sdbd  00:18   7F   97229    57622 | sdd   00:18   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_008c  | sdbe  00:8C   7F   97229   230490 | sde   00:8C   8F   97229   230490 | dgiantdbl2bkup
+hitachi_vsp1_008d  | sdbg  00:8D   7F   97229   230490 | sdf   00:8D   8F   97229   230490 | dgiantdbl2bkup
+hitachi_vsp1_008e  | sdbh  00:8E   7F   97229   230490 | sdg   00:8E   8F   97229   230490 | dgiantdbl2bkup
+hitachi_vsp1_00da  | sdbi  00:DA   7F   97229    57622 | sdh   00:DA   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_00db  | sdbj  00:DB   7F   97229    57622 | sdi   00:DB   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_00ea  | sdbk  00:EA   7F   97229   518602 | sdj   00:EA   8F   97229   518602 | dgtdbl021db
+hitachi_vsp1_00eb  | sdbl  00:EB   7F   97229   518602 | sdk   00:EB   8F   97229   518602 | dgtdbl021db
+hitachi_vsp1_0320  | sdbm  03:20   7F   97229   518602 | sdl   03:20   8F   97229   518602 | dgtdbl021db
+hitachi_vsp1_0483  | sdbp  04:83   7F   97229   518602 | sdn   04:83   8F   97229   518602 | dgtdbl021db
+hitachi_vsp1_0484  | sdbr  04:84   7F   97229   518602 | sdo   04:84   8F   97229   518602 | dgtdbl021db
+hitachi_vsp1_0499  | sdbt  04:99   7F   97229    57622 | sdp   04:99   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_049a  | sdbv  04:9A   7F   97229    57622 | sdq   04:9A   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_049b  | sdbz  04:9B   7F   97229    57622 | sdr   04:9B   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_049c  | sdcb  04:9C   7F   97229    57622 | sds   04:9C   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04aa  | sdcd  04:AA   7F   97229    57622 | sdt   04:AA   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04ab  | sdce  04:AB   7F   97229    57622 | sdu   04:AB   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04ac  | sdcg  04:AC   7F   97229    57622 | sdv   04:AC   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04ad  | sdci  04:AD   7F   97229    57622 | sdw   04:AD   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04ae  | sdcj  04:AE   7F   97229    57622 | sdx   04:AE   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04af  | sdcl  04:AF   7F   97229    57622 | sdy   04:AF   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04b0  | sdcn  04:B0   7F   97229    57622 | sdz   04:B0   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04b1  | sdcp  04:B1   7F   97229    57622 | sdaa  04:B1   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_04f6  | sdcr  04:F6   7F   97229    14405 | sdab  04:F6   8F   97229    14405 | dgiantdbl2redo1
+hitachi_vsp1_04f7  | sdct  04:F7   7F   97229    14405 | sdac  04:F7   8F   97229    14405 | dgiantdbl2redo2
+hitachi_vsp1_0510  | sdcw  05:10   7F   97229   230490 | sdad  05:10   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0511  | sdcy  05:11   7F   97229   230490 | sdae  05:11   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0512  | sddc  05:12   7F   97229   230490 | sdaf  05:12   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0513  | sddd  05:13   7F   97229   230490 | sdag  05:13   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0514  | sddg  05:14   7F   97229   230490 | sdah  05:14   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0515  | sddi  05:15   7F   97229   230490 | sdai  05:15   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0516  | sddk  05:16   7F   97229   230490 | sdaj  05:16   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0517  | sddm  05:17   7F   97229   230490 | sdak  05:17   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0518  | sddo  05:18   7F   97229   230490 | sdal  05:18   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_0519  | sddp  05:19   7F   97229   230490 | sdam  05:19   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_051a  | sddu  05:1A   7F   97229   230490 | sdan  05:1A   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_051b  | sddx  05:1B   7F   97229   230490 | sdao  05:1B   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_051c  | sddy  05:1C   7F   97229   230490 | sdap  05:1C   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_051d  | sdea  05:1D   7F   97229   230490 | sdaq  05:1D   8F   97229   230490 | dgiantdbl2db
+hitachi_vsp1_5053  | sdjh  50:53   7F   97229   518602 | sdjf  50:53   8F   97229   518602 | dgtdbl021bkup
+hitachi_vsp1_507c  | sdjl  50:7C   7F   97229   518602 | sdjj  50:7C   8F   97229   518602 |
+hitachi_vsp1_50a5  | sdbb  50:A5   7F   97229    14405 | sdb   50:A5   8F   97229    14405 |
+hitachi_vsp1_50fb  | sdbc  50:FB   7F   97229   230490 | sdc   50:FB   8F   97229   230490 | dgoracle_ltdbant9
+hitachi_vsp1_516e  | sdbn  51:6E   7F   97229   230490 | sdm   51:6E   8F   97229   230490 | dgtdbl021bkup
+hitachi_vsp1_51db  | sdeb  51:DB   7F   97229  1048576 | sdar  51:DB   8F   97229  1048576 |
+hitachi_vsp1_528c  | sdfn  52:8C   7F   97229  1048576 | sdcm  52:8C   8F   97229  1048576 | dgiantdbl2bkup
+hitachi_vsp1_a0ef  | sdec  A0:EF   7F   97229     7201 | sdas  A0:EF   8F   97229     7201 | dgtdbl021redo2
+hitachi_vsp1_a0f0  | sded  A0:F0   7F   97229     7201 | sdat  A0:F0   8F   97229     7201 | dgtdbl021redo1
+hitachi_vsp1_a0f1  | sdef  A0:F1   7F   97229     7201 | sdau  A0:F1   8F   97229     7201 | dgiantdbl2redo1
+hitachi_vsp1_a0f2  | sdek  A0:F2   7F   97229     7201 | sdav  A0:F2   8F   97229     7201 | dgiantdbl2redo2
+hitachi_vsp1_a0f6  | sdel  A0:F6   7F   97229    57622 | sdaw  A0:F6   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a0f8  | sdem  A0:F8   7F   97229    57622 | sdax  A0:F8   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a0f9  | sden  A0:F9   7F   97229    57622 | sday  A0:F9   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a0fd  | sdeo  A0:FD   7F   97229    57622 | sdaz  A0:FD   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a0fe  | sdep  A0:FE   7F   97229    57622 | sdba  A0:FE   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a0ff  | sdeq  A0:FF   7F   97229    57622 | sdbf  A0:FF   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a100  | sder  A1:00   7F   97229    57622 | sdbo  A1:00   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a101  | sdes  A1:01   7F   97229    57622 | sdbq  A1:01   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a106  | sdeu  A1:06   7F   97229    57622 | sdbs  A1:06   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a107  | sdev  A1:07   7F   97229    57622 | sdbu  A1:07   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a108  | sdex  A1:08   7F   97229    57622 | sdbw  A1:08   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a109  | sdez  A1:09   7F   97229    57622 | sdbx  A1:09   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a10a  | sdfb  A1:0A   7F   97229    57622 | sdby  A1:0A   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_a10b  | sdfe  A1:0B   7F   97229    57622 | sdca  A1:0B   8F   97229    57622 | dgtdbl021bkup
+hitachi_vsp1_a10d  | sdff  A1:0D   7F   97229    57622 | sdcc  A1:0D   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a10e  | sdfh  A1:0E   7F   97229    57622 | sdcf  A1:0E   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a10f  | sdfj  A1:0F   7F   97229    57622 | sdch  A1:0F   8F   97229    57622 | dgtdbl021db
+hitachi_vsp1_a110  | sdfk  A1:10   7F   97229    57622 | sdck  A1:10   8F   97229    57622 | dgtdbl021db
+ltdbant9:~ # san_shortinfo | grep -i 50:7C
+hitachi_vsp0_507c  | sdjm  50:7C   7F   97138   518602 | sdjk  50:7C   8F   97138   518602 |
+hitachi_vsp1_507c  | sdjl  50:7C   7F   97229   518602 | sdjj  50:7C   8F   97229   518602 |
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # df -hT /global/tdbl021/bkup
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdbl021bkup/lvbkup vxfs  1.7T  274G  1.4T  17% /global/tdbl021/bkup
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # df -hT /global/tdbl021/bkup
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdbl021bkup/lvbkup vxfs  1.7T  274G  1.4T  17% /global/tdbl021/bkup
+
+
+STEP 2-
+
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ vi ltdbant9_grow_TAS000004832101.all
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ cat ltdbant9_grow_TAS000004832101.all
+#########################################################################
+#
+# GROW EXISTING Filesystem
+#
+# Replace (host1) with the name of the physical server on which the filesystem is mounted
+#
+#########################################################################
+
+HOST ltdbant9
+dg dgtdbl021bkup
+# @000320583
+50:7C   97138   B1_GS3
+50:7C   97229   B1_GS3
+lv  lvbkup max
+mnt lvbkup  /global/tdbl021/bkup
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh ltdbant9_grow_TAS000004832101.all
+
+  _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+  |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+   \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+ Processing file 'ltdbant9_grow_TAS000004832101.all'
+
+-> Checking File validity                        [OK]    file exist: ltdbant9_grow_TAS000004832101.all
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on ltdbant9
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [WARN]  no 'sg'-line found
+-> Fetching module for Apps                      [WARN]  no apps in template
+
+
+ Running remote sanity check
+
+-> Copy template to remote host 'ltdbant9'       [OK]    copied
+-> Running sanity check on 'ltdbant9'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+ Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on ltdbant9
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+18:22:24 Initializing disk hitachi_vsp0_507c                              OK
+18:22:25 Disabling thin provisioning on disk hitachi_vsp0_507c            OK
+18:22:25 Initializing disk hitachi_vsp1_507c                              OK
+18:22:25 Disabling thin provisioning on disk hitachi_vsp1_507c            OK
+18:22:25 Adding disks to diskgroup dgtdbl021bkup: hitachi_vsp0_507c
+ hitachi_vsp1_507c                                                        OK
+18:22:25 Renaming disk hitachi_vsp0_507c in diskgroup dgtdbl021bkup to
+ 19_97138_507c                                                            OK
+18:22:25 Renaming disk hitachi_vsp1_507c in diskgroup dgtdbl021bkup to
+ 18_97229_507c                                                            OK
+18:22:25 Growing volume lvbkup in diskgroup dgtdbl021bkup to size
+ +518553M                                                                 OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+
+
+Step 3
+
+ltdbant9:~ # vxassist -g dgtdbl021bkup maxgrow lvbkup
+Volume lvbkup can be extended by 98304 to: 4592664512 (2242511Mb+1984 sectors)
+ltdbant9:~ # vxresize -g dgtdbl021bkup lvbkup 2242511M
+ltdbant9:~ #
+ltdbant9:~ #
+ltdbant9:~ # df -hT /global/tdbl021/bkup
+Filesystem                       Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdbl021bkup/lvbkup vxfs  2.2T  274G  1.9T  13% /global/tdbl021/bkup
+ltdbant9:~ # date
+Wed Jul 15 18:25:45 CEST 2020
+ltdbant9:~ # exit
+exit
+
+
+

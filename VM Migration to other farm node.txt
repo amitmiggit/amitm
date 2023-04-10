@@ -1,0 +1,31 @@
+Duration:  
+For each VM take 2 hours downtime to migrate server from one farm to different farm node. 
+
+Description:  
+Due to farm lpxentpg009/010 decommissioning caused by server-life-cycle we are migrating the VM from source farm lpxentpg009/010 to replacement farm node lpxentpg069/70. All VM IPs addresses will remain the same. 
+
+
+S. no 	VM's List 	Downtime (CEST)
+		
+21	ltpga00318vm   	21.06.2020 02:00 - 07:00
+22	ltpga00319vm   	
+23	ltpga00320vm   	
+24	ltpga00321vm   	
+		
+25	ltpga00322vm   	21.06.2020 07:00 - 12:00
+26	ltpga00323vm   	
+27	ltpga00324vm   	
+28	ltpga00325vm   	
+29	ltpga00326vm   	
+
+Source Farm  : lpxentpg009/010
+Target Farm    : lpxentpg069/70
+
+Target Host : 
+LSAN : Yes
+CN-NET and backup IP address will remain the same. 
+
+
+Please change predefined answer if necessary:				
+Task can be implemented at any time within the start-/end time: yes				
+Technical contact must be explicitly informed before begin and after end of this task: no

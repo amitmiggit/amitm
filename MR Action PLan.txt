@@ -1,0 +1,70 @@
+For SLES11 VM's/Servers
+
+
+
+Task: Perform Master Release on lpbkportfde3 Virtual Machine(VM's)
+
+Find install server
+          $ cmdb libkdwd2 | grep -I install
+
+
+
+Check OS Version and SecFS application
+          lpbkportfde3:~ # cat /etc/issue
+
+          lpbkportfde3:~ # rpm -qa | grep -i vee
+
+          lpbkportfde3:~ # secfsd -status guard
+
+Note:
+
+If you found Policy/Guard Points are available, Please look into CRQ For Vormetric Team Task and contact the Assignee of the Task.
+If you didn't found any details related to Vormetric Team, Inform Requester about this and Raise an INC to the Vormetric Team
+After confirmation from Vormetric Team Proceed with Stopping/Removing secfs
+Stop SecFS if already Installed and Running
+          libkdwd2:~ # /opt/vormetric/DataSecurityExpert/agent/secfs/bin/uninstall
+          Would you like to uninstall the vee-fs package? (Y/N) [Y]: y
+          ......
+          Success!
+          libkdwd2:~ #
+
+
+
+Do Fullcheck and sup check before MR update
+          fullcheck libkdwd2
+          sup check libkdwd2
+
+
+
+Set DT for the VM
+
+
+Perform MR update for the VM from the appropriate Install Server
+          sup update libkdwd2 mr
+
+
+
+Patch the VM/Server
+          patchme libkdwd2
+
+
+
+Re-Install SecFS on the VM
+          install_override.sh libkdwd2 BMW-SW-
+
+
+
+Perform reboot of the VM/Server
+
+
+Perform Fullcheck from the Install Server after MR update
+          fullcheck lpbkportfde3
+
+
+
+Check SecFS after MR
+          lpbkcfc1:~ # secfsd -status guard
+
+
+Inform to application team and change coordinator to validate their application status.
+Once every thing is fine, you can close the task with proper Provisioning Code

@@ -1,0 +1,38 @@
+Online migration from lp05xen16 to lp05xen15,
+
+For the below mentioned VM:
+
+lp05psspweb4vm
+
+
+CRQ000001421015
+
+On_mig_from_lp05xen16
+DTP ID - 24112
+13.06.2020 00:00:00 - 01:00:00 CEST
+
+In case of any queries you can contact : DL-iaas-unix-orga <iaas-unix-orga@list.bmw.com>
+
+
+lp05xen16:~ # vmc list lp05psspweb4vm
+00:09:39 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+                                     lp05xen15                   lp05xen16
+                                --------------              --------------
+lp05psspweb4vm                         -------    running(  9)(  4/32768M)
+lp05xen16:~ # vmc migrate lp05psspweb4vm
+00:10:03 Checking Libvirt access on lp05xen15                                                                                                                                          OK
+00:10:03 Checking free config space on lp05xen15                                                                                                                                       OK
+00:10:04 Checking Libvirt access on lp05xen16                                                                                                                                          OK
+00:10:04 Checking free config space on lp05xen16                                                                                                                                       OK
+00:10:04 Checking if lp05xen15 has the same CPU capability as lp05xen16                                                                                                                OK
+00:10:05 Locking VM lp05psspweb4vm: Automatic Lock - migrate                                                                                                                           OK
+00:10:06 Checking storage availability for VM lp05psspweb4vm on lp05xen15                                                                                                              OK
+00:10:10 Migrating VM lp05psspweb4vm from lp05xen16 to lp05xen15                                                                                                                       FAILED
+00:10:14 libvirt error code: 1, message: internal error: Failed to send migration data to destination host
+
+00:10:14 Unlocking VM lp05psspweb4vm                                                                                                                                                   OK
+00:10:15 ERROR: Command migrate did not complete successfully
+lp05xen16:~
+
+
